@@ -219,6 +219,69 @@ table.t td.c{text-align:center}
 #home .keys{margin-top:26px;font-size:15px;color:var(--muted);line-height:1.8}
 kbd{display:inline-block;background:#fff;border:1px solid #c9cdc4;border-bottom-width:2px;border-radius:5px;padding:0 7px;font-family:inherit;font-size:14px;color:var(--ink)}
 @media (max-width:700px){#home .ch{grid-template-columns:1fr}}
+/* ---------- motion ---------- */
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.slide.in > *{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+.slide.in > *:nth-child(2){animation-delay:.07s}
+.slide.in > *:nth-child(3){animation-delay:.14s}
+.slide.in > *:nth-child(4){animation-delay:.21s}
+.slide.in > *:nth-child(5){animation-delay:.28s}
+.slide.in > *:nth-child(n+6){animation-delay:.35s}
+.popin{animation:pop .55s cubic-bezier(.2,.7,.2,1) both}
+.bgfx{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.slide > *:not(.bgfx){position:relative;z-index:1}
+.slide.in > .bgfx{animation:none}
+.card,.qi,.file,.af{transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(15,92,77,.12)}
+@media (prefers-reduced-motion: reduce){.slide.in > *,.popin{animation:none}.card:hover{transform:none}}
+
+/* counters v2 */
+.ctrtop{display:flex;align-items:center;gap:16px;margin:-6px 0 22px;font-size:24px}
+.ctrtop input{width:120px;font:inherit;font-size:28px;font-weight:800;text-align:center;border:2px solid var(--accent);border-radius:10px;padding:4px 6px;color:var(--accent);background:#fff}
+.ctr .c{flex-direction:column;align-items:stretch;gap:12px}
+.ctr .row{display:flex;align-items:center;gap:12px}
+.ctr .row input{width:110px;font:inherit;font-size:44px;font-weight:800;text-align:center;color:var(--accent);border:1px solid var(--line);border-radius:10px;padding:2px 4px;background:#fbfbf8;font-variant-numeric:tabular-nums}
+.ctr .bar{flex:1;height:22px;background:#eceee8;border-radius:999px;overflow:hidden}
+.ctr .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#2e9e7a);border-radius:999px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.ctr .pct{min-width:84px;text-align:right;font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+
+/* evolution */
+.evo{display:grid;grid-template-columns:900px 1fr;gap:30px;flex:1;min-height:0}
+.evo canvas{width:900px;height:520px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.evo .txt{display:flex;flex-direction:column;gap:12px}
+.evo .yr{font-size:20px;font-weight:800;color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
+.evo .tt{font-size:40px;font-weight:800;line-height:1.1}
+.evo .ds{font-size:25px;line-height:1.42;color:#2b323c}
+.evo .ex{font-size:22px;line-height:1.4;background:var(--accent-2);border-left:5px solid var(--accent);border-radius:8px;padding:12px 16px}
+.evo .nx{align-self:flex-start;margin-top:auto;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:20px;font-weight:700}
+.tl{display:flex;align-items:center;gap:0;margin:0 0 20px;position:relative}
+.tl::before{content:"";position:absolute;left:20px;right:20px;top:50%;height:4px;background:var(--line);border-radius:4px}
+.tl .fill{position:absolute;left:20px;top:50%;height:4px;background:var(--accent);border-radius:4px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.tl button{position:relative;flex:1;background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:17px;font-weight:700;color:var(--muted);padding:0}
+.tl button i{width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid var(--line);transition:all .3s}
+.tl button.done i{border-color:var(--accent);background:var(--accent)}
+.tl button.cur{color:var(--accent)}
+.tl button.cur i{border-color:var(--accent);background:#fff;transform:scale(1.35);box-shadow:0 0 0 6px var(--accent-2)}
+.tl button span{background:var(--stage);padding:0 6px}
+
+/* automation flows */
+.auto{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;min-height:0}
+.af{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.af h3{margin:0;font-size:25px;color:var(--accent);line-height:1.2}
+.af .why{font-size:18px;color:var(--muted);margin:0}
+.af ol{list-style:none;margin:4px 0 0;padding:0;position:relative;display:flex;flex-direction:column;gap:8px}
+.af ol::before{content:"";position:absolute;left:15px;top:14px;bottom:14px;width:3px;background:var(--line)}
+.af li{position:relative;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;font-size:18px;line-height:1.3;padding:6px 8px 6px 0;border-radius:10px;transition:background .35s}
+.af li .dot{width:32px;height:32px;border-radius:50%;background:#fff;border:3px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--muted);transition:all .35s;z-index:1}
+.af li b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.af li.on{background:var(--accent-2)}
+.af li.on .dot{border-color:var(--accent);background:var(--accent);color:#fff;transform:scale(1.08)}
+.af .con{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.af .con span{font-size:14px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--muted);background:#f6f7f3}
+.af .warn{font-size:16px;background:var(--warn-soft);border-radius:8px;padding:8px 10px;line-height:1.35}
+.autonote{margin-top:14px;font-size:19px;color:var(--muted)}
+
 </style>
 </head>
 <body>
@@ -304,19 +367,29 @@ S.relator = { b:'ini', t:'cols', k:'Presentación', h:'Relator: Patricio Matelun
   notes:'El bloque de inicio dura 15 minutos (09:15–09:30). Presentación del relator en 2 minutos. Presentación de participantes: que levanten la mano por división o unidad; con 55 personas no alcanza una ronda individual.'};
 S.dinCount = { b:'ini', t:'counters', k:'Dinámica inicial · 3 min', h:'Levanta la mano', timer:3, timerLbl:'Levanta la mano', id:'cnt',
   items:['¿Quiénes han usado alguna herramienta de IA?','¿Quiénes han usado IA para una tarea laboral?','¿Quiénes han recibido un documento o correo hecho con apoyo de IA?','¿Quiénes tienen dudas o preocupaciones sobre su uso en el sector público?'],
-  notes:'Cuenta aproximada de manos con + y −. Los números quedan guardados en este navegador para comparar ambos grupos.'};
+  notes:'Escribe primero cuántas personas hay en la sala. Luego cuenta las manos con + y − o escribe el número directamente. Las barras muestran el porcentaje. Los números quedan guardados en este navegador para comparar ambos grupos.'};
 S.dinTalk = { b:'ini', t:'cols', k:'Dinámica inicial · 6 min', h:'La IA en mi trabajo', timer:6, timerLbl:'La IA en mi trabajo', n:3,
   lead:'Conversen en su mesa y escriban en tarjetas adhesivas una tarea y una preocupación.',
   cards:[{h:'1',items:['¿Qué tarea de nuestro trabajo nos demanda más tiempo?']},{h:'2',items:['¿En qué tarea podría ayudarnos una herramienta de IA?']},{h:'3',items:['¿Qué riesgo o preocupación tendríamos al usarla?']}],
   notes:'Mesas de 4 a 5 personas. Mientras conversan, prepara el papelógrafo con las tres columnas de la diapositiva siguiente.'};
 S.dinBoard = { b:'ini', t:'board', k:'Dinámica inicial · 4 min', h:'Lo que trae el grupo', timer:4, timerLbl:'Puesta en común',
   notes:'4 o 5 grupos al azar comparten en voz alta; el resto pega sus tarjetas en el papelógrafo. Puedes anotar aquí lo más repetido: queda guardado y se retoma en el cierre.'};
-S.queIA = { b:'m1', t:'cols', k:'Módulo 1', h:'¿Qué es la inteligencia artificial?', n:3,
+S.queIA = { b:'m1', t:'cols', k:'Módulo 1', h:'¿Qué es la inteligencia artificial?', n:2,
   cards:[
-    {h:'Definición simple', items:['Sistemas que realizan tareas que normalmente requieren inteligencia humana: reconocer, clasificar, predecir, redactar']},
-    {h:'Aprende de datos', items:['No sigue reglas escritas a mano: encuentra patrones en grandes cantidades de ejemplos']},
-    {h:'No piensa como una persona', items:['No entiende ni sabe lo que es verdad: calcula la respuesta más probable']}
-  ]};
+    {h:'Definición simple', items:['Sistemas que realizan tareas que normalmente requieren inteligencia humana: reconocer, clasificar, predecir, redactar','Aprenden de datos: encuentran patrones en muchos ejemplos']},
+    {h:'No piensa como una persona', items:['No entiende ni sabe lo que es verdad','Calcula la respuesta más probable según lo que aprendió']},
+    {h:'IA tradicional (predictiva)', hl:1, items:['Analiza datos para **clasificar, predecir o detectar patrones** dentro de opciones conocidas','Ejemplos: filtrar correos spam, anticipar la ejecución presupuestaria, reconocer texto en un escaneo']},
+    {h:'IA generativa', hl:1, items:['**Crea contenido nuevo**: texto, imágenes, audio o código, a partir de una instrucción','Ejemplos: redactar un oficio, resumir un acta, proponer una presentación con Copilot']}
+  ], notes:'Ambas son IA y ambas aprenden de datos. La diferencia está en el resultado: la tradicional elige o estima; la generativa produce algo nuevo. La diapositiva siguiente muestra cómo se llegó hasta aquí.'};
+S.evo = { b:'m1', t:'evo', k:'Módulo 1 · De la estadística a la IA generativa', h:'¿Cómo llegamos hasta aquí?',
+  stages:[
+    {c:'Modelo matemático', y:'Desde el siglo XIX', t:'Modelo matemático y estadístico', d:'Una fórmula relaciona variables. Las personas eligen la fórmula y el computador calcula sus parámetros.', e:'Estimar el costo de una obra según su superficie.'},
+    {c:'Machine Learning', y:'1959 en adelante', t:'Machine Learning', d:'El sistema aprende la regla a partir de ejemplos, sin que nadie la escriba.', e:'Detectar correos spam o anticipar qué proyectos podrían atrasarse.'},
+    {c:'Deep Learning', y:'2012 en adelante', t:'Deep Learning', d:'Redes neuronales con muchas capas que aprenden directamente de imágenes, audio o texto.', e:'Reconocer texto en un PDF escaneado o clasificar documentos.'},
+    {c:'IA generativa', y:'2017: Transformers · 2022: ChatGPT', t:'IA generativa', d:'Modelos de lenguaje que escriben texto nuevo eligiendo, palabra por palabra, la continuación más probable.', e:'Redactar un oficio o resumir un acta con Copilot.'},
+    {c:'Agentes', y:'2024 en adelante', t:'Agentes de IA', d:'La IA generativa planifica pasos, usa herramientas (correo, archivos, buscadores) y revisa su propio resultado.', e:'Un asistente que responde consultas usando el manual de compras.'},
+    {c:'Todo es IA', y:'1956: nace el término', t:'Todo es inteligencia artificial', d:'Cada etapa está contenida en la anterior: la IA generativa es un tipo de deep learning, que es un tipo de machine learning, que es parte de la IA.', e:'Copilot es IA generativa: la etapa más reciente de una historia larga.'}
+  ], notes:'Avanza con R, con el botón o haciendo clic en la línea de tiempo. Mensaje: la IA no apareció en 2022; lo nuevo es que ahora genera lenguaje. Para cada etapa, pide a la sala un ejemplo de su trabajo.'};
 S.quiz = { b:'m1', t:'quiz', k:'Módulo 1 · ¿Tradicional o generativa?', h:'¿Qué tipo de IA es?', lead:'Voten a mano alzada y luego hagan clic en cada tarea para ver la respuesta.',
   items:[
     ['Detectar correos spam','Tradicional','clasifica con un modelo entrenado',1],
@@ -332,10 +405,12 @@ S.llm = { b:'m1', t:'cols', k:'Módulo 1 · Dimensión tecnológica', h:'¿Cómo
     {h:'Puede inventar', items:['Si no sabe, igual responde con seguridad','A eso le llamamos **alucinación**']},
     {h:'Por eso', items:['Le damos documentos y contexto','Siempre verificamos antes de usar el resultado']}
   ]};
-S.alucina = { b:'m1', t:'prompts', k:'Módulo 1 · Demostración', h:'Veamos una alucinación en vivo',
-  steps:['Abre Copilot Chat con tu cuenta institucional.','Pega la pregunta.','Busca los números entregados en el buscador de dictámenes de la Contraloría.'],
-  prompts:[{l:'Pregunta para Copilot', x:'Cita el número y la fecha de tres dictámenes de Contraloría sobre el uso de inteligencia artificial en gobiernos regionales.'}],
-  notes:'Ensayar antes. Si Copilot cita dictámenes reales, pedir algo más específico (por ejemplo, la región y el año) hasta que invente. Mensaje: suena convincente y puede ser falso.'};
+S.alucina = { b:'m1', t:'cols', k:'Módulo 1 · Alucinaciones', h:'Revisar siempre con criterio profesional', n:3,
+  cards:[
+    {h:'¿Qué es una alucinación?', items:['La IA entrega un dato falso con total seguridad','Puede inventar cifras, fechas, nombres, normas o dictámenes','Los modelos actuales fallan menos, pero siguen fallando']},
+    {h:'Qué revisar siempre', items:['Cifras y cálculos','Fechas y plazos','Nombres, cargos y unidades','Normas, dictámenes y citas: buscarlos en la fuente','Que responda lo que se pidió']},
+    {h:'Quien firma, responde', hl:1, items:['La IA no reemplaza el criterio profesional','Todo resultado es un borrador hasta que una persona lo revisa','Si no puedes verificarlo, no lo uses']}
+  ], notes:'Ya no es fácil provocar una alucinación en vivo, así que no se hace la demostración. Pregunta si alguien ha recibido una respuesta incorrecta de una IA y que la cuente en 30 segundos. Conecta con el módulo 3 de Cristian.'};
 S.dims = { b:'m1', t:'cols', k:'Módulo 1', h:'Cuatro dimensiones del uso de IA en el Estado', n:4,
   cards:[
     {h:'Tecnológica', items:['Qué hace y qué no','Calidad de los datos','Límites de cada herramienta']},
@@ -399,7 +474,7 @@ const G1 = [
     notes:'Bienvenida. Confirmar que todos tienen el notebook encendido y la cuenta institucional abierta en Copilot Chat.' },
   S.relator, {b:'ini',t:'agenda',k:'Programa',h:'La jornada de hoy'}, S.dinCount, S.dinTalk, S.dinBoard,
   { b:'m1', t:'trans', k:'09:30 – 10:30 · Módulo 1', h:'¿Qué es la inteligencia artificial?', lead:'Conceptos, tipos de IA, aplicaciones en el sector público y sus dimensiones.' },
-  S.queIA, S.quiz, S.llm, S.alucina,
+  S.queIA, S.evo, S.quiz, S.llm, S.alucina,
   { b:'m1', t:'cols', k:'Módulo 1', h:'Aplicaciones en la gestión institucional', n:3,
     cards:[{h:'Redacción',items:['Oficios, respuestas a ciudadanos, minutas']},{h:'Síntesis',items:['Actas, informes, normativa']},{h:'Clasificación',items:['Correos, solicitudes, reclamos']},{h:'Análisis',items:['Indicadores, planillas, bases de licitación']},{h:'Revisión',items:['Inconsistencias, requisitos, plazos']},{h:'Automatización',items:['Flujos con Power Automate']}]},
   S.dims, S.tools,
@@ -450,10 +525,6 @@ const G1 = [
       {l:'Pregunta que sí responde', x:'¿Con cuánta anticipación debo pedir una compra que requiere licitación por 500 UTM?'},
       {l:'Pregunta que no responde', x:'¿Qué proveedor de convenio marco tiene el mejor precio en notebooks?'}
     ], notes:'Si el creador de agentes está habilitado, cada participante crea su agente con K7 (práctico). Si no, demostración desde tu cuenta y las mesas diseñan su agente en papel: nombre, para quién, documentos, 3 preguntas y algo que nunca debe hacer. Respuesta esperada: 25 días hábiles (numeral 6).' },
-  { b:'m67', t:'flow', k:'Ejercicio G1-7 · Power Automate', h:'Automatizar la recepción de rendiciones',
-    steps:[['Disparador','Llega un correo con "Rendición" en el asunto'],['Acción','Guardar el adjunto en una carpeta de SharePoint'],['Acción','Registrar una fila en una lista'],['Aviso','Mensaje en Teams al analista']],
-    lead:'Lienzo por mesa (10 min): ¿qué inicia el proceso? · pasos manuales hoy · datos que se mueven · quién aprueba · qué NO debe automatizarse.',
-    timer:10, timerLbl:'G1-7 Lienzo', notes:'Este flujo usa solo conectores estándar (Outlook, SharePoint, Teams), que no requieren permisos del administrador. Pruébalo antes con tu cuenta. Los procesos de las mesas van al informe final.' },
   { b:'m67', t:'cols', k:'Módulo 7 · Automatización documental', h:'Datos de facturas: ¿con IA o con datos estructurados?', n:2,
     cards:[
       {h:'1 · Copilot Chat', items:['Subir facturas ficticias en PDF y pedir una tabla: RUT, folio, fecha, neto, IVA y total','Pedir que verifique neto + IVA = total']},
@@ -461,12 +532,14 @@ const G1 = [
       {h:'3 · XML de la factura y Registro de Compras y Ventas del SII', hl:1, items:['Cada factura electrónica trae su XML con los datos exactos','El RCV se descarga en CSV: no hay que "leer" nada']},
       {h:'4 · Power Automate con conectores estándar', items:['Guardar las facturas recibidas por correo y registrarlas en Excel','La lectura automática (AI Builder) requiere que el administrador la habilite']}
     ], notes:'Contexto: AI Builder (procesamiento de facturas) pide permiso del administrador para instalar un paquete en el entorno, por eso no se muestra en vivo. Mensaje: antes de pedirle a la IA que lea un documento, pregunta si el dato ya existe en forma estructurada. Facturas de empresas casi no tienen datos personales; boletas de honorarios sí: solo documentos ficticios.' },
-  { b:'m67', t:'cols', k:'Módulo 7', h:'Automatizar sin permisos del administrador', n:3,
-    cards:[
-      {h:'Correos y solicitudes', items:['Guardar adjuntos en una carpeta','Registrar cada solicitud en Excel o en una lista']},
-      {h:'Compromisos y plazos', items:['Recordatorio antes de un vencimiento','Tareas en Planner desde un formulario']},
-      {h:'Reportes', items:['Resumen semanal por correo desde una planilla','Aviso en Teams cuando cambia un estado']}
-    ], notes:'Todo con conectores estándar de Microsoft 365. Pide a las mesas que elijan uno para su lienzo.' },
+  { b:'m67', t:'auto', k:'Módulo 7 · Ejemplos de automatización', h:'Tres flujos que ahorran trabajo repetitivo',
+    flows:[
+      {h:'Registro de solicitudes recibidas por correo', w:'Un registro único, sin copiar a mano.', steps:[['Disparador','Llega un correo a la casilla compartida con "Solicitud" en el asunto'],['Acción','Guarda los adjuntos en una carpeta de SharePoint, con la fecha'],['Acción','Agrega una fila en Excel: fecha, remitente, asunto y enlace'],['Resultado','Envía un acuse de recibo automático']], con:['Outlook','SharePoint','Excel'], warn:'No reenviar datos personales fuera de la institución.'},
+      {h:'Recordatorio de plazos y compromisos', w:'Que nadie se entere tarde de un vencimiento.', steps:[['Disparador','Cada día hábil a las 08:30'],['Acción','Lee la planilla de compromisos en SharePoint'],['Filtro','Selecciona los que vencen en 5 días o menos'],['Resultado','Avisa por correo o Teams a cada responsable']], con:['Programación','Excel','Outlook o Teams'], warn:'La planilla debe estar al día: el flujo no corrige datos.'},
+      {h:'Reporte semanal para la jefatura', w:'No armar el mismo reporte cada viernes.', steps:[['Disparador','Cada viernes a las 16:00'],['Acción','Cuenta las solicitudes de la semana por estado'],['Acción','Arma una tabla con el resumen'],['Resultado','La envía por correo a la jefatura']], con:['Programación','Excel','Outlook'], warn:'El primer mes, comparar los conteos con el registro.'}
+    ],
+    foot:'Se construyen en Power Automate con conectores estándar de Microsoft 365. Si la cuenta no tiene Power Automate, parte de esto se logra con reglas de Outlook, recordatorios en Planner o To Do, y Microsoft Forms conectado a Excel.',
+    notes:'Explica cada flujo como disparador, acciones y resultado; los pasos se iluminan solos. No hay ejercicio práctico porque la cuenta de demostración no tiene Power Automate. Pregunta a la sala: ¿qué proceso de su unidad se parece a alguno de estos? Esas respuestas van al informe final.' },
   S.p2a,
   { b:'m5', t:'trans', k:'16:20 – 17:30 · Módulo 5', h:'Herramientas de IA para procesos administrativos', lead:'Seguimiento y monitoreo, reportes, tareas y compromisos, indicadores de gestión y PMG. Síntesis y preguntas finales.' },
   { b:'m5', t:'cols', k:'Módulo 5', h:'Casos de uso en procesos administrativos', n:3,
@@ -493,7 +566,7 @@ const G2 = [
     notes:'Bienvenida. Confirmar notebooks encendidos y cuenta institucional abierta en Copilot Chat.' },
   S.relator, {b:'ini',t:'agenda',k:'Programa',h:'La jornada de hoy'}, S.dinCount, S.dinTalk, S.dinBoard,
   { b:'m1', t:'trans', k:'09:30 – 10:30 · Módulo 1', h:'¿Qué es la inteligencia artificial?', lead:'Conceptos y su aplicación en el ciclo de vida de los proyectos públicos.' },
-  S.queIA, S.quiz, S.llm, S.alucina,
+  S.queIA, S.evo, S.quiz, S.llm, S.alucina,
   { b:'m1', t:'life', k:'Ejercicio G2-1 · 15 min', h:'La IA en el ciclo de vida de un proyecto', timer:15, timerLbl:'G2-1 Ciclo de vida',
     stages:[['Formulación','v','Borradores de fichas, revisión de requisitos'],['Admisibilidad y evaluación','a','La IA revisa requisitos; la decisión es humana'],['Convenio','a','Borrador desde plantilla; revisión jurídica'],['Ejecución','v','Resumen de informes, cruce con el convenio'],['Seguimiento físico-financiero','v','Alertas de cartera, reportes'],['Cierre y rendición','a','Revisión de documentos; aprobar o rechazar es humano']],
     notes:'Haz clic en cada etapa para cambiar el color mientras la sala opina. La tecla R muestra la propuesta. Mensaje: la IA prepara, resume y detecta; las personas evalúan, aprueban y firman.' },
@@ -534,16 +607,18 @@ const G2 = [
     ], notes:'Trampas: confundir el monto del convenio ($148,5 MM) con el del contrato ($146,9 MM), o el avance financiero aprobado (35%) con lo pagado (15%).' },
   S.compara,
   { b:'m7', t:'trans', k:'14:45 – 15:30 · Módulo 7', h:'Automatización de procesos y tareas', lead:'Seguimiento automático de compromisos y plazos, alertas, informes periódicos y consolidación de reportes. Síntesis y cierre.' },
-  { b:'m7', t:'flow', k:'Ejercicio G2-7 · Power Automate', h:'Alerta semanal de plazos y brechas',
+  { b:'m7', t:'flow', k:'Ejercicio G2-7 · Diseño en papel', h:'Alerta semanal de plazos y brechas',
     steps:[['Disparador','Cada lunes a las 08:00'],['Acción','Leer la cartera (K10) en SharePoint o Excel'],['Filtro','Término en menos de 30 días o brecha mayor a 15 puntos'],['Aviso','Correo a cada analista con sus proyectos']],
     lead:'Con el corte al 31-10-2026 avisaría las filas 1, 6, 12 (brecha) y 15 (termina el 25-11). Lienzo por mesa (15 min): qué alerta, cada cuánto, de dónde sale el dato, quién la recibe y qué hace.',
-    timer:15, timerLbl:'G2-7 Lienzo', notes:'La fila 8 termina justo a los 30 días y queda fuera con "menos de 30": buen ejemplo de por qué definir bien los criterios antes de automatizar.' },
-  { b:'m7', t:'cols', k:'Módulo 7', h:'Automatizar sin permisos del administrador', n:3,
-    cards:[
-      {h:'Compromisos y plazos', items:['Recordatorio antes de cada hito','Tareas en Planner desde un acta o formulario']},
-      {h:'Informes periódicos', items:['Resumen semanal de la cartera por correo','Aviso en Teams cuando un proyecto cambia de estado']},
-      {h:'Consolidación', items:['Juntar planillas de varios analistas en una','Guardar informes de avance recibidos y registrarlos']}
-    ], notes:'Todo con conectores estándar de Microsoft 365 (Outlook, Excel, SharePoint, Teams, Planner). La lectura automática de documentos con AI Builder requiere que el administrador la habilite.' },
+    timer:15, timerLbl:'G2-7 Lienzo', notes:'Sin Power Automate disponible: el diagrama muestra cómo quedaría el flujo y las mesas lo diseñan en papel. La fila 8 termina justo a los 30 días y queda fuera con "menos de 30": buen ejemplo de por qué definir bien los criterios antes de automatizar.' },
+  { b:'m7', t:'auto', k:'Módulo 7 · Ejemplos de automatización', h:'Tres flujos para el seguimiento de proyectos',
+    flows:[
+      {h:'Recordatorio de hitos de los convenios', w:'Anticipar los vencimientos en vez de enterarse tarde.', steps:[['Disparador','Cada lunes a las 08:00'],['Acción','Lee la cartera y los hitos en Excel'],['Filtro','Hitos que vencen en 15 días o menos'],['Resultado','Correo a cada analista con sus hitos']], con:['Programación','Excel','Outlook'], warn:'Definir el criterio antes: "15 días o menos" no es lo mismo que "menos de 15".'},
+      {h:'Informe semanal de la cartera', w:'Un resumen listo para la jefatura cada semana.', steps:[['Disparador','Cada viernes a las 15:00'],['Acción','Resume la cartera por instrumento y estado'],['Filtro','Marca los proyectos con brecha mayor a 15 puntos'],['Resultado','Envía el resumen por correo y lo publica en Teams']], con:['Programación','Excel','Outlook','Teams'], warn:'El informe es tan bueno como los datos de la planilla.'},
+      {h:'Consolidación de informes de avance', w:'Todos los informes recibidos en un solo lugar.', steps:[['Disparador','Llega un correo con "Informe de avance" en el asunto'],['Acción','Guarda el PDF en la carpeta del proyecto'],['Acción','Registra fecha, municipio y proyecto en Excel'],['Resultado','Avisa al analista para que lo revise']], con:['Outlook','SharePoint','Excel','Teams'], warn:'El flujo no lee el contenido: la revisión sigue siendo del analista.'}
+    ],
+    foot:'Se construyen en Power Automate con conectores estándar de Microsoft 365. Si la cuenta no tiene Power Automate, parte de esto se logra con reglas de Outlook, recordatorios en Planner o To Do, y Microsoft Forms conectado a Excel.',
+    notes:'Los pasos se iluminan solos. No hay ejercicio práctico en Power Automate porque la cuenta de demostración no tiene la aplicación. Conecta con G2-7: la alerta semanal es una versión del primer flujo.' },
   { b:'m7', t:'board', k:'Cierre', h:'¿Respondimos lo que trajeron en la mañana?', notes:'Según la planificación, la síntesis y el cierre van en este bloque, antes del coffee break. Volver al papelógrafo de la dinámica inicial.' },
   { b:'m7', t:'bullets', k:'Cierre', h:'Tres ideas para llevarse', items:['**La IA prepara, resume y detecta:** las personas evalúan, aprueban y firman','**Cruzar documentos es donde más aporta:** informe frente a convenio, cartera frente a criterios','**Información institucional, solo en herramientas institucionales**, y siempre verificar cifras y fechas'], notes:'Preguntas finales. Recordar la encuesta y la evaluación para la certificación.' },
   S.p2b,
@@ -613,7 +688,13 @@ function render(){
         </div><div class="out"><div style="display:flex;align-items:center"><strong style="flex:1;font-size:20px;color:var(--accent)">Prompt resultante</strong><button class="copy" id="bldCopy">Copiar</button></div><pre id="bldOut"></pre></div></div></div>`; break;
     case 'counters': {
       const v = store.get('cnt.'+G, s.items.map(()=>0));
-      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><div class="ctr">${s.items.map((q,i)=>`<div class="c"><div class="q">${esc(q)}</div><button data-d="-1" data-i="${i}" aria-label="Restar">−</button><div class="num" id="cn${i}">${v[i]||0}</div><button data-d="1" data-i="${i}" aria-label="Sumar">+</button></div>`).join('')}</div></div>`; break; }
+      const tot = store.get('tot.'+G, 55);
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><div class="ctrtop"><label for="ctot">Participantes en la sala:</label><input id="ctot" type="number" min="1" max="999" value="${tot}"></div><div class="ctr">${s.items.map((q,i)=>`<div class="c"><div class="q">${esc(q)}</div><div class="row"><button data-d="-1" data-i="${i}" aria-label="Restar">−</button><input type="number" min="0" max="999" data-i="${i}" value="${v[i]||0}" aria-label="Cantidad"><button data-d="1" data-i="${i}" aria-label="Sumar">+</button><div class="bar"><i id="cb${i}"></i></div><div class="pct" id="cp${i}">0%</div></div></div>`).join('')}</div></div>`; break; }
+    case 'evo': {
+      const st = s.stages;
+      h = `<div class="slide">${kick}<h1 style="font-size:52px;margin-bottom:18px">${esc(s.h)}</h1><div class="tl"><div class="fill" id="tlfill"></div>${st.map((x,i)=>`<button data-e="${i}"><i></i><span>${esc(x.c)}</span></button>`).join('')}</div><div class="evo"><canvas id="evoc" width="1800" height="1040"></canvas><div class="txt"><div class="yr" id="eyr"></div><div class="tt" id="ett"></div><div class="ds" id="eds"></div><div class="ex" id="eex"></div><button class="nx" id="enx">Siguiente etapa (R) ▸</button></div></div></div>`; break; }
+    case 'auto':
+      h = `<div class="slide">${kick}<h1 style="font-size:50px;margin-bottom:18px">${esc(s.h)}</h1><div class="auto">${s.flows.map((f,fi)=>`<div class="af"><h3>${esc(f.h)}</h3><p class="why">${esc(f.w)}</p><ol>${f.steps.map((x,k)=>`<li data-f="${fi}" data-k="${k}"><span class="dot">${k+1}</span><span><b>${esc(x[0])}</b>${esc(x[1])}</span></li>`).join('')}</ol><div class="warn">${esc(f.warn)}</div><div class="con">${f.con.map(c=>`<span>${esc(c)}</span>`).join('')}</div></div>`).join('')}</div><p class="autonote">${md(s.foot)}</p></div>`; break;
     case 'board': {
       const B = store.get('board.'+G, {o:[],n:[],r:[]});
       const col = (k,t) => `<div class="col ${k}"><h3>${t}</h3><div class="items">${(B[k]||[]).map((x,i)=>`<div class="note"><span>${esc(x)}</span><button data-del="${k}:${i}" aria-label="Quitar">✕</button></div>`).join('')}</div><form data-k="${k}"><input placeholder="Agregar…" aria-label="Agregar a ${t}"><button aria-label="Agregar">+</button></form></div>`;
@@ -624,7 +705,11 @@ function render(){
     case 'flow':
       h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><div class="flow">${s.steps.map((x,i)=>`${i?'<div class="ar">→</div>':''}<div class="st"><span class="k">${esc(x[0])}</span>${esc(x[1])}</div>`).join('')}</div>${s.lead?`<p class="lead" style="font-size:26px">${md(s.lead)}</p>`:''}</div>`; break;
   }
+  stopFX();
   stage.innerHTML = h;
+  const sl = stage.querySelector('.slide'); if (sl) sl.classList.add('in');
+  stagger();
+  if (s.t === 'cover' || s.t === 'trans') netBG(sl, s.t === 'trans');
   bindSlide(s);
   if (revealState[I]) for (let k=0;k<revealState[I];k++) revealOne(true);
   // agenda bar
@@ -643,10 +728,18 @@ function bindSlide(s){
   stage.querySelectorAll('.copy[data-c]').forEach(b => b.onclick = () => copy(s.prompts[+b.dataset.c].x, b));
   stage.querySelectorAll('.copy[data-x]').forEach(b => b.onclick = () => copy(s[b.dataset.x], b));
   const rb = $('#revBtn'); if (rb) rb.onclick = () => revealOne();
-  if (s.t === 'counters') stage.querySelectorAll('.ctr button').forEach(b => b.onclick = () => {
-    const v = store.get('cnt.'+G, s.items.map(()=>0)); const i = +b.dataset.i;
-    v[i] = Math.max(0, (v[i]||0) + (+b.dataset.d)); store.set('cnt.'+G, v); $('#cn'+i).textContent = v[i];
-  });
+  if (s.t === 'counters') {
+    const get = () => store.get('cnt.'+G, s.items.map(()=>0));
+    const paint = () => { const v = get(); const tot = Math.max(1, +store.get('tot.'+G, 55) || 1);
+      s.items.forEach((_,i) => { const pc = Math.min(100, Math.round((v[i]||0) / tot * 100)); const b = $('#cb'+i); if (b) b.style.width = pc + '%'; const t = $('#cp'+i); if (t) t.textContent = pc + '%'; }); };
+    const setv = (i, val) => { const v = get(); v[i] = Math.max(0, Math.min(999, Math.round(+val || 0))); store.set('cnt.'+G, v); const inp = stage.querySelector(`.ctr input[data-i="${i}"]`); if (inp && +inp.value !== v[i]) inp.value = v[i]; paint(); };
+    stage.querySelectorAll('.ctr button').forEach(b => b.onclick = () => { const i = +b.dataset.i; setv(i, (get()[i]||0) + (+b.dataset.d)); });
+    stage.querySelectorAll('.ctr input').forEach(inp => inp.oninput = () => setv(+inp.dataset.i, inp.value));
+    const ct = $('#ctot'); ct.oninput = () => { store.set('tot.'+G, Math.max(1, Math.round(+ct.value || 1))); paint(); };
+    requestAnimationFrame(() => setTimeout(paint, 120));
+  }
+  if (s.t === 'evo') evoInit(s);
+  if (s.t === 'auto') autoInit(s);
   if (s.t === 'board') {
     stage.querySelectorAll('.board form').forEach(f => f.onsubmit = e => {
       e.preventDefault(); const inp = f.querySelector('input'); const t = inp.value.trim(); if(!t) return;
@@ -687,6 +780,7 @@ function revealOne(silent){
   }
   if (s.t === 'quiz') { const q = stage.querySelector('.qi:not(.open)'); if (q) q.classList.add('open'); return true; }
   if (s.t === 'life') { store.set('life.'+G, s.stages.map(x=>x[1])); render(); return true; }
+  if (s.t === 'evo') { evoGo(evo.i + 1); return true; }
   return false;
 }
 
@@ -695,6 +789,156 @@ function copy(text, btn){
   const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} ta.remove(); done(); };
   try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback); else fallback(); } catch(e){ fallback(); }
 }
+
+
+/* ================= motion & canvas ================= */
+const RM = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e) { return false; } })();
+let FXS = [];
+function stopFX(){ FXS.forEach(f => { try { f(); } catch(e){} }); FXS = []; }
+function loop(fn){ let id, t0 = performance.now(), on = true; const step = now => { if (!on) return; fn(Math.max(0, (now - t0) / 1000)); id = requestAnimationFrame(step); }; id = requestAnimationFrame(step); const stop = () => { on = false; cancelAnimationFrame(id); }; FXS.push(stop); return stop; }
+function stagger(){
+  stage.querySelectorAll('.cols,.quiz,.ctr,.auto,.board,.life,.flow').forEach(g => {
+    [...g.children].forEach((el, i) => { el.classList.add('popin'); el.style.animationDelay = (0.18 + i * 0.07) + 's'; });
+  });
+}
+function netBG(sl, dark){
+  if (!sl) return;
+  const c = document.createElement('canvas'); c.className = 'bgfx'; c.width = 1600; c.height = 900; sl.prepend(c);
+  const x = c.getContext('2d'); const N = 54; const P = [];
+  let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < N; i++) P.push({ x: 700 + rnd() * 900, y: rnd() * 900, vx: (rnd() - .5) * 18, vy: (rnd() - .5) * 18, r: 2 + rnd() * 3 });
+  const col = dark ? [143, 211, 194] : [15, 92, 77];
+  const draw = (t, dt) => {
+    x.clearRect(0, 0, 1600, 900);
+    for (const p of P) { p.x += p.vx * dt; p.y += p.vy * dt; if (p.x < 560 || p.x > 1600) p.vx *= -1; if (p.y < 0 || p.y > 900) p.vy *= -1; }
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+      const a = P[i], b = P[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 170) { x.strokeStyle = `rgba(${col},${(1 - d / 170) * (dark ? .35 : .22)})`; x.lineWidth = 1.2; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke(); }
+    }
+    for (const p of P) { x.fillStyle = `rgba(${col},${dark ? .75 : .5})`; x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.283); x.fill(); }
+    // travelling pulse
+    const k = Math.floor(t * 1.2) % N, f = (t * 1.2) % 1, a = P[k], b = P[(k * 7 + 3) % N];
+    if (Math.hypot(a.x - b.x, a.y - b.y) < 260) { x.fillStyle = `rgba(${col},.95)`; x.beginPath(); x.arc(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f, 4.5, 0, 6.283); x.fill(); }
+  };
+  if (RM) { draw(0, 0); return; }
+  let last = 0; loop(t => { const dt = Math.min(.05, t - last); last = t; draw(t, dt); });
+}
+
+/* ---- automation flows: steps light up in sequence ---- */
+function autoInit(s){
+  const tick = n => s.flows.forEach((f, fi) => { const k = (n + fi * 2) % (f.steps.length + 1); stage.querySelectorAll(`.af li[data-f="${fi}"]`).forEach(li => li.classList.toggle('on', +li.dataset.k < k)); });
+  let n = 0; tick(n); if (RM) return;
+  const id = setInterval(() => { n++; tick(n); }, 1300); FXS.push(() => clearInterval(id));
+}
+
+/* ---- evolution of AI ---- */
+const evo = { i: 0, s: null, t0: 0 };
+const EC = { ink:'#14181f', mut:'#7a838e', acc:'#0f5c4d', acc2:'#e3f0ec', g1:'#2a5aa8', g2:'#d0782d', line:'#d9dcd4' };
+function evoInit(s){
+  evo.s = s; evo.i = 0;
+  stage.querySelectorAll('.tl button').forEach(b => b.onclick = () => evoGo(+b.dataset.e));
+  $('#enx').onclick = () => evoGo(evo.i + 1);
+  const c = $('#evoc'), x = c.getContext('2d'); x.setTransform(2, 0, 0, 2, 0, 0);
+  evoGo(0, true);
+  const frame = t => { const lt = t - evo.t0; x.clearRect(0, 0, 900, 520); EVO[evo.i](x, RM ? 99 : lt); };
+  if (RM) { frame(99); evo.redraw = () => frame(99); return; }
+  loop(t => { evo.now = t; frame(t); });
+}
+function evoGo(i, first){
+  const s = evo.s; if (!s) return;
+  i = Math.max(0, Math.min(s.stages.length - 1, i)); evo.i = i; evo.t0 = evo.now || 0;
+  const st = s.stages[i];
+  $('#eyr').textContent = st.y; $('#ett').textContent = st.t; $('#eds').textContent = st.d; $('#eex').innerHTML = '<b>En el GORE:</b> ' + esc(st.e);
+  stage.querySelectorAll('.tl button').forEach((b, k) => { b.classList.toggle('done', k < i); b.classList.toggle('cur', k === i); });
+  const tl = stage.querySelector('.tl'), btns = stage.querySelectorAll('.tl button');
+  if (tl && btns[i]) { const r0 = tl.getBoundingClientRect(), r1 = btns[i].getBoundingClientRect(), sc = r0.width / tl.offsetWidth || 1; $('#tlfill').style.width = Math.max(0, ((r1.left + r1.width / 2) - r0.left) / sc - 20) + 'px'; }
+  const nx = $('#enx'); nx.disabled = i === s.stages.length - 1; nx.textContent = i === s.stages.length - 1 ? 'Fin de la línea de tiempo' : 'Siguiente etapa (R) ▸'; nx.style.opacity = nx.disabled ? .5 : 1;
+  ['#eyr','#ett','#eds','#eex'].forEach((q, k) => { const el = $(q); el.classList.remove('popin'); void el.offsetWidth; el.classList.add('popin'); el.style.animationDelay = (k * .06) + 's'; });
+  if (evo.redraw) evo.redraw();
+}
+const ease = v => v <= 0 ? 0 : v >= 1 ? 1 : 1 - Math.pow(1 - v, 3);
+const clamp01 = v => Math.max(0, Math.min(1, v));
+function txt(x, s, X, Y, o = {}){ x.font = `${o.w || 600} ${o.z || 18}px system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif`; x.fillStyle = o.c || EC.ink; x.textAlign = o.a || 'left'; x.textBaseline = o.b || 'alphabetic'; x.globalAlpha = o.al == null ? 1 : o.al; x.fillText(s, X, Y); x.globalAlpha = 1; }
+function axes(x, xl, yl){ x.strokeStyle = EC.line; x.lineWidth = 2; x.beginPath(); x.moveTo(90, 40); x.lineTo(90, 450); x.lineTo(860, 450); x.stroke(); txt(x, xl, 475, 492, { c: EC.mut, a: 'center', z: 17 }); x.save(); x.translate(40, 245); x.rotate(-Math.PI / 2); txt(x, yl, 0, 0, { c: EC.mut, a: 'center', z: 17 }); x.restore(); }
+// deterministic data
+const R1 = (() => { let s = 3; const r = () => (s = (s * 16807) % 2147483647) / 2147483647; return r; })();
+const PTS = Array.from({ length: 26 }, (_, i) => { const u = 0.04 + i / 27; return { u, v: 0.12 + 0.72 * u + (R1() - .5) * 0.18 }; });
+const CLS = Array.from({ length: 40 }, (_, i) => { const a = i % 2; const u = a ? 0.55 + R1() * 0.4 : 0.06 + R1() * 0.42; const v = a ? 0.08 + R1() * 0.42 : 0.5 + R1() * 0.44; return { u, v, a }; });
+const PX = (u) => 90 + u * 750, PY = (v) => 450 - v * 390;
+const EVO = [
+  // 0 regression
+  (x, t) => {
+    axes(x, 'Superficie de la obra (m²)', 'Costo ($)');
+    PTS.forEach((p, i) => { const a = clamp01((t - i * 0.05) * 3); if (!a) return; x.globalAlpha = a; x.fillStyle = EC.g1; x.beginPath(); x.arc(PX(p.u), PY(p.v), 7, 0, 6.283); x.fill(); x.globalAlpha = 1; });
+    const k = ease(clamp01((t - 1.6) / 1.6)); const m = 0.0 + 0.72 * k, b = 0.45 + (0.12 - 0.45) * k;
+    if (t > 1.5) { x.strokeStyle = EC.acc; x.lineWidth = 5; x.beginPath(); x.moveTo(PX(0), PY(b)); x.lineTo(PX(1), PY(b + m)); x.stroke(); }
+    if (t > 3.2) txt(x, 'costo = a × superficie + b', 120, 70, { z: 28, w: 800, c: EC.acc, al: clamp01((t - 3.2) * 2) });
+    if (t > 3.6) txt(x, 'La persona elige la fórmula; el computador ajusta a y b', 120, 102, { z: 18, c: EC.mut, al: clamp01((t - 3.6) * 2) });
+  },
+  // 1 machine learning classification
+  (x, t) => {
+    axes(x, 'Avance físico', 'Brecha con el avance financiero');
+    CLS.forEach((p, i) => { const a = clamp01((t - i * 0.03) * 3); if (!a) return; x.globalAlpha = a; x.fillStyle = p.a ? EC.g1 : EC.g2; x.beginPath(); if (p.a) x.arc(PX(p.u), PY(p.v), 7, 0, 6.283); else x.rect(PX(p.u) - 7, PY(p.v) - 7, 14, 14); x.fill(); x.globalAlpha = 1; });
+    if (t > 1.3) { const k = ease(clamp01((t - 1.3) / 2.6)); const wob = (1 - k) * Math.sin(t * 5) * 0.22; const u0 = 0.30 + wob, u1 = 0.74 - wob;
+      x.strokeStyle = EC.acc; x.lineWidth = 5; x.setLineDash([14, 10]); x.beginPath(); x.moveTo(PX(u0), PY(0.0)); x.lineTo(PX(u1), PY(1.0)); x.stroke(); x.setLineDash([]); }
+    txt(x, '● A tiempo', 690, 70, { c: EC.g1, z: 19, w: 700 }); txt(x, '■ Con atraso', 690, 98, { c: EC.g2, z: 19, w: 700 });
+    if (t > 4) txt(x, 'El modelo aprende la frontera a partir de ejemplos', 475, 30, { c: EC.acc, z: 19, w: 700, a: 'center', al: clamp01((t - 4) * 2) });
+  },
+  // 2 deep learning network
+  (x, t) => {
+    const L = [5, 7, 7, 3], X0 = 250, DX = 150; const nodes = L.map((n, li) => Array.from({ length: n }, (_, k) => ({ x: X0 + li * DX, y: 260 + (k - (n - 1) / 2) * 56 })));
+    // input "document" grid
+    for (let r = 0; r < 8; r++) for (let c2 = 0; c2 < 6; c2++) { const on = ((r * 7 + c2 * 3) % 5) < 2 || r === 0; x.fillStyle = on ? '#3d4652' : '#eceee8'; x.fillRect(60 + c2 * 16, 196 + r * 16, 13, 13); }
+    txt(x, 'Documento', 108, 345, { c: EC.mut, a: 'center', z: 16 });
+    for (let li = 0; li < L.length - 1; li++) for (const a of nodes[li]) for (const b of nodes[li + 1]) { x.strokeStyle = 'rgba(15,92,77,.13)'; x.lineWidth = 1.4; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke(); }
+    const ph = (t * 0.9) % 1.6; // pulses
+    for (let li = 0; li < L.length - 1; li++) { const f = clamp01((ph - li * 0.4) / 0.4); if (f <= 0 || f >= 1) continue;
+      nodes[li].forEach((a, ai) => nodes[li + 1].forEach((b, bi) => { if ((ai + bi + li) % 3) return; x.fillStyle = EC.acc; x.beginPath(); x.arc(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f, 4, 0, 6.283); x.fill(); })); }
+    nodes.forEach((layer, li) => layer.forEach((n, k) => { const act = clamp01(1 - Math.abs(ph - li * 0.4 - 0.4) * 2.2); x.fillStyle = act > .05 ? `rgba(15,92,77,${.25 + act * .75})` : '#fff'; x.strokeStyle = EC.acc; x.lineWidth = 3; x.beginPath(); x.arc(n.x, n.y, 15, 0, 6.283); x.fill(); x.stroke(); }));
+    const outs = ['Factura', 'Oficio', 'Acta']; const win = ph > 1.2 ? 2 : -1;
+    nodes[3].forEach((n, k) => txt(x, outs[k] + (k === win ? '  ✓' : ''), n.x + 30, n.y + 6, { z: 20, w: k === win ? 800 : 600, c: k === win ? EC.acc : EC.mut }));
+    txt(x, 'Entrada', X0, 470, { c: EC.mut, a: 'center', z: 16 }); txt(x, 'Capas ocultas', X0 + 1.5 * DX, 470, { c: EC.mut, a: 'center', z: 16 }); txt(x, 'Salida', X0 + 3 * DX, 470, { c: EC.mut, a: 'center', z: 16 });
+  },
+  // 3 generative: next-word prediction
+  (x, t) => {
+    const words = ['El', 'proyecto', 'presenta', 'un', 'avance', 'físico', 'de', '52%', 'y', 'requiere', 'revisión.'];
+    const cands = { 2: [['presenta', .61], ['tiene', .27], ['muestra', .12]], 4: [['avance', .74], ['atraso', .18], ['monto', .08]], 7: [['52%', .48], ['70%', .31], ['35%', .21]], 9: [['requiere', .55], ['necesita', .3], ['cumple', .15]] };
+    const per = 0.75, n = Math.min(words.length, Math.floor(t / per) + 1);
+    let X = 60, Y = 120; x.font = '700 34px system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif';
+    for (let i = 0; i < n; i++) { const w = words[i]; const wd = x.measureText(w + ' ').width; if (X + wd > 860) { X = 60; Y += 56; }
+      const fresh = i === n - 1 && n < words.length; txt(x, w, X, Y, { z: 34, w: 700, c: fresh ? EC.acc : EC.ink }); X += wd; }
+    if (n < words.length) { const blink = (t * 2) % 1 < .55; if (blink) { x.fillStyle = EC.acc; x.fillRect(X, Y - 30, 4, 36); } }
+    const nextIdx = n; const cs = cands[nextIdx] || cands[Object.keys(cands).map(Number).filter(k => k <= nextIdx).pop() || 2];
+    txt(x, n < words.length ? 'Candidatas para la palabra siguiente' : 'Texto generado palabra por palabra', 60, 300, { z: 19, w: 700, c: EC.mut });
+    if (n < words.length) { const fr = (t % per) / per;
+      cs.forEach(([w, p], k) => { const yy = 330 + k * 52; txt(x, w, 60, yy + 26, { z: 22, w: k ? 600 : 800, c: k ? EC.ink : EC.acc }); x.fillStyle = '#eceee8'; x.fillRect(240, yy + 6, 520, 26); x.fillStyle = k ? '#9aa3ad' : EC.acc; x.fillRect(240, yy + 6, 520 * p * ease(clamp01(fr * 2.2)), 26); txt(x, Math.round(p * 100) + '%', 776, yy + 27, { z: 20, w: 700, c: EC.ink }); }); }
+    else txt(x, 'Elige la continuación más probable: por eso suena bien aunque puede equivocarse.', 60, 345, { z: 21, w: 600, c: EC.acc });
+  },
+  // 4 agents loop
+  (x, t) => {
+    const cx = 450, cy = 265, R = 175; const N = ['Objetivo', 'Planifica', 'Usa herramientas', 'Revisa'];
+    x.strokeStyle = EC.line; x.lineWidth = 6; x.beginPath(); x.arc(cx, cy, R, 0, 6.283); x.stroke();
+    const a = (t * 0.9) % (Math.PI * 2) - Math.PI / 2; x.strokeStyle = EC.acc; x.lineWidth = 6; x.beginPath(); x.arc(cx, cy, R, -Math.PI / 2, a); x.stroke();
+    x.fillStyle = EC.acc; x.beginPath(); x.arc(cx + R * Math.cos(a), cy + R * Math.sin(a), 12, 0, 6.283); x.fill();
+    const curK = Math.floor(((a + Math.PI / 2) / (Math.PI * 2)) * 4) % 4;
+    N.forEach((nm, k) => { const ang = -Math.PI / 2 + k * Math.PI / 2; const px = cx + R * Math.cos(ang), py = cy + R * Math.sin(ang); const on = k === curK;
+      x.fillStyle = on ? EC.acc : '#fff'; x.strokeStyle = EC.acc; x.lineWidth = 3; x.beginPath(); x.roundRect ? x.roundRect(px - 92, py - 26, 184, 52, 14) : x.rect(px - 92, py - 26, 184, 52); x.fill(); x.stroke();
+      txt(x, nm, px, py + 7, { z: 20, w: 800, a: 'center', c: on ? '#fff' : EC.acc }); });
+    const tools = ['Correo', 'Excel', 'Documentos', 'Buscador']; tools.forEach((tl, k) => { const ang = -Math.PI / 4 + k * Math.PI / 2 + Math.sin(t + k) * .04; txt(x, tl, cx + (R + 120) * Math.cos(ang), cy + (R + 90) * Math.sin(ang) + 6, { z: 17, w: 600, a: 'center', c: EC.mut }); });
+    txt(x, 'IA', cx, cy + 14, { z: 44, w: 800, a: 'center', c: EC.acc });
+  },
+  // 5 nested sets
+  (x, t) => {
+    const S = [['Inteligencia artificial', '1956', 230, '#e3f0ec'], ['Machine Learning', '1959', 175, '#cbe5dc'], ['Deep Learning', '2012', 120, '#9fd0c0'], ['IA generativa', '2017–2022', 66, '#0f5c4d']];
+    const cx = 420, cy = 262;
+    S.forEach(([nm, yr, r, fill], k) => { const g = ease(clamp01((t - k * 0.45) / 0.9)); if (!g) return; const rr = r * g; const ox = k * 26;
+      x.fillStyle = fill; x.strokeStyle = '#0f5c4d'; x.lineWidth = 2; x.beginPath(); x.arc(cx + ox, cy + k * 14, rr, 0, 6.283); x.fill(); x.stroke();
+      const ly = cy + k * 14 - rr + (k === 3 ? rr + 6 : 34);
+      if (g > .8) { txt(x, nm, cx + ox, ly, { z: k === 3 ? 18 : 20, w: 800, a: 'center', c: k === 3 ? '#fff' : '#0f3d34' }); txt(x, yr, cx + ox, ly + (k === 3 ? 22 : 24), { z: 15, w: 600, a: 'center', c: k === 3 ? '#cfe9e1' : '#3d5a53' }); } });
+    if (t > 2.4) txt(x, 'Copilot está aquí', 690, 330, { z: 22, w: 800, c: EC.acc, al: clamp01((t - 2.4) * 2) });
+    if (t > 2.4) { x.strokeStyle = EC.acc; x.lineWidth = 3; x.beginPath(); x.moveTo(682, 322); x.lineTo(520, 316); x.stroke(); }
+  }
+];
 
 /* ================= timer ================= */
 const timer = { total:0, left:0, running:false, slide:null, h:null, label:'' };
