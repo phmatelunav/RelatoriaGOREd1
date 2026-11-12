@@ -81,6 +81,10 @@ table.t td{padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:
 table.t tr.hid td{color:transparent;background:repeating-linear-gradient(45deg,#f3f4f0,#f3f4f0 10px,#eceee8 10px,#eceee8 20px)}
 table.t tr.hid td *{visibility:hidden}
 table.t td.c{text-align:center}
+table.t.sm{font-size:20px}
+table.t.sm th{font-size:18px}
+table.t.sm td{padding:10px 14px}
+table.t.sm tr:last-child td{background:var(--bad-soft);font-weight:700}
 .risk{font-weight:700;color:var(--bad)}
 .okc{font-weight:700;color:var(--ok)}
 
@@ -376,7 +380,7 @@ S.dinTalk = { b:'ini', t:'cols', k:'Dinámica inicial · 6 min', h:'La IA en mi 
   cards:[{h:'1',items:['¿Qué tarea de nuestro trabajo nos demanda más tiempo?']},{h:'2',items:['¿En qué tarea podría ayudarnos una herramienta de IA?']},{h:'3',items:['¿Qué riesgo o preocupación tendríamos al usarla?']}],
   notes:'Mesas de 4 a 5 personas. Mientras conversan, prepara el papelógrafo con las tres columnas de la diapositiva siguiente.'};
 S.dinBoard = { b:'ini', t:'board', k:'Dinámica inicial · 4 min', h:'Lo que trae el grupo', timer:4, timerLbl:'Puesta en común',
-  notes:'4 o 5 grupos al azar comparten en voz alta; el resto pega sus tarjetas en el papelógrafo. Puedes anotar aquí lo más repetido: queda guardado y se retoma en el cierre.'};
+  notes:'4 o 5 grupos al azar comparten en voz alta; el resto pega sus tarjetas en el papelógrafo. Puedes anotar aquí lo más repetido: queda guardado en este navegador.'};
 S.queIA = { b:'m1', t:'cols', k:'Módulo 1', h:'¿Qué es la inteligencia artificial?', n:2,
   cards:[
     {h:'Definición simple', items:['Sistemas que realizan tareas que normalmente requieren inteligencia humana: reconocer, clasificar, predecir, redactar','Aprenden de datos: encuentran patrones en muchos ejemplos']},
@@ -466,10 +470,16 @@ S.copilot = { b:'m4', t:'cols', k:'Módulo 4', h:'Copilot Chat en el GORE: qué 
     {h:'Puede', hl:1, items:['Resumir, redactar y analizar los archivos que subes','Generar tablas, minutas, correos y textos para presentaciones','Trabajar con protección de datos empresariales']},
     {h:'No puede (sin licencia de pago)', items:['Leer por su cuenta tu correo, tus chats de Teams o tus archivos de SharePoint','Por eso, en los ejercicios subimos el documento','El resultado se copia a Word, Excel, Outlook o PowerPoint']}
   ], notes:'Licencia de los participantes: Microsoft 365 Copilot Basic con cuenta institucional. Todos los ejercicios están en la versión B (subir archivo). La planificación menciona Outlook, Word, Excel, PowerPoint y Teams: antes de la jornada, prueba qué aparece de Copilot dentro de cada aplicación con una cuenta Basic y dilo al comienzo del módulo.'};
-S.compara = { b:'m4', t:'table', k:'Módulo 4 · Comparación', h:'Copilot frente a otras herramientas',
-  head:['Criterio','Copilot Chat (GORE)','ChatGPT','Gemini'],
-  rows:[['Datos institucionales','Con protección empresarial','Cuenta personal: no','Cuenta personal: no'],['Integración','Microsoft 365','Propia','Google Workspace'],['Archivos','Se suben','Se suben','Se suben'],['Calidad de redacción','Buena','Buena','Buena'],['Recomendación en el GORE','Herramienta institucional','Solo para aprender, sin datos del GORE','Solo para aprender, sin datos del GORE']],
-  notes:'La diferencia principal no es la calidad: es qué información se puede entregar y bajo qué contrato.'};
+S.compara = { b:'m4', t:'table', k:'Módulo 4 · Comparación', h:'Copilot frente a otras herramientas', sm:1,
+  head:['Criterio','Copilot Chat (GORE)','Claude','ChatGPT','Gemini'],
+  rows:[
+    ['Entrenamiento con tus datos','No: protección de datos empresariales con la cuenta GORE','Planes Team y Enterprise: no. Planes personales: se puede desactivar en la configuración de privacidad','Cuenta personal: se puede desactivar','Cuenta personal: se puede desactivar'],
+    ['Integración','Microsoft 365','Propia, con conectores','Propia','Google Workspace'],
+    ['Archivos','Se suben','Se suben (PDF, Word, Excel)','Se suben','Se suben'],
+    ['Uso con documentos del GORE','Herramienta institucional','Con entrenamiento desactivado (o plan Team o Enterprise) y autorización del GORE','Mismo criterio: entrenamiento desactivado y autorización','Mismo criterio: entrenamiento desactivado y autorización'],
+    ['Nunca, en ninguna','Datos personales o sensibles, credenciales o información reservada sin autorización expresa','','','']
+  ],
+  notes:'En Claude (planes Free, Pro y Max) el uso de chats para entrenamiento se desactiva en Configuración > Privacidad; con la opción desactivada, los chats se guardan 30 días. Los planes Team, Enterprise y Education no entrenan con los datos. ChatGPT y Gemini también permiten desactivar el entrenamiento en sus cuentas personales. Desactivar el entrenamiento no reemplaza la autorización del GORE: es el mismo criterio del semáforo de Cristian.' };
 
 /* ================= GRUPO 1 ================= */
 const G1 = [
@@ -479,7 +489,7 @@ const G1 = [
   { b:'m1', t:'trans', k:'09:30 – 10:30 · Módulo 1', h:'¿Qué es la inteligencia artificial?', lead:'Conceptos, tipos de IA, aplicaciones en el sector público y sus dimensiones.' },
   S.queIA, S.evo, S.quiz, S.llm, S.alucina,
   { b:'m1', t:'cols', k:'Módulo 1', h:'Aplicaciones en la gestión institucional', n:3,
-    cards:[{h:'Redacción',items:['Oficios, respuestas a ciudadanos, minutas']},{h:'Síntesis',items:['Actas, informes, normativa']},{h:'Clasificación',items:['Correos, solicitudes, reclamos']},{h:'Análisis',items:['Indicadores, planillas, bases de licitación']},{h:'Revisión',items:['Inconsistencias, requisitos, plazos']},{h:'Automatización',items:['Flujos con Power Automate']}]},
+    cards:[{h:'Redacción',items:['Oficios, respuestas a ciudadanos, minutas']},{h:'Síntesis',items:['Actas, informes, normativa']},{h:'Clasificación',items:['Correos, solicitudes, reclamos']},{h:'Análisis',items:['Indicadores, planillas, bases de licitación']},{h:'Revisión',items:['Inconsistencias, requisitos, plazos']},{h:'Tareas repetitivas',items:['Prompts guardados y plantillas reutilizables']}]},
   S.dims, S.tools,
   { b:'m2', t:'trans', k:'10:30 – 11:45 · Módulo 2', h:'Creación de prompts', lead:'Cómo pedirle a la IA lo que necesitamos, con taller práctico.' },
   S.prompt, S.rtcfr, S.tecnicas, S.errores, S.adapt,
@@ -520,7 +530,7 @@ const G1 = [
       {l:'3 · Presentación', x:'Con la minuta, propone el contenido de 3 diapositivas: título y máximo 4 viñetas cada una (1: contexto; 2: acuerdos y responsables; 3: próximos pasos y fechas).'}
     ], notes:'Últimos 10 minutos: ¿qué hizo bien Copilot, qué hubo que corregir? Revisar especialmente la fecha de la visita (19-11).' },
   S.compara,
-  { b:'m67', t:'trans', k:'15:00 – 16:00 · Módulos 6 y 7', h:'Agentes y automatización con IA', lead:'Agentes con Copilot, Power Automate y automatización documental, de correos, solicitudes y reportes.' },
+  { b:'m67', t:'trans', k:'15:00 – 16:00 · Módulos 6 y 7', h:'Agentes y automatización con IA', lead:'Agentes con Copilot y automatización documental, de correos, solicitudes y reportes.' },
   { b:'m67', t:'prompts', k:'Ejercicio G1-6 · 20 min', h:'Un agente de consultas de compras', kit:['K7'], timer:20, timerLbl:'G1-6 Agente',
     steps:['En Copilot Chat: **Crear un agente**.','Nombre: "Asistente de procedimientos de compras".','Con la cuenta Basic no se pueden subir archivos como conocimiento: el manual va **dentro de las instrucciones**. Copia el primer bloque y pégalo en "Instrucciones".','Prueba una pregunta que el manual responde y otra que no.','Plan B: sube K7 a Copilot Chat y pega el último bloque.'],
     prompts:[
@@ -529,21 +539,12 @@ const G1 = [
       {l:'Pregunta que no responde', x:'¿Qué proveedor de convenio marco tiene el mejor precio en notebooks?'},
       {l:'Plan B · Sin agente (subiendo K7 al chat)', x:'A partir de ahora, actúa como "Asistente de procedimientos de compras". Responde mis preguntas usando solo el manual adjunto, cita el numeral de cada respuesta y, si algo no está en el manual, dime que no lo encuentras. No inventes montos, plazos ni nombres. Confirma que entendiste en una línea.'}
     ], notes:'Con licencia Basic, el creador de agentes solo acepta sitios web públicos como conocimiento; no permite subir archivos. Un enlace al PDF del sitio de Vercel tampoco es confiable: el agente consulta la web mediante búsqueda y un sitio nuevo puede no estar indexado. Por eso el manual resumido va dentro de las instrucciones (menos de 7.500 caracteres). Respuesta esperada a la primera pregunta: 25 días hábiles (numeral 6). Si el agente no se puede crear, usa el plan B: el mismo ejercicio en un chat normal.' },
-  { b:'m67', t:'cols', k:'Módulo 7 · Automatización documental', h:'Datos de facturas: ¿con IA o con datos estructurados?', n:2,
+  { b:'m67', t:'cols', k:'Módulo 7 · Automatización documental', h:'Datos de facturas: ¿con IA o con datos estructurados?', n:3,
     cards:[
       {h:'1 · Copilot Chat', items:['Subir facturas ficticias en PDF y pedir una tabla: RUT, folio, fecha, neto, IVA y total','Pedir que verifique neto + IVA = total']},
       {h:'2 · Excel: Obtener datos desde PDF', items:['Power Query lee las tablas del PDF en el mismo computador','Sin IA y sin enviar datos a la nube']},
-      {h:'3 · XML de la factura y Registro de Compras y Ventas del SII', hl:1, items:['Cada factura electrónica trae su XML con los datos exactos','El RCV se descarga en CSV: no hay que "leer" nada']},
-      {h:'4 · Power Automate con conectores estándar', items:['Guardar las facturas recibidas por correo y registrarlas en Excel','La lectura automática (AI Builder) requiere que el administrador la habilite']}
-    ], notes:'Contexto: AI Builder (procesamiento de facturas) pide permiso del administrador para instalar un paquete en el entorno, por eso no se muestra en vivo. Mensaje: antes de pedirle a la IA que lea un documento, pregunta si el dato ya existe en forma estructurada. Facturas de empresas casi no tienen datos personales; boletas de honorarios sí: solo documentos ficticios.' },
-  { b:'m67', t:'auto', k:'Módulo 7 · Ejemplos de automatización', h:'Tres flujos que ahorran trabajo repetitivo',
-    flows:[
-      {h:'Registro de solicitudes recibidas por correo', w:'Un registro único, sin copiar a mano.', steps:[['Disparador','Llega un correo a la casilla compartida con "Solicitud" en el asunto'],['Acción','Guarda los adjuntos en una carpeta de SharePoint, con la fecha'],['Acción','Agrega una fila en Excel: fecha, remitente, asunto y enlace'],['Resultado','Envía un acuse de recibo automático']], con:['Outlook','SharePoint','Excel'], warn:'No reenviar datos personales fuera de la institución.'},
-      {h:'Recordatorio de plazos y compromisos', w:'Que nadie se entere tarde de un vencimiento.', steps:[['Disparador','Cada día hábil a las 08:30'],['Acción','Lee la planilla de compromisos en SharePoint'],['Filtro','Selecciona los que vencen en 5 días o menos'],['Resultado','Avisa por correo o Teams a cada responsable']], con:['Programación','Excel','Outlook o Teams'], warn:'La planilla debe estar al día: el flujo no corrige datos.'},
-      {h:'Reporte semanal para la jefatura', w:'No armar el mismo reporte cada viernes.', steps:[['Disparador','Cada viernes a las 16:00'],['Acción','Cuenta las solicitudes de la semana por estado'],['Acción','Arma una tabla con el resumen'],['Resultado','La envía por correo a la jefatura']], con:['Programación','Excel','Outlook'], warn:'El primer mes, comparar los conteos con el registro.'}
-    ],
-    foot:'Se construyen en Power Automate con conectores estándar de Microsoft 365. Si la cuenta no tiene Power Automate, parte de esto se logra con reglas de Outlook, recordatorios en Planner o To Do, y Microsoft Forms conectado a Excel.',
-    notes:'Explica cada flujo como disparador, acciones y resultado; los pasos se iluminan solos. No hay ejercicio práctico porque la cuenta de demostración no tiene Power Automate. Pregunta a la sala: ¿qué proceso de su unidad se parece a alguno de estos? Esas respuestas van al informe final.' },
+      {h:'3 · XML de la factura y Registro de Compras y Ventas del SII', hl:1, items:['Cada factura electrónica trae su XML con los datos exactos','El RCV se descarga en CSV: no hay que "leer" nada']}
+    ], notes:'Mensaje: antes de pedirle a la IA que lea un documento, pregunta si el dato ya existe en forma estructurada. Facturas de empresas casi no tienen datos personales; boletas de honorarios sí: solo documentos ficticios.' },
   S.p2a,
   { b:'m5', t:'trans', k:'16:20 – 17:30 · Módulo 5', h:'Herramientas de IA para procesos administrativos', lead:'Seguimiento y monitoreo, reportes, tareas y compromisos, indicadores de gestión y PMG. Síntesis y preguntas finales.' },
   { b:'m5', t:'cols', k:'Módulo 5', h:'Casos de uso en procesos administrativos', n:3,
@@ -559,9 +560,8 @@ const G1 = [
   { b:'m5', t:'table', k:'Ejercicio G1-5 · Respuesta', h:'Proyección al 31 de diciembre (K6)', reveal:1,
     head:['Indicador','Tipo','Meta','Proyección','¿Riesgo?'],
     rows:[['2 · Proyectos fiscalizados en terreno','Acumulativo','56%','38,0 × 4/3 = 50,7%','<span class="risk">Sí</span>'],['4 · Transparencia dentro de plazo','Tasa','95%','≈ 92,4% y bajando','<span class="risk">Sí</span>'],['7 · Funcionarios capacitados','Acumulativo','80%','41,0 × 4/3 = 54,7%','<span class="risk">Sí</span>'],['6 · Ejecución del PAC','Acumulativo','90%','70,7 × 4/3 = 94,3%','<span class="okc">No</span>'],['1, 3, 5 y 8','Única o tasa','—','Sobre la meta','<span class="okc">No</span>']] },
-  { b:'m5', t:'board', k:'Cierre', h:'¿Respondimos lo que trajeron en la mañana?', notes:'Volver al papelógrafo de la dinámica inicial. Revisar 2 o 3 preocupaciones y si quedaron resueltas.' },
-  { b:'m5', t:'bullets', k:'Cierre', h:'Tres ideas para llevarse', items:['**La IA es un borrador:** la persona revisa, decide y firma','**Un buen prompt tiene estructura:** rol, tarea, contexto, formato y restricciones','**Información institucional, solo en herramientas institucionales**, y nunca datos personales o sensibles sin autorización'], notes:'Preguntas finales. Recordar la encuesta y la evaluación para la certificación.' },
-  { b:'m5', t:'trans', k:'Fin de la jornada', h:'Gracias', lead:'Preguntas finales · Encuesta de satisfacción y evaluación' }
+  { b:'m5', t:'bullets', k:'Cierre', h:'Tres ideas para llevarse', items:['**La IA es un borrador:** la persona revisa, decide y firma','**Un buen prompt tiene estructura:** rol, tarea, contexto, formato y restricciones','**Información institucional, solo en herramientas institucionales**, y nunca datos personales o sensibles sin autorización'], notes:'Preguntas finales.' },
+  { b:'m5', t:'trans', k:'Fin de la jornada', h:'Gracias', lead:'Preguntas' }
 ];
 
 /* ================= GRUPO 2 ================= */
@@ -611,20 +611,14 @@ const G2 = [
     ], notes:'Trampas: confundir el monto del convenio ($148,5 MM) con el del contrato ($146,9 MM), o el avance financiero aprobado (35%) con lo pagado (15%).' },
   S.compara,
   { b:'m7', t:'trans', k:'14:45 – 15:30 · Módulo 7', h:'Automatización de procesos y tareas', lead:'Seguimiento automático de compromisos y plazos, alertas, informes periódicos y consolidación de reportes. Síntesis y cierre.' },
-  { b:'m7', t:'flow', k:'Ejercicio G2-7 · Diseño en papel', h:'Alerta semanal de plazos y brechas',
-    steps:[['Disparador','Cada lunes a las 08:00'],['Acción','Leer la cartera (K10) en SharePoint o Excel'],['Filtro','Término en menos de 30 días o brecha mayor a 15 puntos'],['Aviso','Correo a cada analista con sus proyectos']],
-    lead:'Con el corte al 31-10-2026 avisaría las filas 1, 6, 12 (brecha) y 15 (termina el 25-11). Lienzo por mesa (15 min): qué alerta, cada cuánto, de dónde sale el dato, quién la recibe y qué hace.',
-    timer:15, timerLbl:'G2-7 Lienzo', notes:'Sin Power Automate disponible: el diagrama muestra cómo quedaría el flujo y las mesas lo diseñan en papel. La fila 8 termina justo a los 30 días y queda fuera con "menos de 30": buen ejemplo de por qué definir bien los criterios antes de automatizar.' },
-  { b:'m7', t:'auto', k:'Módulo 7 · Ejemplos de automatización', h:'Tres flujos para el seguimiento de proyectos',
-    flows:[
-      {h:'Recordatorio de hitos de los convenios', w:'Anticipar los vencimientos en vez de enterarse tarde.', steps:[['Disparador','Cada lunes a las 08:00'],['Acción','Lee la cartera y los hitos en Excel'],['Filtro','Hitos que vencen en 15 días o menos'],['Resultado','Correo a cada analista con sus hitos']], con:['Programación','Excel','Outlook'], warn:'Definir el criterio antes: "15 días o menos" no es lo mismo que "menos de 15".'},
-      {h:'Informe semanal de la cartera', w:'Un resumen listo para la jefatura cada semana.', steps:[['Disparador','Cada viernes a las 15:00'],['Acción','Resume la cartera por instrumento y estado'],['Filtro','Marca los proyectos con brecha mayor a 15 puntos'],['Resultado','Envía el resumen por correo y lo publica en Teams']], con:['Programación','Excel','Outlook','Teams'], warn:'El informe es tan bueno como los datos de la planilla.'},
-      {h:'Consolidación de informes de avance', w:'Todos los informes recibidos en un solo lugar.', steps:[['Disparador','Llega un correo con "Informe de avance" en el asunto'],['Acción','Guarda el PDF en la carpeta del proyecto'],['Acción','Registra fecha, municipio y proyecto en Excel'],['Resultado','Avisa al analista para que lo revise']], con:['Outlook','SharePoint','Excel','Teams'], warn:'El flujo no lee el contenido: la revisión sigue siendo del analista.'}
-    ],
-    foot:'Se construyen en Power Automate con conectores estándar de Microsoft 365. Si la cuenta no tiene Power Automate, parte de esto se logra con reglas de Outlook, recordatorios en Planner o To Do, y Microsoft Forms conectado a Excel.',
-    notes:'Los pasos se iluminan solos. No hay ejercicio práctico en Power Automate porque la cuenta de demostración no tiene la aplicación. Conecta con G2-7: la alerta semanal es una versión del primer flujo.' },
-  { b:'m7', t:'board', k:'Cierre', h:'¿Respondimos lo que trajeron en la mañana?', notes:'Según la planificación, la síntesis y el cierre van en este bloque, antes del coffee break. Volver al papelógrafo de la dinámica inicial.' },
-  { b:'m7', t:'bullets', k:'Cierre', h:'Tres ideas para llevarse', items:['**La IA prepara, resume y detecta:** las personas evalúan, aprueban y firman','**Cruzar documentos es donde más aporta:** informe frente a convenio, cartera frente a criterios','**Información institucional, solo en herramientas institucionales**, y siempre verificar cifras y fechas'], notes:'Preguntas finales. Recordar la encuesta y la evaluación para la certificación.' },
+  { b:'m7', t:'prompts', k:'Ejercicio G2-7 · 20 min', h:'Un informe periódico con prompts reutilizables', timer:20, timerLbl:'G2-7 Informe periódico', kit:['K10'],
+    lead:'En parejas. Sube K10 a Copilot Chat. La idea: guardar estos prompts y reutilizarlos cada semana con la planilla actualizada.',
+    prompts:[
+      {l:'1 · Alertas de plazos y brechas', x:'Con la cartera adjunta y fecha de corte 31-10-2026, lista los proyectos que terminan en menos de 30 días o que tienen una diferencia mayor a 15 puntos entre avance físico y financiero. Para cada uno indica el analista responsable y el criterio que activa la alerta.'},
+      {l:'2 · Informe semanal', x:'Redacta el informe semanal de la cartera para el Jefe de División, en máximo media página: resumen por instrumento (número de proyectos, monto total y avance financiero ponderado), las alertas de la semana y una acción propuesta para cada una.'},
+      {l:'3 · Correo a cada analista', x:'Redacta un correo breve para cada analista con sus proyectos en alerta, el criterio y la fecha de término. Un correo por analista, en tono formal.'}
+    ], notes:'Aquí la automatización es un prompt guardado: se pega cada semana con la planilla actualizada. Sugiere guardarlos en un documento de Word o en OneNote. Respuesta del primer prompt: filas 1, 6 y 12 (brecha) y 15 (termina el 25-11). La fila 8 termina justo a los 30 días y queda fuera con "menos de 30".' },
+  { b:'m7', t:'bullets', k:'Cierre', h:'Tres ideas para llevarse', items:['**La IA prepara, resume y detecta:** las personas evalúan, aprueban y firman','**Cruzar documentos es donde más aporta:** informe frente a convenio, cartera frente a criterios','**Información institucional, solo en herramientas institucionales**, y siempre verificar cifras y fechas'], notes:'Preguntas finales.' },
   S.p2b,
   { b:'m5', t:'trans', k:'15:50 – 16:30 · Módulos 5 y 6', h:'Seguimiento de proyectos y quehacer del GORE', lead:'Hitos, plazos, indicadores, cartera de proyectos y los instrumentos FNDR, Fondo 8%, FRIL, FRPD y Circular 33.' },
   { b:'m5', t:'prompts', k:'Ejercicio G2-5 · 25 min', h:'Análisis de la cartera de proyectos', timer:25, timerLbl:'G2-5 Cartera', kit:['K10'],
@@ -641,7 +635,7 @@ const G2 = [
   { b:'m5', t:'quiz', k:'Ejercicio G2-6 · 15 min', h:'¿Qué instrumento corresponde?', lead:'Decidan en la mesa, pregunten a la IA y comparen. Clic para ver la respuesta.',
     items:[['Taller de folclor de una junta de vecinos','FNDR 8% (Cultura)','fondo concursable para organizaciones',3],['Reposición de la cubierta de una escuela municipal','FRIL o Circular 33','depende del monto y de si es reposición o conservación',3],['Camión aljibe para un municipio','Circular 33','adquisición de activos no financieros',3],['Apoyo a la productividad de pymes agroindustriales','FRPD','Fondo Regional para la Productividad y el Desarrollo',3],['Construcción de un CESFAM','FNDR','proyecto de inversión evaluado en el Sistema Nacional de Inversiones',3]],
     timer:15, timerLbl:'G2-6 Instrumentos', notes:'Validar estas respuestas con la DIPIR antes de la jornada. Mensaje: la IA conoce reglas generales, no los instructivos vigentes del GORE; por eso conviene un agente alimentado con ellos.' },
-  { b:'m5', t:'trans', k:'Fin de la jornada', h:'Gracias', lead:'Preguntas finales · Encuesta de satisfacción y evaluación' }
+  { b:'m5', t:'trans', k:'Fin de la jornada', h:'Gracias', lead:'Preguntas' }
 ];
 const DECKS = { g1:G1, g2:G2 };
 
@@ -676,7 +670,7 @@ function render(){
     case 'reveal':
       h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><div class="rev ${s.items.length>5?'compact':''}">${s.items.map((x,i)=>`<div class="it hid" data-i="${i}"><div class="n">${i+1}</div><div class="d"><div class="h">${md(x[0])}</div><div class="w">${md(x[1])}</div></div></div>`).join('')}</div><button class="revbtn" id="revBtn">Mostrar siguiente (R)</button></div>`; break;
     case 'table':
-      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><table class="t"><tr>${s.head.map(x=>`<th>${esc(x)}</th>`).join('')}</tr>${s.rows.map(r=>`<tr class="${s.reveal?'hid':''}">${r.map(c=>`<td>${String(c).startsWith('<span')?c:md(c)}</td>`).join('')}</tr>`).join('')}</table>${s.reveal?'<button class="revbtn" id="revBtn">Mostrar siguiente (R)</button>':''}</div>`; break;
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><table class="t${s.sm?' sm':''}"><tr>${s.head.map(x=>`<th>${esc(x)}</th>`).join('')}</tr>${s.rows.map(r=>`<tr class="${s.reveal?'hid':''}">${(r.length>2 && r.slice(2).every(c=>c==='')) ? `<td>${md(r[0])}</td><td colspan="${r.length-1}">${md(r[1])}</td>` : r.map(c=>`<td>${String(c).startsWith('<span')?c:md(c)}</td>`).join('')}</tr>`).join('')}</table>${s.reveal?'<button class="revbtn" id="revBtn">Mostrar siguiente (R)</button>':''}</div>`; break;
     case 'prompts': {
       const steps = s.steps ? `<ol class="steps">${s.steps.map(x=>`<li>${md(x)}</li>`).join('')}</ol>` : '';
       const acc = s.prompts.length > 3;
