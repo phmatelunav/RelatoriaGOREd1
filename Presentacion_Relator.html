@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Presentación del relator</title>
+<style>
+:root{
+  --bg:#eef0ec; --stage:#fbfbf8; --ink:#14181f; --muted:#56606c; --line:#d9dcd4;
+  --accent:#0f5c4d; --accent-2:#e3f0ec; --g1:#2a5aa8; --g2:#a2541b;
+  --ok:#2e9e4f; --ok-soft:#e1f3e6; --warn:#c48a00; --warn-soft:#fbf1d4; --bad:#c43333; --bad-soft:#f9e0e0;
+  --chrome:#14181f; --chrome-ink:#f2f3ef;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;overflow:hidden}
+button{font:inherit;cursor:pointer}
+b,strong{font-weight:700}
+
+/* ---------- layout ---------- */
+#app{position:fixed;inset:0;display:flex;flex-direction:column}
+#agenda{display:flex;height:34px;background:var(--chrome);color:var(--chrome-ink);font-size:12px;flex:none}
+#agenda .seg{position:relative;min-width:104px;display:flex;align-items:center;justify-content:center;padding:0 6px;border-right:1px solid #2c323c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.55;background:none;border-top:0;border-bottom:0;border-left:0;color:inherit}
+#agenda .seg:hover{opacity:.85}
+#agenda .seg.done{opacity:.4}
+#agenda .seg.cur{opacity:1;background:var(--accent);font-weight:700}
+#agenda .seg.brk{background:#22272f}
+#agenda .seg.brk.cur{background:#5b6470}
+#agenda .seg.other{font-style:italic}
+#stagewrap{flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#stage{width:1600px;height:900px;background:var(--stage);position:absolute;left:50%;top:50%;transform-origin:center center;box-shadow:0 10px 40px rgba(0,0,0,.12);border-radius:6px;overflow:hidden}
+#bar{height:44px;flex:none;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--chrome);color:var(--chrome-ink);font-size:14px}
+#bar .sp{flex:1}
+#bar button{background:#262c35;color:var(--chrome-ink);border:1px solid #39404b;border-radius:6px;padding:5px 10px}
+#bar button:hover{background:#323946}
+#bar .info{opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#clock{font-variant-numeric:tabular-nums;opacity:.8}
+#timer{display:none;align-items:center;gap:6px;background:#262c35;border:1px solid #39404b;border-radius:6px;padding:2px 4px 2px 10px}
+#timer.on{display:flex}
+#timer .t{font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;min-width:64px}
+#timer .lbl{opacity:.7;font-size:12px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#timer.low .t{color:#ffcf5a}
+#timer.over{background:var(--bad);border-color:var(--bad)}
+#timer button{padding:2px 8px}
+
+/* ---------- slide ---------- */
+.slide{position:absolute;inset:0;padding:70px 90px 60px;display:flex;flex-direction:column}
+.kicker{font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px}
+.kicker .grp{color:var(--muted);font-weight:600}
+h1{font-size:60px;line-height:1.08;margin:0 0 26px;letter-spacing:-.01em}
+h2{font-size:30px;margin:0 0 14px}
+.lead{font-size:30px;line-height:1.4;color:#2b323c;margin:0 0 26px;max-width:1300px}
+ul.big{margin:0;padding:0;list-style:none;font-size:32px;line-height:1.35}
+ul.big li{position:relative;padding-left:40px;margin:0 0 20px}
+ul.big li::before{content:"";position:absolute;left:4px;top:.55em;width:14px;height:14px;border-radius:3px;background:var(--accent)}
+.cols{display:grid;gap:24px;align-content:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 28px;font-size:25px;line-height:1.38;overflow:hidden}
+.card h3{font-size:28px;margin:0 0 12px;color:var(--accent)}
+.card ul{margin:0;padding-left:26px}
+.card li{margin:0 0 8px}
+.card.hl{border:2px solid var(--accent);background:var(--accent-2)}
+.foot{margin-top:auto;font-size:20px;color:var(--muted);padding-top:16px}
+.tag{display:inline-block;font-size:18px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--accent-2);color:var(--accent);margin-right:8px}
+
+/* cover */
+.cover{justify-content:center;background:linear-gradient(135deg,#fbfbf8 0%,#fbfbf8 62%,var(--accent-2) 62%)}
+.cover h1{font-size:76px;max-width:1150px}
+.cover .who{font-size:28px;color:var(--muted);margin-top:30px;line-height:1.5}
+.cover .grpbadge{display:inline-block;font-size:24px;font-weight:700;color:#fff;background:var(--accent);padding:8px 18px;border-radius:8px;margin-bottom:26px}
+
+/* transition */
+.trans{justify-content:center;align-items:flex-start;background:var(--ink);color:#fff}
+.trans .kicker{color:#8fd3c2}
+.trans h1{font-size:84px;max-width:1300px}
+.trans .lead{color:#c9ced6}
+.trans.brk{background:#4a525e}
+
+/* tables */
+table.t{width:100%;border-collapse:collapse;font-size:23px;background:#fff;border-radius:12px;overflow:hidden}
+table.t th{background:#1d2530;color:#fff;text-align:left;padding:12px 16px;font-size:20px;letter-spacing:.02em}
+table.t td{padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+table.t tr.hid td{color:transparent;background:repeating-linear-gradient(45deg,#f3f4f0,#f3f4f0 10px,#eceee8 10px,#eceee8 20px)}
+table.t tr.hid td *{visibility:hidden}
+table.t td.c{text-align:center}
+.risk{font-weight:700;color:var(--bad)}
+.okc{font-weight:700;color:var(--ok)}
+
+/* reveal list */
+.rev{display:flex;flex-direction:column;gap:14px}
+.rev .it{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-size:24px;line-height:1.35;transition:opacity .25s}
+.rev .it .n{width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px}
+.rev .it.hid{opacity:.18}
+.rev .it.hid .d{filter:blur(7px)}
+.rev .it .h{font-weight:700}
+.rev .it .w{color:var(--muted);font-size:20px;margin-top:4px}
+.revbtn{align-self:flex-start;margin-top:16px;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:12px 22px;font-size:22px;font-weight:700}
+.revbtn[disabled]{background:#b7c2bf;cursor:default}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qi{background:#fff;border:2px solid var(--line);border-radius:14px;padding:18px 22px;font-size:26px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:118px}
+.qi:hover{border-color:var(--accent)}
+.qi .a{display:none;font-size:22px;font-weight:700}
+.qi .a span{font-weight:400;color:var(--muted)}
+.qi.open .a{display:block}
+.qi.open.k1{border-color:var(--g1);background:#eef3fb}
+.qi.open.k2{border-color:var(--g2);background:#fbf2ea}
+.qi.open.k3{border-color:var(--ok);background:var(--ok-soft)}
+
+/* prompts */
+.prompts{display:grid;gap:16px;flex:1;min-height:0;overflow:auto;padding-right:6px}
+.pr{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px 16px;display:flex;flex-direction:column;gap:8px}
+.pr .top{display:flex;align-items:center;gap:10px}
+.pr .lab{font-weight:800;font-size:21px;color:var(--accent);flex:1}
+.pr pre{margin:0;white-space:pre-wrap;font-family:inherit;font-size:21px;line-height:1.38;background:#f4f6f2;border-radius:8px;padding:12px 14px}
+.prompts.acc .lab{cursor:pointer}
+.prompts.acc .car{display:inline-block;transition:transform .15s}
+.prompts.acc .pr:not(.shut) .car{transform:rotate(90deg)}
+.pr.shut pre{display:none}
+.prompts.acc{align-content:start;gap:10px}
+.prompts.acc .pr{padding:8px 14px 10px;gap:6px}
+.prompts.acc .lab{font-size:19px}
+.prompts.acc .copy{padding:5px 12px;font-size:16px}
+.prompts.acc pre{font-size:19px}
+.rev.compact{gap:9px}
+.rev.compact .it{padding:10px 18px;font-size:21px}
+.rev.compact .it .w{font-size:18px}
+.copy{background:var(--ink);color:#fff;border:0;border-radius:8px;padding:7px 14px;font-size:17px;font-weight:700}
+.copy.ok{background:var(--ok)}
+.steps{margin:0 0 18px;padding-left:30px;font-size:25px;line-height:1.35}
+.steps li{margin-bottom:6px}
+.files{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}
+.files a{font-size:18px;font-weight:700;text-decoration:none;color:var(--accent);border:2px solid var(--accent);border-radius:999px;padding:4px 14px;background:#fff}
+.files a:hover{background:var(--accent-2)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;flex:1;min-height:0}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1.6fr;gap:24px;flex:1;min-height:0}
+.cmp .pr.bad{border:2px solid var(--bad)}
+.cmp .pr.good{border:2px solid var(--ok)}
+.cmp .pr.bad .lab{color:var(--bad)}
+.cmp .pr.good .lab{color:var(--ok)}
+.cmp .pr pre{font-size:23px}
+
+/* builder */
+.bld{display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1;min-height:0}
+.bld .f{display:flex;flex-direction:column;gap:10px;overflow:auto}
+.bld label{font-size:19px;font-weight:800;display:flex;gap:10px;align-items:baseline}
+.bld label .k{display:inline-flex;width:30px;height:30px;border-radius:7px;background:var(--accent);color:#fff;align-items:center;justify-content:center;font-size:17px;flex:none}
+.bld label .h{font-weight:400;color:var(--muted);font-size:16px}
+.bld textarea{width:100%;font:inherit;font-size:19px;border:1px solid #c9cdc4;border-radius:8px;padding:8px 10px;resize:none;background:#fff}
+.bld .out{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.bld .out pre{flex:1;margin:0;white-space:pre-wrap;font-family:inherit;font-size:22px;line-height:1.4;overflow:auto}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{background:#fff;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:4px 12px;font-size:16px;font-weight:700}
+
+/* counters */
+.ctr{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ctr .c{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:18px}
+.ctr .q{flex:1;font-size:26px;line-height:1.3}
+.ctr .num{font-size:56px;font-weight:800;min-width:90px;text-align:center;color:var(--accent);font-variant-numeric:tabular-nums}
+.ctr button{width:48px;height:48px;border-radius:10px;border:1px solid var(--line);background:#f4f6f2;font-size:28px;font-weight:800}
+
+/* board */
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;flex:1;min-height:0}
+.board .col{background:#fff;border-radius:14px;border:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.board .col h3{margin:0;padding:14px 18px;font-size:24px;border-bottom:1px solid var(--line)}
+.board .col.o h3{color:var(--ok)} .board .col.n h3{color:var(--g1)} .board .col.r h3{color:var(--bad)}
+.board .items{flex:1;overflow:auto;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.board .note{background:#fff8c9;border-radius:6px;padding:8px 10px;font-size:20px;display:flex;gap:8px;align-items:flex-start}
+.board .note span{flex:1}
+.board .note button{border:0;background:none;color:#998;font-size:18px}
+.board form{display:flex;gap:6px;padding:10px 14px;border-top:1px solid var(--line)}
+.board input{flex:1;font:inherit;font-size:18px;padding:6px 8px;border:1px solid #c9cdc4;border-radius:6px}
+.board form button{background:var(--accent);color:#fff;border:0;border-radius:6px;padding:0 12px;font-size:20px;font-weight:800}
+
+/* lifecycle */
+.life{display:flex;gap:12px;align-items:stretch;margin:10px 0 24px}
+.life button{flex:1;border:3px solid var(--line);background:#fff;border-radius:14px;padding:20px 12px;font-size:23px;font-weight:700;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:10px;text-align:center}
+.life button .s{font-size:17px;font-weight:600;color:var(--muted)}
+.life button.v{border-color:var(--ok);background:var(--ok-soft)}
+.life button.a{border-color:var(--warn);background:var(--warn-soft)}
+.life button.r{border-color:var(--bad);background:var(--bad-soft)}
+.legend{display:flex;gap:22px;font-size:21px;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:18px;border-radius:4px;vertical-align:-3px;margin-right:6px}
+
+/* flow */
+.flow{display:flex;align-items:stretch;gap:0;margin:16px 0 26px}
+.flow .st{flex:1;background:#fff;border:2px solid var(--accent);border-radius:14px;padding:18px 16px;font-size:22px;line-height:1.3;position:relative}
+.flow .st .k{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);display:block;margin-bottom:6px}
+.flow .ar{width:46px;display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--accent);flex:none}
+
+/* overview */
+#ov{position:fixed;inset:0;background:rgba(20,24,31,.96);color:#fff;display:none;overflow:auto;padding:30px 40px;z-index:20}
+#ov.on{display:block}
+#ov h2{font-size:22px;margin:22px 0 10px;color:#8fd3c2}
+#ov .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+#ov button{text-align:left;background:#252b34;border:1px solid #39404b;color:#fff;border-radius:8px;padding:10px 12px;font-size:14px}
+#ov button.cur{border-color:#8fd3c2;background:#1e3a35}
+#ov .top{display:flex;justify-content:space-between;align-items:center}
+#ov .x{font-size:16px;padding:6px 14px}
+
+/* notes */
+#notes{position:fixed;right:14px;bottom:56px;width:min(520px,44vw);max-height:45vh;overflow:auto;background:#fffbe6;border:1px solid #e3d690;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);padding:14px 18px;font-size:16px;line-height:1.45;display:none;z-index:15}
+#notes.on{display:block}
+#notes h4{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#7a6a00}
+
+/* home */
+#home{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:30}
+#home.off{display:none}
+#home .box{max-width:980px;width:92%;padding:16px}
+#home h1{font-size:44px;margin:0 0 6px}
+#home p{font-size:18px;color:var(--muted);margin:0 0 26px}
+#home .ch{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+#home .ch button{text-align:left;background:#fff;border:2px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:8px}
+#home .ch button:hover{border-color:var(--accent)}
+#home .ch b{font-size:26px}
+#home .ch span{font-size:17px;color:var(--muted);line-height:1.4}
+#home .ch .d{font-size:15px;font-weight:700;color:var(--accent)}
+#home .keys{margin-top:26px;font-size:15px;color:var(--muted);line-height:1.8}
+kbd{display:inline-block;background:#fff;border:1px solid #c9cdc4;border-bottom-width:2px;border-radius:5px;padding:0 7px;font-family:inherit;font-size:14px;color:var(--ink)}
+@media (max-width:700px){#home .ch{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="home">
+  <div class="box">
+    <h1>Capacitación en Inteligencia Artificial</h1>
+    <p>Gobierno Regional de O'Higgins · Relator: Patricio Mateluna · Elige la jornada para comenzar.</p>
+    <div class="ch">
+      <button data-g="g1"><span class="d">Jueves 12 de noviembre</span><b>Grupo 1</b><span>IA para la Gestión Institucional del Gobierno Regional</span></button>
+      <button data-g="g2"><span class="d">Viernes 13 de noviembre</span><b>Grupo 2</b><span>IA aplicada a la Gestión de Proyectos y Programas</span></button>
+    </div>
+    <div class="keys">
+      <kbd>→</kbd> <kbd>Espacio</kbd> siguiente · <kbd>←</kbd> anterior · <kbd>R</kbd> revelar siguiente respuesta · <kbd>T</kbd> iniciar o pausar cronómetro · <kbd>N</kbd> notas del relator · <kbd>M</kbd> índice · <kbd>F</kbd> pantalla completa · <kbd>Inicio</kbd> esta pantalla<br>
+      <a href="index.html" style="color:var(--accent);font-weight:700">← Volver al inicio del sitio</a><br>
+      Funciona sin internet. Los enlaces del kit abren los archivos de la carpeta <b>Kit_participantes</b>, que debe estar junto a este archivo.
+    </div>
+  </div>
+</div>
+
+<div id="app">
+  <nav id="agenda" aria-label="Agenda"></nav>
+  <div id="stagewrap"><div id="stage"></div></div>
+  <div id="bar">
+    <button id="bHome" title="Elegir jornada (Inicio)">⌂</button>
+    <button id="bPrev" title="Anterior (←)">←</button>
+    <button id="bNext" title="Siguiente (→)">→</button>
+    <span class="info" id="info"></span>
+    <span class="sp"></span>
+    <div id="timer"><span class="lbl" id="tLbl"></span><span class="t" id="tVal">00:00</span><button id="tPlay" title="Iniciar o pausar (T)">▶</button><button id="tPlus" title="Sumar 1 minuto">+1</button><button id="tReset" title="Reiniciar">↺</button></div>
+    <span id="clock"></span>
+    <button id="bNotes" title="Notas del relator (N)">Notas</button>
+    <button id="bOv" title="Índice (M)">Índice</button>
+    <button id="bFs" title="Pantalla completa (F)">⛶</button>
+  </div>
+</div>
+<div id="notes"><h4>Notas del relator</h4><div id="notesBody"></div></div>
+<div id="ov"><div class="top"><strong id="ovTitle">Índice</strong><button class="x" id="ovClose">Cerrar (Esc)</button></div><div id="ovBody"></div></div>
+
+<script>
+(function(){
+'use strict';
+/* ================= helpers ================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+const store = {
+  get(k,d){ try{ const v = localStorage.getItem('relator.'+k); return v===null?d:JSON.parse(v);}catch(e){return d;} },
+  set(k,v){ try{ localStorage.setItem('relator.'+k, JSON.stringify(v)); }catch(e){} }
+};
+const KIT = {
+  K1:'K1_Memorandum_Unidad_de_Control.docx', K2:'K2_Solicitud_Transparencia.docx', K3:'K3_Acta_Comision_Consejo_Regional.docx',
+  K4:'K4_Bandeja_20_correos.xlsx', K5:'K5_Bases_Licitacion_Aseo.pdf', K6:'K6_Indicadores_Gestion_2026.xlsx',
+  K7:'K7_Manual_Procedimientos_Compras.pdf', K8:'K8_Informe_Avance_FRIL.pdf', K9:'K9_Convenio_Transferencia_FRIL.pdf', K10:'K10_Cartera_Proyectos.xlsx'
+};
+const files = list => '<div class="files">' + list.map(k => `<a href="Kit_participantes/${KIT[k]}" target="_blank" rel="noopener">${k} · ${esc(KIT[k].replace(/^K\d+_/,'').replace(/\.\w+$/,'').replace(/_/g,' '))}</a>`).join('') + '</div>';
+
+/* ================= agenda ================= */
+const BLOCKS = {
+  g1: [
+    ['des','08:30','09:15','Desayuno',1,'Desayuno'],['ini','09:15','09:30','Inicio',0,'Inicio'],['m1','09:30','10:30','1 · ¿Qué es la IA?',0,'1 · IA'],
+    ['m2','10:30','11:45','2 · Prompts y taller práctico',0,'2 · Prompts y taller'],['p1','11:45','12:00','Pausa',1,'Pausa'],
+    ['m3','12:00','13:00','3 · Ciberseguridad (C. Pavez)',2,'3 · C. Pavez'],['alm','13:00','14:00','Almuerzo',1,'Almuerzo'],
+    ['m4','14:00','15:00','4 · Copilot',0,'4 · Copilot'],['m67','15:00','16:00','6–7 · Agentes y automatización',0,'6–7 · Agentes'],
+    ['p2','16:00','16:20','Coffee break',1,'Pausa'],['m5','16:20','17:30','5 · Herramientas, síntesis y cierre',0,'5 · Herram. y cierre']
+  ],
+  g2: [
+    ['des','08:30','09:15','Desayuno',1,'Desayuno'],['ini','09:15','09:30','Inicio',0,'Inicio'],['m1','09:30','10:30','1 · ¿Qué es la IA?',0,'1 · IA'],
+    ['m2','10:30','11:45','2 · Prompts para proyectos y taller',0,'2 · Prompts y taller'],['p1','11:45','12:00','Pausa',1,'Pausa'],
+    ['m3','12:00','13:00','3 · Ciberseguridad (C. Pavez)',2,'3 · C. Pavez'],['alm','13:00','13:45','Almuerzo',1,'Almuerzo'],
+    ['m4','13:45','14:45','4 · Copilot',0,'4 · Copilot'],['m7','14:45','15:30','7 · Automatización, síntesis y cierre',0,'7 · Automat. y cierre'],
+    ['p2','15:30','15:50','Coffee break',1,'Pausa'],['m5','15:50','16:30','5–6 · Seguimiento y quehacer GORE',0,'5–6 · Seguim.']
+  ]
+};
+const mins = t => { const [h,m] = t.split(':').map(Number); return h*60+m; };
+
+/* ================= shared slides ================= */
+const S = {};
+S.relator = { b:'ini', t:'cols', k:'Presentación', h:'Relator: Patricio Mateluna', n:2,
+  cards:[
+    {h:'Formación y experiencia', items:['Ingeniero en Bioinformática, Universidad de Talca','Más de 10 años en análisis de datos, estadística y modelos predictivos','Encargado de Bioinformática y Ciencia de Datos en CEAF']},
+    {h:'Trabajo con IA', items:['Modelos de Machine Learning para predicción con variables climáticas','Visión por computador (YOLO) en una aplicación Android','Uso y despliegue local de modelos de lenguaje (LLM) para automatizar procesos']}
+  ],
+  notes:'El bloque de inicio dura 15 minutos (09:15–09:30). Presentación del relator en 2 minutos. Presentación de participantes: que levanten la mano por división o unidad; con 55 personas no alcanza una ronda individual.'};
+S.dinCount = { b:'ini', t:'counters', k:'Dinámica inicial · 3 min', h:'Levanta la mano', timer:3, timerLbl:'Levanta la mano', id:'cnt',
+  items:['¿Quiénes han usado alguna herramienta de IA?','¿Quiénes han usado IA para una tarea laboral?','¿Quiénes han recibido un documento o correo hecho con apoyo de IA?','¿Quiénes tienen dudas o preocupaciones sobre su uso en el sector público?'],
+  notes:'Cuenta aproximada de manos con + y −. Los números quedan guardados en este navegador para comparar ambos grupos.'};
+S.dinTalk = { b:'ini', t:'cols', k:'Dinámica inicial · 6 min', h:'La IA en mi trabajo', timer:6, timerLbl:'La IA en mi trabajo', n:3,
+  lead:'Conversen en su mesa y escriban en tarjetas adhesivas una tarea y una preocupación.',
+  cards:[{h:'1',items:['¿Qué tarea de nuestro trabajo nos demanda más tiempo?']},{h:'2',items:['¿En qué tarea podría ayudarnos una herramienta de IA?']},{h:'3',items:['¿Qué riesgo o preocupación tendríamos al usarla?']}],
+  notes:'Mesas de 4 a 5 personas. Mientras conversan, prepara el papelógrafo con las tres columnas de la diapositiva siguiente.'};
+S.dinBoard = { b:'ini', t:'board', k:'Dinámica inicial · 4 min', h:'Lo que trae el grupo', timer:4, timerLbl:'Puesta en común',
+  notes:'4 o 5 grupos al azar comparten en voz alta; el resto pega sus tarjetas en el papelógrafo. Puedes anotar aquí lo más repetido: queda guardado y se retoma en el cierre.'};
+S.queIA = { b:'m1', t:'cols', k:'Módulo 1', h:'¿Qué es la inteligencia artificial?', n:3,
+  cards:[
+    {h:'Definición simple', items:['Sistemas que realizan tareas que normalmente requieren inteligencia humana: reconocer, clasificar, predecir, redactar']},
+    {h:'Aprende de datos', items:['No sigue reglas escritas a mano: encuentra patrones en grandes cantidades de ejemplos']},
+    {h:'No piensa como una persona', items:['No entiende ni sabe lo que es verdad: calcula la respuesta más probable']}
+  ]};
+S.quiz = { b:'m1', t:'quiz', k:'Módulo 1 · ¿Tradicional o generativa?', h:'¿Qué tipo de IA es?', lead:'Voten a mano alzada y luego hagan clic en cada tarea para ver la respuesta.',
+  items:[
+    ['Detectar correos spam','Tradicional','clasifica con un modelo entrenado',1],
+    ['Redactar una respuesta a un oficio','Generativa','produce texto nuevo',2],
+    ['Predecir la ejecución presupuestaria de diciembre','Tradicional','modelo predictivo',1],
+    ['Resumir un acta','Generativa','produce texto a partir de otro',2],
+    ['Reconocer texto en un PDF escaneado (OCR)','Tradicional','reconoce patrones en imágenes',1],
+    ['Crear una presentación','Generativa','produce contenido y estructura',2]
+  ], notes:'La IA tradicional clasifica o predice dentro de opciones conocidas; la generativa crea contenido nuevo. Ambas aprenden de datos.'};
+S.llm = { b:'m1', t:'cols', k:'Módulo 1 · Dimensión tecnológica', h:'¿Cómo funciona un modelo de lenguaje?', n:3,
+  cards:[
+    {h:'Predice palabras', items:['Escribe la continuación más probable del texto, palabra por palabra','Aprendió de enormes volúmenes de texto']},
+    {h:'Puede inventar', items:['Si no sabe, igual responde con seguridad','A eso le llamamos **alucinación**']},
+    {h:'Por eso', items:['Le damos documentos y contexto','Siempre verificamos antes de usar el resultado']}
+  ]};
+S.alucina = { b:'m1', t:'prompts', k:'Módulo 1 · Demostración', h:'Veamos una alucinación en vivo',
+  steps:['Abre Copilot Chat con tu cuenta institucional.','Pega la pregunta.','Busca los números entregados en el buscador de dictámenes de la Contraloría.'],
+  prompts:[{l:'Pregunta para Copilot', x:'Cita el número y la fecha de tres dictámenes de Contraloría sobre el uso de inteligencia artificial en gobiernos regionales.'}],
+  notes:'Ensayar antes. Si Copilot cita dictámenes reales, pedir algo más específico (por ejemplo, la región y el año) hasta que invente. Mensaje: suena convincente y puede ser falso.'};
+S.dims = { b:'m1', t:'cols', k:'Módulo 1', h:'Cuatro dimensiones del uso de IA en el Estado', n:4,
+  cards:[
+    {h:'Tecnológica', items:['Qué hace y qué no','Calidad de los datos','Límites de cada herramienta']},
+    {h:'Ética', items:['Sesgos','Transparencia con la ciudadanía','La persona decide, no la IA']},
+    {h:'Legal', items:['Datos personales','Transparencia y probidad','Lo profundiza Cristian Pavez en el módulo 3']},
+    {h:'Administrativa', items:['Responsabilidad del funcionario','Uso de herramientas autorizadas','Registro de lo que se hizo con IA']}
+  ]};
+S.tools = { b:'m1', t:'cols', k:'Módulo 1', h:'¿Con qué herramienta trabajamos hoy?', n:2,
+  cards:[
+    {h:'Copilot Chat con la cuenta del GORE', hl:1, items:['Protección de datos empresariales: lo que ingresas no se usa para entrenar la IA','Se trabaja subiendo archivos','Es la herramienta institucional de esta capacitación']},
+    {h:'Cuentas personales (ChatGPT, Gemini u otras)', items:['Útiles para aprender y comparar','Sin contrato con la institución','No ingresar información institucional']}
+  ], notes:'Verificar en pantalla el ícono de protección (escudo) al ingresar con la cuenta institucional. Licencia: Microsoft 365 Copilot Basic, sin licencia de pago.'};
+S.prompt = { b:'m2', t:'cols', k:'Módulo 2', h:'¿Qué es un prompt?', n:2,
+  cards:[
+    {h:'La instrucción que le damos a la IA', items:['Es todo lo que escribimos: la tarea, el contexto, los documentos y el formato pedido','La calidad de la respuesta depende de la calidad de la instrucción']},
+    {h:'Piensa en un colega nuevo', hl:1, items:['Es muy capaz, pero no conoce el GORE ni el caso','¿Qué le dirías para que lo haga bien a la primera?']}
+  ]};
+S.rtcfr = { b:'m2', t:'cols', k:'Módulo 2 · Estructura', h:'Un buen prompt tiene cinco partes: RTCFR', n:5,
+  cards:[
+    {h:'R · Rol', items:['¿Desde dónde trabaja? "Actúa como analista de la DAF"']},
+    {h:'T · Tarea', items:['¿Qué debe hacer? Un verbo claro: resume, compara, redacta']},
+    {h:'C · Contexto', items:['¿Para quién y para qué? Documentos adjuntos']},
+    {h:'F · Formato', items:['¿Cómo lo entrega? Tabla, viñetas, extensión']},
+    {h:'R · Restricciones', items:['¿Qué no debe hacer? "Usa solo el documento"']}
+  ]};
+S.tecnicas = { b:'m2', t:'cols', k:'Módulo 2', h:'Técnicas que mejoran el resultado', n:3,
+  cards:[
+    {h:'Dar ejemplos', items:['Muestra uno o dos ejemplos del resultado esperado']},
+    {h:'Pedir paso a paso', items:['"Primero extrae los datos, luego compáralos, al final concluye"']},
+    {h:'Iterar', items:['La primera respuesta es un borrador: corrige y pide de nuevo']},
+    {h:'Anclar al documento', items:['"Si un dato no aparece, escribe no indicado"']},
+    {h:'Pedir que cite', items:['"Indica la página o sección de cada dato"']},
+    {h:'Fijar el formato', items:['Tablas con columnas definidas, extensión máxima']}
+  ]};
+S.errores = { b:'m2', t:'bullets', k:'Módulo 2', h:'Errores frecuentes',
+  items:['Pedir demasiadas cosas en una sola instrucción','No decir para quién es el resultado','Aceptar la primera respuesta sin revisar ni iterar','No entregar el documento y esperar que la IA "sepa"','Pegar datos personales o información reservada','Copiar el resultado sin verificar cifras, fechas y nombres']};
+S.adapt = { b:'m2', t:'table', k:'Módulo 2', h:'Adaptar el prompt a cada herramienta',
+  head:['','Copilot Chat (cuenta GORE)','ChatGPT o Gemini (cuenta personal)'],
+  rows:[['Datos institucionales','Sí, con criterio (protección empresarial)','No'],['Archivos','Se suben al chat','Se suben al chat'],['Integración','Microsoft 365 (Word, Excel, Outlook, Teams)','Su propio ecosistema'],['Mismo prompt RTCFR','Funciona','Funciona; los resultados varían']],
+  notes:'La estructura RTCFR sirve en todas las herramientas. Lo que cambia es qué información se puede entregar.'};
+S.builder = { b:'m2', t:'builder', k:'Módulo 2 · Constructor', h:'Construyamos un prompt juntos', notes:'Opcional: el módulo 2 y el taller suman 75 minutos. Úsalo solo si sobra tiempo, o como apoyo mientras las mesas trabajan.' };
+S.m3 = { b:'m3', t:'trans', k:'12:00 – 13:00 · Módulo 3', h:'Ciberseguridad y uso de datos ingresados a la IA', lead:'Relator: Cristian Pavez', notes:'Traspaso a Cristian. Su módulo incluye el ejercicio del semáforo de la información.'};
+S.p1 = { b:'p1', t:'trans', brk:1, k:'11:45 – 12:00', h:'Pausa', lead:'Volvemos a las 12:00 con el módulo de ciberseguridad.' };
+S.alm1 = { b:'alm', t:'trans', brk:1, k:'13:00 – 14:00', h:'Almuerzo', lead:'Volvemos a las 14:00 con Microsoft Copilot.' };
+S.alm2 = { b:'alm', t:'trans', brk:1, k:'13:00 – 13:45', h:'Almuerzo', lead:'Volvemos a las 13:45 con Microsoft Copilot.' };
+S.p2a = { b:'p2', t:'trans', brk:1, k:'16:00 – 16:20', h:'Coffee break', lead:'Volvemos a las 16:20 con herramientas para procesos administrativos.' };
+S.p2b = { b:'p2', t:'trans', brk:1, k:'15:30 – 15:50', h:'Coffee break', lead:'Volvemos a las 15:50 con seguimiento de proyectos.' };
+S.copilot = { b:'m4', t:'cols', k:'Módulo 4', h:'Copilot Chat en el GORE: qué puede y qué no', n:2,
+  cards:[
+    {h:'Puede', hl:1, items:['Resumir, redactar y analizar los archivos que subes','Generar tablas, minutas, correos y textos para presentaciones','Trabajar con protección de datos empresariales']},
+    {h:'No puede (sin licencia de pago)', items:['Leer por su cuenta tu correo, tus chats de Teams o tus archivos de SharePoint','Por eso, en los ejercicios subimos el documento','El resultado se copia a Word, Excel, Outlook o PowerPoint']}
+  ], notes:'Licencia de los participantes: Microsoft 365 Copilot Basic con cuenta institucional. Todos los ejercicios están en la versión B (subir archivo). La planificación menciona Outlook, Word, Excel, PowerPoint y Teams: antes de la jornada, prueba qué aparece de Copilot dentro de cada aplicación con una cuenta Basic y dilo al comienzo del módulo.'};
+S.compara = { b:'m4', t:'table', k:'Módulo 4 · Comparación', h:'Copilot frente a otras herramientas',
+  head:['Criterio','Copilot Chat (GORE)','ChatGPT','Gemini'],
+  rows:[['Datos institucionales','Con protección empresarial','Cuenta personal: no','Cuenta personal: no'],['Integración','Microsoft 365','Propia','Google Workspace'],['Archivos','Se suben','Se suben','Se suben'],['Calidad de redacción','Buena','Buena','Buena'],['Recomendación en el GORE','Herramienta institucional','Solo para aprender, sin datos del GORE','Solo para aprender, sin datos del GORE']],
+  notes:'La diferencia principal no es la calidad: es qué información se puede entregar y bajo qué contrato.'};
+
+/* ================= GRUPO 1 ================= */
+const G1 = [
+  { b:'ini', t:'cover', badge:'Grupo 1 · Jueves 12 de noviembre', h:'Inteligencia Artificial para la Gestión Institucional del Gobierno Regional', who:"Gobierno Regional de O'Higgins · Club Ansco, Rancagua<br>Relator: Patricio Mateluna",
+    notes:'Bienvenida. Confirmar que todos tienen el notebook encendido y la cuenta institucional abierta en Copilot Chat.' },
+  S.relator, {b:'ini',t:'agenda',k:'Programa',h:'La jornada de hoy'}, S.dinCount, S.dinTalk, S.dinBoard,
+  { b:'m1', t:'trans', k:'09:30 – 10:30 · Módulo 1', h:'¿Qué es la inteligencia artificial?', lead:'Conceptos, tipos de IA, aplicaciones en el sector público y sus dimensiones.' },
+  S.queIA, S.quiz, S.llm, S.alucina,
+  { b:'m1', t:'cols', k:'Módulo 1', h:'Aplicaciones en la gestión institucional', n:3,
+    cards:[{h:'Redacción',items:['Oficios, respuestas a ciudadanos, minutas']},{h:'Síntesis',items:['Actas, informes, normativa']},{h:'Clasificación',items:['Correos, solicitudes, reclamos']},{h:'Análisis',items:['Indicadores, planillas, bases de licitación']},{h:'Revisión',items:['Inconsistencias, requisitos, plazos']},{h:'Automatización',items:['Flujos con Power Automate']}]},
+  S.dims, S.tools,
+  { b:'m2', t:'trans', k:'10:30 – 11:45 · Módulo 2', h:'Creación de prompts', lead:'Cómo pedirle a la IA lo que necesitamos, con taller práctico.' },
+  S.prompt, S.rtcfr, S.tecnicas, S.errores, S.adapt,
+  { b:'m2', t:'compare', k:'Ejercicio G1-2 · 20 min', h:'Del prompt pobre al prompt útil', timer:20, timerLbl:'G1-2 Prompt útil', kit:['K1'],
+    bad:'resume esto',
+    good:'Actúa como analista de la División de Administración y Finanzas. Resume las observaciones del memorándum adjunto para el jefe de división, que tiene 2 minutos para leerlo antes de una reunión con el ejecutor. Entrega una tabla con observación, monto involucrado y plazo de respuesta, y al final una línea con la acción más urgente. Usa solo información del documento; si un dato no aparece, escribe "no indicado".',
+    notes:'Paso 1: todos prueban "resume esto" con K1. Paso 2: reescriben con RTCFR antes de ver el ejemplo. Paso 3: comparan. Respuesta clave: total observado $2.012.070; acción más urgente: notificar ya, porque el convenio vence el 30-10-2026.' },
+  { b:'m2', t:'reveal', k:'Ejercicio G1-2 · Respuesta', h:'Lo que debería mostrar la tabla (K1)',
+    items:[['Retención de honorarios no acreditada','$183.000 · 10 días hábiles'],['Factura anterior al período de ejecución','$385.000 · 10 días hábiles'],['Exceso en ítem alimentación','$420.000 · 10 días hábiles'],['Talleres de agosto sin medios de verificación','$640.000 · 10 días hábiles'],['Boleta a nombre de la presidenta','$96.500 · 10 días hábiles'],['Saldo no ejecutado sin reintegrar','$287.570 · antes del 30-10-2026 · Total $2.012.070']],
+    notes:'Trampa frecuente: poner $1.200.000 en la observación 1 (es el total de honorarios, no lo observado).' },
+  S.builder,
+  { b:'m2', t:'trans', k:'Módulo 2 · Taller práctico · 35 min', h:'Taller práctico de prompting', lead:'Cinco estaciones con documentos ficticios: redacción, síntesis, clasificación, revisión y generación de ideas.' },
+  { b:'m2', t:'prompts', k:'Ejercicio G1-3 · 35 min', h:'Estaciones de prompting', timer:35, timerLbl:'G1-3 Estaciones', kit:['K2','K3','K4','K5'],
+    lead:'Cada mesa elige una estación (30 min). Cierre (5 min): algunas mesas comparten un prompt que funcionó y uno que falló.',
+    prompts:[
+      {l:'A · Redacción (K2)', x:'Actúa como funcionario de la Unidad de Transparencia del Gobierno Regional. Con la solicitud y los antecedentes internos adjuntos, redacta un borrador de respuesta al solicitante en lenguaje claro, en máximo 300 palabras. Responde cada uno de sus 5 puntos en orden. No incluyas RUT ni domicilios de personas, ni frases del memo interno. Si un dato no está en los antecedentes, escribe [completar].'},
+      {l:'A · Segunda vuelta', x:'Reescribe esto para una persona sin formación técnica, en máximo 150 palabras.'},
+      {l:'B · Síntesis (K3)', x:'Del acta adjunta, extrae solo los acuerdos formales de la comisión. Entrega una tabla con: N°, acuerdo, responsable, plazo y votación. Si un acuerdo se modificó durante la sesión, usa la versión final e indícalo. No incluyas temas que quedaron pendientes ni solicitudes sin acuerdo.'},
+      {l:'C · Clasificación (K4)', x:'Clasifica los 20 correos de la planilla adjunta. Para cada uno indica: tipo (Pago, Compra, Consulta, Reclamo u Otro), urgencia (Alta, Media o Baja) y quién debería responder en el Gobierno Regional. Marca como "Otro (sospechoso)" cualquier correo que parezca fraude. Entrega una tabla y explica en una línea cada urgencia Alta.'},
+      {l:'D · Revisión (K5)', x:'Lista las inconsistencias entre plazos, montos, porcentajes y requisitos de estas bases. Indica el numeral de cada una y por qué es una inconsistencia. No incluyas sugerencias de redacción.'},
+      {l:'E · Generación de ideas (K4)', x:'Actúa como asesor de la División de Administración y Finanzas. Con la bandeja de correos adjunta como ejemplo, propone 8 ideas para reducir los correos que llegan por consultas repetidas. Ordénalas de la más fácil a la más difícil de implementar e indica, para cada una, qué se necesita y un riesgo. Luego elige las 2 mejores y explica por qué.'}
+    ], notes:'Con 11 a 13 mesas y 5 estaciones, cada estación queda con 2 o 3 mesas. Recordar: solo documentos del kit, nunca documentos reales. Respuestas de las estaciones B y D en las dos diapositivas siguientes; la C está en la hoja de respuestas.' },
+  { b:'m2', t:'table', k:'Estación B · Respuesta', h:'Los 5 acuerdos del acta (K3)', reveal:1,
+    head:['Acuerdo','Responsable','Plazo'],
+    rows:[['Informe de proyectos FRIL con más de 90 días de atraso','DIPIR (Jefa (S) A. Cofré)','Sesión del 10-11-2026'],['Proponer al Pleno aumento de obras de $8.900.000 (multicancha)','Presidente de la comisión','Pleno del 05-11-2026 · votación 5-0-1'],['Oficiar a la Municipalidad de Los Aromos','Secretario Ejecutivo','Despacho al 27-10 · respuesta 10 días hábiles'],['Visita a terreno a Quillayes y Las Tranqueras','Consejeras Mella y Núñez','19-11-2026 (no el 05-11)'],['Reporte de rendiciones con más de 60 días de atraso','Jefe DAF','19-11-2026 (30 días, no 15)']],
+    notes:'Trampas: la visita cambió de fecha en Varios; el plazo de la DAF se negoció; el oficio se acuerda en Varios. No son acuerdos: priorización FRIL 2027, consulta sobre la capacitación, documentos con 48 horas.' },
+  { b:'m2', t:'reveal', k:'Estación D · Respuesta', h:'Las 4 inconsistencias de las bases (K5)',
+    items:[['Duración del contrato: 24 meses frente a 36 meses','Numeral 2 frente a numeral 21'],['Las ponderaciones suman 105%','Numeral 10'],['Cierre de ofertas el día 10, pero se exigen al menos 20 días corridos','Numeral 3 frente a numeral 4'],['Garantía de fiel cumplimiento: 5% frente a 10%','Numeral 13 frente a numeral 15']],
+    notes:'Pista para confirmar: $178.800.000 / $7.450.000 = 24 meses.' },
+  S.p1, S.m3, S.alm1,
+  { b:'m4', t:'trans', k:'14:00 – 15:00 · Módulo 4', h:'Uso práctico de Microsoft Copilot', lead:'Outlook, Word, Excel, PowerPoint y Teams: generación y análisis de documentos, informes y minutas.' },
+  S.copilot,
+  { b:'m4', t:'prompts', k:'Ejercicio G1-4 · 40 min', h:'De un acta a minuta, correo y presentación', timer:40, timerLbl:'G1-4 Acta a minuta', kit:['K3'],
+    lead:'Sube K3 a Copilot Chat y pide cada producto por separado. Luego copia el resultado a Word, Outlook o PowerPoint.',
+    prompts:[
+      {l:'1 · Minuta', x:'Con el acta adjunta, elabora una minuta de una página para el Jefe de División: contexto en 2 líneas, tabla de acuerdos (acuerdo, responsable y plazo) y próximos pasos. Usa solo información del acta.'},
+      {l:'2 · Correo', x:'A partir de la minuta, redacta un correo breve y formal a los responsables de cada acuerdo, recordando su compromiso y su plazo. Un párrafo por responsable.'},
+      {l:'3 · Presentación', x:'Con la minuta, propone el contenido de 3 diapositivas: título y máximo 4 viñetas cada una (1: contexto; 2: acuerdos y responsables; 3: próximos pasos y fechas).'}
+    ], notes:'Últimos 10 minutos: ¿qué hizo bien Copilot, qué hubo que corregir? Revisar especialmente la fecha de la visita (19-11).' },
+  S.compara,
+  { b:'m67', t:'trans', k:'15:00 – 16:00 · Módulos 6 y 7', h:'Agentes y automatización con IA', lead:'Agentes con Copilot, Power Automate y automatización documental, de correos, solicitudes y reportes.' },
+  { b:'m67', t:'prompts', k:'Ejercicio G1-6 · 20 min', h:'Un agente de consultas de compras', kit:['K7'], timer:20, timerLbl:'G1-6 Agente',
+    steps:['En Copilot Chat: crear un agente.','Nombre: "Asistente de procedimientos de compras".','Pegar las instrucciones y subir K7 como conocimiento.','Probar una pregunta que el manual responde y otra que no.'],
+    prompts:[
+      {l:'Instrucciones del agente', x:'Responde solo con información del Manual de Procedimientos de Compras 2026. Cita el numeral de donde sale cada respuesta. Si la respuesta no está en el manual, di que no la encuentras y sugiere escribir a la Unidad de Compras. No inventes montos, plazos ni nombres.'},
+      {l:'Pregunta que sí responde', x:'¿Con cuánta anticipación debo pedir una compra que requiere licitación por 500 UTM?'},
+      {l:'Pregunta que no responde', x:'¿Qué proveedor de convenio marco tiene el mejor precio en notebooks?'}
+    ], notes:'Si el creador de agentes está habilitado, cada participante crea su agente con K7 (práctico). Si no, demostración desde tu cuenta y las mesas diseñan su agente en papel: nombre, para quién, documentos, 3 preguntas y algo que nunca debe hacer. Respuesta esperada: 25 días hábiles (numeral 6).' },
+  { b:'m67', t:'flow', k:'Ejercicio G1-7 · Power Automate', h:'Automatizar la recepción de rendiciones',
+    steps:[['Disparador','Llega un correo con "Rendición" en el asunto'],['Acción','Guardar el adjunto en una carpeta de SharePoint'],['Acción','Registrar una fila en una lista'],['Aviso','Mensaje en Teams al analista']],
+    lead:'Lienzo por mesa (10 min): ¿qué inicia el proceso? · pasos manuales hoy · datos que se mueven · quién aprueba · qué NO debe automatizarse.',
+    timer:10, timerLbl:'G1-7 Lienzo', notes:'Este flujo usa solo conectores estándar (Outlook, SharePoint, Teams), que no requieren permisos del administrador. Pruébalo antes con tu cuenta. Los procesos de las mesas van al informe final.' },
+  { b:'m67', t:'cols', k:'Módulo 7 · Automatización documental', h:'Datos de facturas: ¿con IA o con datos estructurados?', n:2,
+    cards:[
+      {h:'1 · Copilot Chat', items:['Subir facturas ficticias en PDF y pedir una tabla: RUT, folio, fecha, neto, IVA y total','Pedir que verifique neto + IVA = total']},
+      {h:'2 · Excel: Obtener datos desde PDF', items:['Power Query lee las tablas del PDF en el mismo computador','Sin IA y sin enviar datos a la nube']},
+      {h:'3 · XML de la factura y Registro de Compras y Ventas del SII', hl:1, items:['Cada factura electrónica trae su XML con los datos exactos','El RCV se descarga en CSV: no hay que "leer" nada']},
+      {h:'4 · Power Automate con conectores estándar', items:['Guardar las facturas recibidas por correo y registrarlas en Excel','La lectura automática (AI Builder) requiere que el administrador la habilite']}
+    ], notes:'Contexto: AI Builder (procesamiento de facturas) pide permiso del administrador para instalar un paquete en el entorno, por eso no se muestra en vivo. Mensaje: antes de pedirle a la IA que lea un documento, pregunta si el dato ya existe en forma estructurada. Facturas de empresas casi no tienen datos personales; boletas de honorarios sí: solo documentos ficticios.' },
+  { b:'m67', t:'cols', k:'Módulo 7', h:'Automatizar sin permisos del administrador', n:3,
+    cards:[
+      {h:'Correos y solicitudes', items:['Guardar adjuntos en una carpeta','Registrar cada solicitud en Excel o en una lista']},
+      {h:'Compromisos y plazos', items:['Recordatorio antes de un vencimiento','Tareas en Planner desde un formulario']},
+      {h:'Reportes', items:['Resumen semanal por correo desde una planilla','Aviso en Teams cuando cambia un estado']}
+    ], notes:'Todo con conectores estándar de Microsoft 365. Pide a las mesas que elijan uno para su lienzo.' },
+  S.p2a,
+  { b:'m5', t:'trans', k:'16:20 – 17:30 · Módulo 5', h:'Herramientas de IA para procesos administrativos', lead:'Seguimiento y monitoreo, reportes, tareas y compromisos, indicadores de gestión y PMG. Síntesis y preguntas finales.' },
+  { b:'m5', t:'cols', k:'Módulo 5', h:'Casos de uso en procesos administrativos', n:3,
+    cards:[{h:'Seguimiento y reportes',items:['Consolidar planillas','Reportes ejecutivos desde datos']},{h:'Tareas y compromisos',items:['Extraer compromisos de actas y correos','Registrarlos en Planner o To Do']},{h:'Seguimiento y monitoreo',items:['Estado de compromisos y plazos','Alertas de vencimientos']},{h:'Indicadores de gestión',items:['Proyecciones y alertas','Verificar siempre el cálculo']},{h:'PMG',items:['Borradores de justificaciones y verificadores','Las causas las pone el equipo']},{h:'Respuestas tipo',items:['Plantillas para solicitudes frecuentes']}],
+    notes:'Jurisprudencia: la aborda Cristian Pavez. Este bloque dura 70 minutos: exposición breve (10), G1-5 (35), síntesis y preguntas (20).' },
+  { b:'m5', t:'prompts', k:'Ejercicio G1-5 · 35 min', h:'Indicadores de gestión y verificadores PMG', timer:35, timerLbl:'G1-5 Indicadores', kit:['K6'],
+    lead:'En parejas. Sube K6 a Copilot Chat.',
+    prompts:[
+      {l:'1 · Riesgo', x:'Identifica los indicadores con riesgo de no cumplir la meta anual si el ritmo de avance sigue igual. Considera la columna "Tipo de medición". Muestra el cálculo de cada uno.'},
+      {l:'2 · Verificación', x:'(Sin IA) Revisa en Excel el cálculo de uno de los indicadores. ¿Coincide con el de Copilot?'},
+      {l:'3 · Justificación', x:'Para el indicador 7, redacta un borrador de justificación de desviación de máximo 200 palabras, con causas y medidas correctivas. Usa solo los datos de la planilla y marca con [completar] las causas que no aparecen en ella.'}
+    ], notes:'Trampa: aplicar ×4/3 a las tasas (el indicador 4 daría 123%). Dato para la justificación: esta capacitación suma ~105 personas y aun así se llega a 74,7%.' },
+  { b:'m5', t:'table', k:'Ejercicio G1-5 · Respuesta', h:'Proyección al 31 de diciembre (K6)', reveal:1,
+    head:['Indicador','Tipo','Meta','Proyección','¿Riesgo?'],
+    rows:[['2 · Proyectos fiscalizados en terreno','Acumulativo','56%','38,0 × 4/3 = 50,7%','<span class="risk">Sí</span>'],['4 · Transparencia dentro de plazo','Tasa','95%','≈ 92,4% y bajando','<span class="risk">Sí</span>'],['7 · Funcionarios capacitados','Acumulativo','80%','41,0 × 4/3 = 54,7%','<span class="risk">Sí</span>'],['6 · Ejecución del PAC','Acumulativo','90%','70,7 × 4/3 = 94,3%','<span class="okc">No</span>'],['1, 3, 5 y 8','Única o tasa','—','Sobre la meta','<span class="okc">No</span>']] },
+  { b:'m5', t:'board', k:'Cierre', h:'¿Respondimos lo que trajeron en la mañana?', notes:'Volver al papelógrafo de la dinámica inicial. Revisar 2 o 3 preocupaciones y si quedaron resueltas.' },
+  { b:'m5', t:'bullets', k:'Cierre', h:'Tres ideas para llevarse', items:['**La IA es un borrador:** la persona revisa, decide y firma','**Un buen prompt tiene estructura:** rol, tarea, contexto, formato y restricciones','**Información institucional, solo en herramientas institucionales**, y nunca datos personales o sensibles sin autorización'], notes:'Preguntas finales. Recordar la encuesta y la evaluación para la certificación.' },
+  { b:'m5', t:'trans', k:'Fin de la jornada', h:'Gracias', lead:'Preguntas finales · Encuesta de satisfacción y evaluación' }
+];
+
+/* ================= GRUPO 2 ================= */
+const G2 = [
+  { b:'ini', t:'cover', badge:'Grupo 2 · Viernes 13 de noviembre', h:'Inteligencia Artificial aplicada a la Gestión de Proyectos y Programas del Gobierno Regional', who:"Gobierno Regional de O'Higgins · Club Ansco, Rancagua<br>Relator: Patricio Mateluna",
+    notes:'Bienvenida. Confirmar notebooks encendidos y cuenta institucional abierta en Copilot Chat.' },
+  S.relator, {b:'ini',t:'agenda',k:'Programa',h:'La jornada de hoy'}, S.dinCount, S.dinTalk, S.dinBoard,
+  { b:'m1', t:'trans', k:'09:30 – 10:30 · Módulo 1', h:'¿Qué es la inteligencia artificial?', lead:'Conceptos y su aplicación en el ciclo de vida de los proyectos públicos.' },
+  S.queIA, S.quiz, S.llm, S.alucina,
+  { b:'m1', t:'life', k:'Ejercicio G2-1 · 15 min', h:'La IA en el ciclo de vida de un proyecto', timer:15, timerLbl:'G2-1 Ciclo de vida',
+    stages:[['Formulación','v','Borradores de fichas, revisión de requisitos'],['Admisibilidad y evaluación','a','La IA revisa requisitos; la decisión es humana'],['Convenio','a','Borrador desde plantilla; revisión jurídica'],['Ejecución','v','Resumen de informes, cruce con el convenio'],['Seguimiento físico-financiero','v','Alertas de cartera, reportes'],['Cierre y rendición','a','Revisión de documentos; aprobar o rechazar es humano']],
+    notes:'Haz clic en cada etapa para cambiar el color mientras la sala opina. La tecla R muestra la propuesta. Mensaje: la IA prepara, resume y detecta; las personas evalúan, aprueban y firman.' },
+  S.dims, S.tools,
+  { b:'m2', t:'trans', k:'10:30 – 11:45 · Módulo 2', h:'Prompts aplicados a proyectos públicos', lead:'Seguimiento, informes, reportes, observaciones, riesgos y presentaciones.' },
+  S.prompt, S.rtcfr, S.tecnicas, S.errores,
+  { b:'m2', t:'prompts', k:'Ejercicio G2-2 · 20 min', h:'Biblioteca de prompts para proyectos', timer:20, timerLbl:'G2-2 Biblioteca', kit:['K8'],
+    lead:'Cada mesa toma una tarea, prueba el prompt con K8, lo mejora al menos una vez y anota su versión final.',
+    prompts:[
+      {l:'Seguimiento de la iniciativa', x:'Eres analista de seguimiento de la División de Presupuesto e Inversión Regional. Con el informe adjunto, resume en 5 viñetas el estado del proyecto: avance físico, avance financiero, hitos, plazos y principales problemas. Usa solo datos del informe.'},
+      {l:'Informe técnico', x:'Redacta la sección "Estado de la obra" de un informe técnico para el Jefe de División, en máximo 200 palabras, con base en el informe adjunto. Tono formal y sin adjetivos.'},
+      {l:'Reporte financiero', x:'Con el informe adjunto, elabora una tabla con los estados de pago (número, período, monto y estado) y calcula el avance financiero sobre el monto del convenio. Muestra el cálculo.'},
+      {l:'Análisis de observaciones', x:'Identifica en el informe adjunto los aspectos que podrían generar observaciones del Gobierno Regional (plazos, garantías, partidas y dotación). Para cada uno indica la sección del informe.'},
+      {l:'Evaluación de riesgos', x:'Eres analista de seguimiento de la División de Presupuesto e Inversión Regional. Con el informe de avance adjunto, identifica los 5 principales riesgos para terminar la obra dentro del plazo del convenio. Para cada riesgo indica la evidencia del informe, la probabilidad (alta, media o baja), el impacto y una acción que puede pedir el GORE al ejecutor. Entrega una tabla. No supongas datos que no estén en el informe.'},
+      {l:'Presentación ejecutiva', x:'Propón 3 diapositivas para el Jefe de División sobre este proyecto: estado, alertas y decisiones requeridas. Máximo 4 viñetas por diapositiva.'},
+      {l:'Generación de ideas', x:'Con el informe adjunto, propone 6 ideas para que el municipio recupere el atraso de la obra sin aumentar el monto del convenio. Para cada una indica qué debería autorizar el GORE y un riesgo. Ordénalas de mayor a menor impacto.'}
+    ], notes:'Siete tareas para 11 a 13 mesas: algunas se repiten. Los 6 prompts finales se consolidan en la guía práctica para participantes.' },
+  S.builder,
+  { b:'m2', t:'trans', k:'Módulo 2 · Taller práctico · 35 min', h:'Taller con documentos de proyectos', lead:'Revisión de un informe de avance FRIL frente a su convenio.' },
+  { b:'m2', t:'prompts', k:'Ejercicio G2-3 · 35 min', h:'Revisión de un informe de avance FRIL', timer:35, timerLbl:'G2-3 Informe FRIL', kit:['K8','K9'],
+    lead:'En parejas. Sube K8 y K9 a Copilot Chat. El informe tiene 5 inconsistencias plantadas: ¿cuántas encuentra la IA? Pasos 1 y 2 en 30 minutos; el oficio (paso 3) es opcional.',
+    prompts:[
+      {l:'1 · Comparar', x:'Compara el informe de avance con el convenio adjunto. Lista cada diferencia en plazos, montos, partidas y garantías, citando la sección de cada documento.'},
+      {l:'2 · Verificar', x:'(Sin IA) Revisa cada diferencia en los documentos. ¿Cuántas de las 5 encontró la IA? ¿Inventó alguna?'},
+      {l:'3 · Oficio', x:'Redacta un oficio de observaciones al municipio ejecutor con las diferencias verificadas, en tono formal y con un plazo de respuesta de 10 días hábiles.'}
+    ], notes:'Al cierre, revelar las 5 con la tecla R en la diapositiva siguiente. La que más se escapa: la fecha del hito 2 (hay que calcular 03-08 + 28 días).' },
+  { b:'m2', t:'reveal', k:'Ejercicio G2-3 · Respuesta', h:'Las 5 inconsistencias del informe (K8 frente a K9)',
+    items:[['Avance físico 70% con financiero 35%; además, las partidas ponderadas dan 52,2%','K8 secciones 2, 3 y 4 · K9 Anexo 1'],['Hito 2 declarado cumplido el 15-09; vencía el 31-08 (28 días desde el 03-08)','K8 sección 5 · K9 Anexo 2'],['Estacionamientos por $4.850.000 en el EP 2, sin autorización del GORE','K8 secciones 4.2 y 7 · K9 cláusulas 4ª y 8ª'],['Boleta de garantía vencida el 30-09; debía cubrir hasta el 30-05-2027','K8 sección 6 · K9 cláusula 6ª'],['Término estimado 15-04-2027, después de la vigencia del convenio (31-03-2027)','K8 secciones 2 y 7 · K9 cláusulas 7ª y 8ª'],['Adicional: la baja de dotación (14 a 4) no se informó en 5 días hábiles','K9 cláusula 5ª, número 8']] },
+  S.p1, S.m3, S.alm2,
+  { b:'m4', t:'trans', k:'13:45 – 14:45 · Módulo 4', h:'Uso práctico de Microsoft Copilot', lead:'Outlook, Word, Excel, PowerPoint y Teams: informes de avance, convenios y presentaciones ejecutivas.' },
+  S.copilot,
+  { b:'m4', t:'prompts', k:'Ejercicio G2-4 · 40 min', h:'Del convenio a la ficha y la presentación ejecutiva', timer:40, timerLbl:'G2-4 Ficha', kit:['K8','K9'],
+    lead:'Sube ambos archivos y pide cada producto por separado. Copia el resultado a Word o PowerPoint.',
+    prompts:[
+      {l:'1 · Ficha del proyecto', x:'Con el convenio y el informe adjuntos, elabora una ficha de una página del proyecto: nombre, código BIP, monto del convenio, monto del contrato, contratista, plazos, vigencia del convenio, avance físico, avance financiero y alertas. Indica de qué documento sale cada dato.'},
+      {l:'2 · Informe de avance', x:'A partir del informe de avance, redacta un informe para el Jefe de División de máximo una página: estado, problemas detectados y decisiones que se requieren.'},
+      {l:'3 · Presentación', x:'Propón 3 diapositivas: estado del proyecto, alertas y decisiones requeridas. Máximo 4 viñetas por diapositiva.'}
+    ], notes:'Trampas: confundir el monto del convenio ($148,5 MM) con el del contrato ($146,9 MM), o el avance financiero aprobado (35%) con lo pagado (15%).' },
+  S.compara,
+  { b:'m7', t:'trans', k:'14:45 – 15:30 · Módulo 7', h:'Automatización de procesos y tareas', lead:'Seguimiento automático de compromisos y plazos, alertas, informes periódicos y consolidación de reportes. Síntesis y cierre.' },
+  { b:'m7', t:'flow', k:'Ejercicio G2-7 · Power Automate', h:'Alerta semanal de plazos y brechas',
+    steps:[['Disparador','Cada lunes a las 08:00'],['Acción','Leer la cartera (K10) en SharePoint o Excel'],['Filtro','Término en menos de 30 días o brecha mayor a 15 puntos'],['Aviso','Correo a cada analista con sus proyectos']],
+    lead:'Con el corte al 31-10-2026 avisaría las filas 1, 6, 12 (brecha) y 15 (termina el 25-11). Lienzo por mesa (15 min): qué alerta, cada cuánto, de dónde sale el dato, quién la recibe y qué hace.',
+    timer:15, timerLbl:'G2-7 Lienzo', notes:'La fila 8 termina justo a los 30 días y queda fuera con "menos de 30": buen ejemplo de por qué definir bien los criterios antes de automatizar.' },
+  { b:'m7', t:'cols', k:'Módulo 7', h:'Automatizar sin permisos del administrador', n:3,
+    cards:[
+      {h:'Compromisos y plazos', items:['Recordatorio antes de cada hito','Tareas en Planner desde un acta o formulario']},
+      {h:'Informes periódicos', items:['Resumen semanal de la cartera por correo','Aviso en Teams cuando un proyecto cambia de estado']},
+      {h:'Consolidación', items:['Juntar planillas de varios analistas en una','Guardar informes de avance recibidos y registrarlos']}
+    ], notes:'Todo con conectores estándar de Microsoft 365 (Outlook, Excel, SharePoint, Teams, Planner). La lectura automática de documentos con AI Builder requiere que el administrador la habilite.' },
+  { b:'m7', t:'board', k:'Cierre', h:'¿Respondimos lo que trajeron en la mañana?', notes:'Según la planificación, la síntesis y el cierre van en este bloque, antes del coffee break. Volver al papelógrafo de la dinámica inicial.' },
+  { b:'m7', t:'bullets', k:'Cierre', h:'Tres ideas para llevarse', items:['**La IA prepara, resume y detecta:** las personas evalúan, aprueban y firman','**Cruzar documentos es donde más aporta:** informe frente a convenio, cartera frente a criterios','**Información institucional, solo en herramientas institucionales**, y siempre verificar cifras y fechas'], notes:'Preguntas finales. Recordar la encuesta y la evaluación para la certificación.' },
+  S.p2b,
+  { b:'m5', t:'trans', k:'15:50 – 16:30 · Módulos 5 y 6', h:'Seguimiento de proyectos y quehacer del GORE', lead:'Hitos, plazos, indicadores, cartera de proyectos y los instrumentos FNDR, Fondo 8%, FRIL, FRPD y Circular 33.' },
+  { b:'m5', t:'prompts', k:'Ejercicio G2-5 · 25 min', h:'Análisis de la cartera de proyectos', timer:25, timerLbl:'G2-5 Cartera', kit:['K10'],
+    lead:'En parejas. Sube K10 a Copilot Chat. Fecha de corte: 31-10-2026.',
+    prompts:[
+      {l:'1 · Alertas', x:'Identifica los proyectos con una diferencia mayor a 15 puntos entre avance físico y financiero, y los que terminan en menos de 60 días desde el 31-10-2026 con avance físico bajo 80%. Muestra la tabla y el criterio.'},
+      {l:'2 · Resumen por instrumento', x:'Resume la cartera por instrumento: número de proyectos, monto total y avance financiero promedio ponderado por monto. Muestra el cálculo.'},
+      {l:'3 · Reporte', x:'Redacta un reporte ejecutivo de media página para el Jefe de División, con las 3 alertas más importantes y una acción propuesta para cada una.'}
+    ], notes:'Pedir que comprueben un total con una suma en Excel. Trampa: promedio simple en vez de ponderado (FNDR: 39,0% en vez de 36,6%).' },
+  { b:'m5', t:'table', k:'Ejercicio G2-5 · Respuesta', h:'Las 4 alertas de la cartera (K10)', reveal:1,
+    head:['Fila','Proyecto','Criterio'],
+    rows:[['1','Sede Social Villa Los Copihues (FRIL)','Brecha de 35 puntos (70% frente a 35%)'],['3','Plaza Pública de Quillayes (FRIL)','Termina en 50 días con 62% físico'],['6','CECOSF Villa Esmeralda (FNDR)','Brecha de 19 puntos (23% frente a 4%)'],['12','Riego tecnificado (FRPD)','Brecha de 17 puntos, financiero sobre físico'],['—','Casos límite que no son alerta','Filas 2, 10, 14 y 15']],
+    notes:'Avance financiero ponderado: FNDR 36,6% · FRPD 48,8% · Circular 33 41,7% · FRIL 58,1% · FNDR 8% 81,6% · Total 39,5%.' },
+  { b:'m5', t:'quiz', k:'Ejercicio G2-6 · 15 min', h:'¿Qué instrumento corresponde?', lead:'Decidan en la mesa, pregunten a la IA y comparen. Clic para ver la respuesta.',
+    items:[['Taller de folclor de una junta de vecinos','FNDR 8% (Cultura)','fondo concursable para organizaciones',3],['Reposición de la cubierta de una escuela municipal','FRIL o Circular 33','depende del monto y de si es reposición o conservación',3],['Camión aljibe para un municipio','Circular 33','adquisición de activos no financieros',3],['Apoyo a la productividad de pymes agroindustriales','FRPD','Fondo Regional para la Productividad y el Desarrollo',3],['Construcción de un CESFAM','FNDR','proyecto de inversión evaluado en el Sistema Nacional de Inversiones',3]],
+    timer:15, timerLbl:'G2-6 Instrumentos', notes:'Validar estas respuestas con la DIPIR antes de la jornada. Mensaje: la IA conoce reglas generales, no los instructivos vigentes del GORE; por eso conviene un agente alimentado con ellos.' },
+  { b:'m5', t:'trans', k:'Fin de la jornada', h:'Gracias', lead:'Preguntas finales · Encuesta de satisfacción y evaluación' }
+];
+const DECKS = { g1:G1, g2:G2 };
+
+/* ================= state ================= */
+let G = store.get('group', null), I = 0;
+const deck = () => DECKS[G];
+const revealState = {};  // slideIdx -> number revealed
+
+/* ================= render ================= */
+const stage = $('#stage');
+function blockOf(s){ return BLOCKS[G].find(b => b[0] === s.b); }
+
+function render(){
+  const s = deck()[I];
+  const blk = blockOf(s);
+  let h = '';
+  const kick = s.k ? `<div class="kicker">${esc(s.k)}</div>` : '';
+  switch(s.t){
+    case 'cover':
+      h = `<div class="slide cover"><div><span class="grpbadge">${esc(s.badge)}</span></div><h1>${esc(s.h)}</h1><div class="who">${s.who}</div></div>`; break;
+    case 'trans':
+      h = `<div class="slide trans ${s.brk?'brk':''}">${kick}<h1>${esc(s.h)}</h1>${s.lead?`<p class="lead">${md(s.lead)}</p>`:''}</div>`; break;
+    case 'bullets':
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><ul class="big">${s.items.map(x=>`<li>${md(x)}</li>`).join('')}</ul></div>`; break;
+    case 'cols': {
+      const cols = Math.min(s.n || s.cards.length, s.cards.length);
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1>${s.lead?`<p class="lead">${md(s.lead)}</p>`:''}<div class="cols" style="grid-template-columns:repeat(${cols},1fr);">${s.cards.map(c=>`<div class="card ${c.hl?'hl':''}"><h3>${esc(c.h)}</h3><ul>${c.items.map(x=>`<li>${md(x)}</li>`).join('')}</ul></div>`).join('')}</div></div>`; break; }
+    case 'agenda':
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><table class="t"><tr><th style="width:190px">Horario</th><th>Bloque</th></tr>${BLOCKS[G].map(b=>`<tr><td>${b[1]} – ${b[2]}</td><td>${b[4]===1?'<span style="color:var(--muted)">'+esc(b[3])+'</span>':esc(b[3])}</td></tr>`).join('')}</table></div>`; break;
+    case 'quiz':
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1>${s.lead?`<p class="lead" style="font-size:24px;margin-bottom:18px">${md(s.lead)}</p>`:''}<div class="quiz">${s.items.map((q,i)=>`<button class="qi k${q[3]}" data-q="${i}"><span>${esc(q[0])}</span><span class="a">${esc(q[1])} <span>· ${esc(q[2])}</span></span></button>`).join('')}</div></div>`; break;
+    case 'reveal':
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><div class="rev ${s.items.length>5?'compact':''}">${s.items.map((x,i)=>`<div class="it hid" data-i="${i}"><div class="n">${i+1}</div><div class="d"><div class="h">${md(x[0])}</div><div class="w">${md(x[1])}</div></div></div>`).join('')}</div><button class="revbtn" id="revBtn">Mostrar siguiente (R)</button></div>`; break;
+    case 'table':
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><table class="t"><tr>${s.head.map(x=>`<th>${esc(x)}</th>`).join('')}</tr>${s.rows.map(r=>`<tr class="${s.reveal?'hid':''}">${r.map(c=>`<td>${String(c).startsWith('<span')?c:md(c)}</td>`).join('')}</tr>`).join('')}</table>${s.reveal?'<button class="revbtn" id="revBtn">Mostrar siguiente (R)</button>':''}</div>`; break;
+    case 'prompts': {
+      const steps = s.steps ? `<ol class="steps">${s.steps.map(x=>`<li>${md(x)}</li>`).join('')}</ol>` : '';
+      const acc = s.prompts.length > 3;
+      const pr = `<div class="prompts ${acc?'acc':''}">${s.prompts.map((p,i)=>`<div class="pr ${acc&&i?'shut':''}"><div class="top"><span class="lab">${acc?'<span class="car">▸</span> ':''}${esc(p.l)}</span>${p.x.startsWith('(Sin IA)')?'':`<button class="copy" data-c="${i}">Copiar</button>`}</div><pre>${esc(p.x)}</pre></div>`).join('')}</div>`;
+      const left = `${s.lead?`<p class="lead" style="font-size:25px">${md(s.lead)}</p>`:''}${steps}${s.kit?files(s.kit):''}`;
+      h = `<div class="slide">${kick}<h1 style="font-size:50px">${esc(s.h)}</h1><div class="split"><div>${left}</div>${pr}</div></div>`; break; }
+    case 'compare':
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1>${s.kit?files(s.kit):''}<div class="cmp"><div class="pr bad"><div class="top"><span class="lab">Prompt pobre</span><button class="copy" data-x="bad">Copiar</button></div><pre style="font-size:40px">${esc(s.bad)}</pre></div><div class="pr good"><div class="top"><span class="lab">Prompt útil (RTCFR)</span><button class="copy" data-x="good">Copiar</button></div><pre>${esc(s.good)}</pre></div></div></div>`; break;
+    case 'builder':
+      h = `<div class="slide">${kick}<h1 style="font-size:50px">${esc(s.h)}</h1><div class="bld"><div class="f">
+        <div class="presets"><span style="font-size:16px;color:var(--muted);align-self:center">Ejemplos:</span><button data-p="memo">Memo (K1)</button><button data-p="riesgo">Riesgos FRIL (K8)</button><button data-p="vacio">En blanco</button></div>
+        ${[['r','R','Rol','¿Desde dónde trabaja?'],['t','T','Tarea','¿Qué debe hacer?'],['c','C','Contexto','¿Para quién y para qué?'],['f','F','Formato','¿Cómo lo entrega?'],['x','R','Restricciones','¿Qué no debe hacer?']].map(f=>`<label><span class="k">${f[1]}</span>${f[2]} <span class="h">${f[3]}</span></label><textarea rows="2" data-f="${f[0]}"></textarea>`).join('')}
+        </div><div class="out"><div style="display:flex;align-items:center"><strong style="flex:1;font-size:20px;color:var(--accent)">Prompt resultante</strong><button class="copy" id="bldCopy">Copiar</button></div><pre id="bldOut"></pre></div></div></div>`; break;
+    case 'counters': {
+      const v = store.get('cnt.'+G, s.items.map(()=>0));
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><div class="ctr">${s.items.map((q,i)=>`<div class="c"><div class="q">${esc(q)}</div><button data-d="-1" data-i="${i}" aria-label="Restar">−</button><div class="num" id="cn${i}">${v[i]||0}</div><button data-d="1" data-i="${i}" aria-label="Sumar">+</button></div>`).join('')}</div></div>`; break; }
+    case 'board': {
+      const B = store.get('board.'+G, {o:[],n:[],r:[]});
+      const col = (k,t) => `<div class="col ${k}"><h3>${t}</h3><div class="items">${(B[k]||[]).map((x,i)=>`<div class="note"><span>${esc(x)}</span><button data-del="${k}:${i}" aria-label="Quitar">✕</button></div>`).join('')}</div><form data-k="${k}"><input placeholder="Agregar…" aria-label="Agregar a ${t}"><button aria-label="Agregar">+</button></form></div>`;
+      h = `<div class="slide">${kick}<h1 style="font-size:50px">${esc(s.h)}</h1><div class="board">${col('o','Oportunidades de aplicación')}${col('n','Necesidades de aprendizaje')}${col('r','Riesgos y resguardos')}</div></div>`; break; }
+    case 'life': {
+      const L = store.get('life.'+G, s.stages.map(()=>''));
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><p class="lead" style="font-size:25px">Haz clic en cada etapa para marcar dónde aporta la IA. <b>R</b> muestra la propuesta.</p><div class="life">${s.stages.map((x,i)=>`<button data-l="${i}" class="${L[i]||''}">${esc(x[0])}<span class="s">${L[i]?esc(x[2]):'&nbsp;'}</span></button>`).join('')}</div><div class="legend"><span><i style="background:var(--ok)"></i>Ahorra tiempo</span><span><i style="background:var(--warn)"></i>Ayuda con revisión humana</span><span><i style="background:var(--bad)"></i>Decisión que no se delega</span></div></div>`; break; }
+    case 'flow':
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><div class="flow">${s.steps.map((x,i)=>`${i?'<div class="ar">→</div>':''}<div class="st"><span class="k">${esc(x[0])}</span>${esc(x[1])}</div>`).join('')}</div>${s.lead?`<p class="lead" style="font-size:26px">${md(s.lead)}</p>`:''}</div>`; break;
+  }
+  stage.innerHTML = h;
+  bindSlide(s);
+  if (revealState[I]) for (let k=0;k<revealState[I];k++) revealOne(true);
+  // agenda bar
+  const curIdx = BLOCKS[G].findIndex(b => b[0] === s.b);
+  [...document.querySelectorAll('#agenda .seg')].forEach((el,i)=>{ el.classList.toggle('cur', i===curIdx); el.classList.toggle('done', i<curIdx); });
+  $('#info').textContent = `${G==='g1'?'Grupo 1':'Grupo 2'} · ${blk?blk[1]+'–'+blk[2]+' · '+blk[3]:''} · ${I+1}/${deck().length}`;
+  $('#notesBody').innerHTML = s.notes ? md(s.notes) : '<span style="color:#998">Sin notas para esta diapositiva.</span>';
+  if (s.timer) { if (!timer.running) armTimer(s); }
+  else if (!timer.running) { timer.total = 0; timer.left = 0; drawTimer(); }
+  store.set('idx.'+G, I);
+}
+
+function bindSlide(s){
+  stage.querySelectorAll('.qi').forEach(b => b.onclick = () => b.classList.toggle('open'));
+  stage.querySelectorAll('.prompts.acc .lab').forEach(l => l.onclick = () => { const me = l.closest('.pr'); stage.querySelectorAll('.prompts.acc .pr').forEach(x => x.classList.toggle('shut', x !== me)); });
+  stage.querySelectorAll('.copy[data-c]').forEach(b => b.onclick = () => copy(s.prompts[+b.dataset.c].x, b));
+  stage.querySelectorAll('.copy[data-x]').forEach(b => b.onclick = () => copy(s[b.dataset.x], b));
+  const rb = $('#revBtn'); if (rb) rb.onclick = () => revealOne();
+  if (s.t === 'counters') stage.querySelectorAll('.ctr button').forEach(b => b.onclick = () => {
+    const v = store.get('cnt.'+G, s.items.map(()=>0)); const i = +b.dataset.i;
+    v[i] = Math.max(0, (v[i]||0) + (+b.dataset.d)); store.set('cnt.'+G, v); $('#cn'+i).textContent = v[i];
+  });
+  if (s.t === 'board') {
+    stage.querySelectorAll('.board form').forEach(f => f.onsubmit = e => {
+      e.preventDefault(); const inp = f.querySelector('input'); const t = inp.value.trim(); if(!t) return;
+      const B = store.get('board.'+G, {o:[],n:[],r:[]}); (B[f.dataset.k] = B[f.dataset.k]||[]).push(t); store.set('board.'+G, B); render();
+      setTimeout(()=>{ const ni = stage.querySelector(`form[data-k="${f.dataset.k}"] input`); if (ni) ni.focus(); }, 0);
+    });
+    stage.querySelectorAll('[data-del]').forEach(b => b.onclick = () => {
+      const [k,i] = b.dataset.del.split(':'); const B = store.get('board.'+G, {o:[],n:[],r:[]}); B[k].splice(+i,1); store.set('board.'+G, B); render();
+    });
+  }
+  if (s.t === 'life') stage.querySelectorAll('.life button').forEach(b => b.onclick = () => {
+    const L = store.get('life.'+G, s.stages.map(()=>'')); const i = +b.dataset.l;
+    const order = ['','v','a','r']; L[i] = order[(order.indexOf(L[i]||'')+1)%4]; store.set('life.'+G, L); render();
+  });
+  if (s.t === 'builder') {
+    const P = {
+      memo:{r:'Actúa como analista de la División de Administración y Finanzas.',t:'Resume las observaciones del memorándum adjunto.',c:'Es para el jefe de división, que tiene 2 minutos para leerlo antes de una reunión con el ejecutor.',f:'Entrega una tabla con observación, monto involucrado y plazo de respuesta, y al final una línea con la acción más urgente.',x:'Usa solo información del documento; si un dato no aparece, escribe "no indicado".'},
+      riesgo:{r:'Eres analista de seguimiento de la División de Presupuesto e Inversión Regional.',t:'Identifica los 5 principales riesgos para terminar la obra dentro del plazo del convenio.',c:'Usa el informe de avance adjunto; el resultado es para preparar una reunión con el municipio.',f:'Entrega una tabla con riesgo, evidencia del informe, probabilidad (alta, media o baja), impacto y acción que puede pedir el GORE.',x:'No supongas datos que no estén en el informe.'},
+      vacio:{r:'',t:'',c:'',f:'',x:''}
+    };
+    const saved = store.get('bld', P.memo);
+    const tas = stage.querySelectorAll('textarea[data-f]');
+    const upd = () => { const v = {}; tas.forEach(t => v[t.dataset.f] = t.value.trim()); store.set('bld', v); $('#bldOut').textContent = ['r','t','c','f','x'].map(k=>v[k]).filter(Boolean).join(' '); };
+    tas.forEach(t => { t.value = saved[t.dataset.f] || ''; t.oninput = upd; });
+    stage.querySelectorAll('.presets button').forEach(b => b.onclick = () => { const p = P[b.dataset.p]; tas.forEach(t => t.value = p[t.dataset.f]); upd(); });
+    $('#bldCopy').onclick = e => copy($('#bldOut').textContent, e.target);
+    upd();
+  }
+}
+
+function revealOne(silent){
+  const s = deck()[I];
+  if (s.t === 'reveal' || (s.t === 'table' && s.reveal)) {
+    const el = stage.querySelector(s.t === 'reveal' ? '.rev .it.hid' : 'table.t tr.hid');
+    if (el) { el.classList.remove('hid'); if (!silent) revealState[I] = (revealState[I]||0) + 1; }
+    const rb = $('#revBtn'); if (rb && !stage.querySelector(s.t === 'reveal' ? '.rev .it.hid' : 'table.t tr.hid')) { rb.disabled = true; rb.textContent = 'Todo a la vista'; }
+    return true;
+  }
+  if (s.t === 'quiz') { const q = stage.querySelector('.qi:not(.open)'); if (q) q.classList.add('open'); return true; }
+  if (s.t === 'life') { store.set('life.'+G, s.stages.map(x=>x[1])); render(); return true; }
+  return false;
+}
+
+function copy(text, btn){
+  const done = () => { if (btn){ const o = btn.textContent; btn.textContent = 'Copiado'; btn.classList.add('ok'); setTimeout(()=>{ btn.textContent = o; btn.classList.remove('ok'); }, 1400); } };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} ta.remove(); done(); };
+  try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback); else fallback(); } catch(e){ fallback(); }
+}
+
+/* ================= timer ================= */
+const timer = { total:0, left:0, running:false, slide:null, h:null, label:'' };
+function armTimer(s){ timer.total = timer.left = s.timer*60; timer.label = s.timerLbl||''; timer.slide = I; timer.running = false; clearInterval(timer.h); drawTimer(); }
+function drawTimer(){
+  const t = $('#timer'); t.classList.toggle('on', timer.total > 0);
+  const a = Math.abs(timer.left), m = Math.floor(a/60), sec = a%60;
+  $('#tVal').textContent = (timer.left<0?'−':'') + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+  $('#tLbl').textContent = timer.label; $('#tPlay').textContent = timer.running ? '❚❚' : '▶';
+  t.classList.toggle('low', timer.left > 0 && timer.left <= 60); t.classList.toggle('over', timer.left <= 0 && timer.total > 0);
+}
+function toggleTimer(){
+  if (!timer.total) { const s = deck()[I]; if (!s.timer) return; armTimer(s); }
+  timer.running = !timer.running; clearInterval(timer.h);
+  if (timer.running) timer.h = setInterval(()=>{ timer.left--; drawTimer(); }, 1000);
+  drawTimer();
+}
+$('#tPlay').onclick = toggleTimer;
+$('#tPlus').onclick = () => { timer.left += 60; timer.total += 60; drawTimer(); };
+$('#tReset').onclick = () => { const s = deck()[I]; if (s.timer) armTimer(s); else { timer.left = timer.total; timer.running = false; clearInterval(timer.h); drawTimer(); } };
+
+/* ================= navigation ================= */
+function go(i){ I = Math.max(0, Math.min(deck().length-1, i)); render(); }
+function buildAgenda(){
+  const bl = BLOCKS[G]; const tot = mins(bl[bl.length-1][2]) - mins(bl[0][1]);
+  $('#agenda').innerHTML = bl.map(b => `<button class="seg ${b[4]===1?'brk':''} ${b[4]===2?'other':''}" style="flex:${(mins(b[2])-mins(b[1]))/tot}" title="${b[1]}–${b[2]} ${esc(b[3])}" data-b="${b[0]}">${b[1]} ${esc(b[5]||b[3])}</button>`).join('');
+  document.querySelectorAll('#agenda .seg').forEach(el => el.onclick = () => { const k = deck().findIndex(s => s.b === el.dataset.b); if (k >= 0) go(k); });
+}
+function start(g){
+  G = g; store.set('group', g); $('#home').classList.add('off'); buildAgenda();
+  timer.total = 0; timer.running = false; clearInterval(timer.h); drawTimer();
+  for (const k in revealState) delete revealState[k];
+  go(store.get('idx.'+g, 0)); fit();
+}
+document.querySelectorAll('#home .ch button').forEach(b => b.onclick = () => start(b.dataset.g));
+$('#bHome').onclick = () => $('#home').classList.remove('off');
+$('#bPrev').onclick = () => go(I-1);
+$('#bNext').onclick = () => go(I+1);
+$('#bNotes').onclick = () => $('#notes').classList.toggle('on');
+$('#bFs').onclick = fs;
+$('#bOv').onclick = ov;
+$('#ovClose').onclick = () => $('#ov').classList.remove('on');
+function fs(){ try{ if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }catch(e){} }
+function ov(){
+  const o = $('#ov'); if (o.classList.contains('on')) { o.classList.remove('on'); return; }
+  $('#ovTitle').textContent = 'Índice · ' + (G==='g1'?'Grupo 1':'Grupo 2');
+  $('#ovBody').innerHTML = BLOCKS[G].map(b => {
+    const items = deck().map((s,i)=>[s,i]).filter(([s])=>s.b===b[0]);
+    if (!items.length) return '';
+    return `<h2>${b[1]}–${b[2]} · ${esc(b[3])}</h2><div class="grid">${items.map(([s,i])=>`<button data-i="${i}" class="${i===I?'cur':''}">${i+1}. ${esc(s.h||'')}</button>`).join('')}</div>`;
+  }).join('');
+  o.querySelectorAll('#ovBody button').forEach(b => b.onclick = () => { o.classList.remove('on'); go(+b.dataset.i); });
+  o.classList.add('on');
+}
+document.addEventListener('keydown', e => {
+  if (e.target.matches('textarea,input')) { if (e.key === 'Escape') e.target.blur(); return; }
+  if ($('#home') && !$('#home').classList.contains('off')) { if (e.key==='1') start('g1'); if (e.key==='2') start('g2'); return; }
+  const k = e.key;
+  if (k==='ArrowRight'||k===' '||k==='PageDown'){ e.preventDefault(); go(I+1); }
+  else if (k==='ArrowLeft'||k==='PageUp'){ e.preventDefault(); go(I-1); }
+  else if (k==='r'||k==='R'){ revealOne(); }
+  else if (k==='t'||k==='T'){ toggleTimer(); }
+  else if (k==='n'||k==='N'){ $('#notes').classList.toggle('on'); }
+  else if (k==='f'||k==='F'){ fs(); }
+  else if (k==='m'||k==='M'){ ov(); }
+  else if (k==='Escape'){ $('#ov').classList.remove('on'); $('#notes').classList.remove('on'); }
+  else if (k==='Home'){ $('#home').classList.remove('off'); }
+  else if (k==='End'){ go(deck().length-1); }
+});
+
+/* ================= scale & clock ================= */
+function fit(){ const w = $('#stagewrap'); const sc = Math.min(w.clientWidth/1600, w.clientHeight/900); stage.style.transform = `translate(-50%,-50%) scale(${sc})`; }
+window.addEventListener('resize', fit);
+function tick(){ const d = new Date(); $('#clock').textContent = String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
+setInterval(tick, 15000); tick(); fit();
+if (G && DECKS[G]) { /* stay on home until a group is chosen; remember last */ }
+window.__deck = { DECKS, go: i => go(i), start, revealOne };
+})();
+</script>
+</body>
+</html>
