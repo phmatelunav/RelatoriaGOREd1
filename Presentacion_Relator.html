@@ -219,6 +219,9 @@ table.t td.c{text-align:center}
 #home .keys{margin-top:26px;font-size:15px;color:var(--muted);line-height:1.8}
 kbd{display:inline-block;background:#fff;border:1px solid #c9cdc4;border-bottom-width:2px;border-radius:5px;padding:0 7px;font-family:inherit;font-size:14px;color:var(--ink)}
 @media (max-width:700px){#home .ch{grid-template-columns:1fr}}
+.card h3.lt{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.card h3.lt .L{font-size:64px;line-height:1;font-weight:800}
+.card h3.lt .nm{font-size:25px;color:var(--ink)}
 /* ---------- motion ---------- */
 @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
@@ -428,7 +431,7 @@ S.prompt = { b:'m2', t:'cols', k:'Módulo 2', h:'¿Qué es un prompt?', n:2,
     {h:'La instrucción que le damos a la IA', items:['Es todo lo que escribimos: la tarea, el contexto, los documentos y el formato pedido','La calidad de la respuesta depende de la calidad de la instrucción']},
     {h:'Piensa en un colega nuevo', hl:1, items:['Es muy capaz, pero no conoce el GORE ni el caso','¿Qué le dirías para que lo haga bien a la primera?']}
   ]};
-S.rtcfr = { b:'m2', t:'cols', k:'Módulo 2 · Estructura', h:'Un buen prompt tiene cinco partes: RTCFR', n:5,
+S.rtcfr = { b:'m2', t:'cols', lt:1, k:'Módulo 2 · Estructura', h:'Un buen prompt tiene cinco partes: RTCFR', n:5,
   cards:[
     {h:'R · Rol', items:['¿Desde dónde trabaja? "Actúa como analista de la DAF"']},
     {h:'T · Tarea', items:['¿Qué debe hacer? Un verbo claro: resume, compara, redacta']},
@@ -664,7 +667,7 @@ function render(){
       h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><ul class="big">${s.items.map(x=>`<li>${md(x)}</li>`).join('')}</ul></div>`; break;
     case 'cols': {
       const cols = Math.min(s.n || s.cards.length, s.cards.length);
-      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1>${s.lead?`<p class="lead">${md(s.lead)}</p>`:''}<div class="cols" style="grid-template-columns:repeat(${cols},1fr);">${s.cards.map(c=>`<div class="card ${c.hl?'hl':''}"><h3>${esc(c.h)}</h3><ul>${c.items.map(x=>`<li>${md(x)}</li>`).join('')}</ul></div>`).join('')}</div></div>`; break; }
+      h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1>${s.lead?`<p class="lead">${md(s.lead)}</p>`:''}<div class="cols" style="grid-template-columns:repeat(${cols},1fr);">${s.cards.map(c=>`<div class="card ${c.hl?'hl':''}"><h3${s.lt?' class="lt"':''}>${s.lt?c.h.split(' · ').map((x,k)=>`<span class="${k?'nm':'L'}">${esc(x)}</span>`).join(''):esc(c.h)}</h3><ul>${c.items.map(x=>`<li>${md(x)}</li>`).join('')}</ul></div>`).join('')}</div></div>`; break; }
     case 'agenda':
       h = `<div class="slide">${kick}<h1>${esc(s.h)}</h1><table class="t"><tr><th style="width:190px">Horario</th><th>Bloque</th></tr>${BLOCKS[G].map(b=>`<tr><td>${b[1]} – ${b[2]}</td><td>${b[4]===1?'<span style="color:var(--muted)">'+esc(b[3])+'</span>':esc(b[3])}</td></tr>`).join('')}</table></div>`; break;
     case 'quiz':
