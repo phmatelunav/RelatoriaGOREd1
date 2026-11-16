@@ -2,15 +2,17 @@
 <html lang="es" id="top">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.className+=' js'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IA en el GORE O'Higgins</title>
 <meta name="description" content="Ejemplos prácticos, prompts por división, guías de agentes y Skills, IA para comunicaciones y glosario para funcionarios del Gobierno Regional de O'Higgins.">
-<meta name="theme-color" content="#f6f1e8">
+<meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191512" media="(prefers-color-scheme: dark)">
 <link rel="preload" href="assets/fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><div class="grp"><span class="gl">General</span><ul><li><a href="index.html" aria-current="page">Inicio</a></li></ul></div><div class="grp"><span class="gl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="grp"><span class="gl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="grp"><span class="gl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="grp"><span class="gl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Secciones</summary><div class="panel"><nav class="nav" aria-label="Secciones del sitio"><div class="grp"><span class="gl">General</span><ul><li><a href="index.html" aria-current="page">Inicio</a></li></ul></div><div class="grp"><span class="gl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="grp"><span class="gl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="grp"><span class="gl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="grp"><span class="gl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
+<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><ul><li><a href="areas.html">Por área</a></li><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li><li><a href="glosario.html">Glosario</a></li><li><details class="more"><summary>Más<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="drop"><li><a href="tips.html">Tips</a></li><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material del curso</a></li></ul></details></li></ul></nav><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Secciones</summary><div class="panel"><nav class="mnav" aria-label="Secciones del sitio"><div class="mgrp"><span class="mlbl">General</span><ul><li><a href="index.html" aria-current="page">Inicio</a></li></ul></div><div class="mgrp"><span class="mlbl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="mgrp"><span class="mlbl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="mgrp"><span class="mlbl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="mgrp"><span class="mlbl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
 <main id="contenido" class="wrap">
 
 <section class="hero">
@@ -19,7 +21,7 @@
   <svg class="valle" viewBox="0 0 1100 90" preserveAspectRatio="none" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
     <path d="M0 62 C90 40 150 30 230 44 S380 70 470 38 S640 8 760 30 S960 64 1100 36"/>
     <path d="M0 74 C120 60 210 56 320 64 S540 82 660 62 S900 46 1100 60" opacity=".7"/>
-    <path d="M40 86h60M130 86h60M220 86h60M310 86h60M400 86h60M490 86h60M580 86h60M670 86h60M760 86h60M850 86h60M940 86h60M1030 86h50" stroke-dasharray="2 7" opacity=".9"/>
+    <path class="vid" d="M40 86h60M130 86h60M220 86h60M310 86h60M400 86h60M490 86h60M580 86h60M670 86h60M760 86h60M850 86h60M940 86h60M1030 86h50" stroke-dasharray="2 7" opacity=".9"/>
   </svg>
 </section>
 
@@ -42,23 +44,23 @@
   </a>
   <a class="task" href="skills.html#dictamenes">
     <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 7h14"/><path d="m5 7-3 7a3.5 3.5 0 0 0 6 0z"/><path d="m19 7-3 7a3.5 3.5 0 0 0 6 0z"/><path d="M8 21h8"/></svg>
-    <div><h3>Buscar dictámenes de la Contraloría</h3><p>Tres formas de hacerlo con IA, sin que invente números, y una Skill para descargar.</p></div>
+    <div><h3>Buscar dictámenes de la Contraloría</h3><p>Tres formas de hacerlo con IA sin que invente números, desde Copilot Chat hasta herramientas avanzadas.</p></div>
     <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
 <ul class="also" aria-label="Más secciones">
-  <li><a href="tips.html">Tips y técnicas avanzadas</a></li>
+  <li><a href="tips.html">Tips avanzados</a></li>
   <li><a href="skills.html">Qué son las Skills</a></li>
-  <li><a href="grupos.html">Dinámicas para practicar en equipo</a></li>
-  <li><a href="glosario.html">Glosario de <!--@nglos-->95<!--/@nglos--> conceptos</a></li>
-  <li><a href="material.html">Documentos y presentación del curso</a></li>
+  <li><a href="grupos.html">Dinámicas en equipo</a></li>
+  <li><a href="glosario.html">Glosario de <!--@nglos-->96<!--/@nglos--> conceptos</a></li>
+  <li><a href="material.html">Documentos del curso</a></li>
 </ul>
 
 <div class="rule">
   <div class="sem" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></div>
   <div>
     <h2>Antes de pegar cualquier cosa</h2>
-    <p>Usa siempre tu cuenta institucional y aplica el semáforo de datos de la jornada: <b>rojo</b> no se ingresa (RUT, salud, datos de menores, claves, información reservada), <b>amarillo</b> se anonimiza antes y <b>verde</b> se puede usar. Y revisa todo resultado antes de firmarlo: la responsabilidad sigue siendo tuya.</p>
+    <p>Usa siempre tu cuenta institucional y aplica el semáforo de datos de la jornada: <b>rojo</b> no se ingresa (RUT, salud, datos de menores, claves, información reservada), <b>amarillo</b> se <a class="gt" href="glosario.html#anonimizacion" title="Eliminar o transformar los datos que permiten identificar a una persona. Quitar nombre y RUT no siempre basta.">anonimiza</a> antes y <b>verde</b> se puede usar. Y revisa todo resultado antes de firmarlo: la responsabilidad sigue siendo tuya.</p>
   </div>
 </div>
 
@@ -76,13 +78,13 @@
 <h2>Tus próximas tres semanas</h2>
 <p class="sub">Lo aprendido se pierde si no se usa. Una propuesta simple:</p>
 <ol class="next">
-  <li><b>Guarda tres prompts</b><span>Elige tres tareas que repites y deja sus prompts en un documento. <a href="areas.html">Empieza por tu división</a>.</span></li>
+  <li><b>Guarda tres prompts</b><span>Elige tres tareas que repites y deja sus <a class="gt" href="glosario.html#prompt" title="Instrucción que le damos a la IA: la tarea, el contexto, los documentos y el formato esperado.">prompts</a> en un documento. <a href="areas.html">Empieza por tu división</a>.</span></li>
   <li><b>Crea tu primer agente</b><span>Para la consulta que más te hacen. <a href="agentes.html#plantillas">Usa una plantilla</a>.</span></li>
   <li><b>Comparte con tu equipo</b><span>Propón 30 minutos para mostrar lo que funcionó. <a href="grupos.html#club">La idea del club de IA</a>.</span></li>
 </ol>
 
 </main>
-<!--@footer--><footer class="site-foot"><div class="wrap"><p class="m0">Capacitación en IA · Gobierno Regional de O'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</p><ul><li><a href="material.html">Documentos del curso</a></li><li><a href="Presentacion_Relator.html">Presentación de la jornada (para computador)</a></li></ul></div></footer><a class="totop" href="#top" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a><!--/@footer-->
+<!--@footer--><div class="wrap"><div class="divider" aria-hidden="true"></div></div><footer class="site-foot"><div class="wrap"><p class="m0">Capacitación en IA · Gobierno Regional de O'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</p><ul><li><a href="material.html">Documentos del curso</a></li><li><a href="Presentacion_Relator.html">Presentación de la jornada (para computador)</a></li></ul></div></footer><a class="totop" href="#top" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a><!--/@footer-->
 <script src="assets/site.js" defer></script>
 </body>
 </html>

@@ -2,15 +2,17 @@
 <html lang="es" id="top">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.className+=' js'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agentes de IA</title>
 <meta name="description" content="Qué es un agente de IA y cómo crear uno en Copilot Chat, con plantillas para el Gobierno Regional de O'Higgins.">
-<meta name="theme-color" content="#f6f1e8">
+<meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191512" media="(prefers-color-scheme: dark)">
 <link rel="preload" href="assets/fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><div class="grp"><span class="gl">General</span><ul><li><a href="index.html">Inicio</a></li></ul></div><div class="grp"><span class="gl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="grp"><span class="gl">Crear</span><ul><li><a href="agentes.html" aria-current="page">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="grp"><span class="gl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="grp"><span class="gl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Secciones</summary><div class="panel"><nav class="nav" aria-label="Secciones del sitio"><div class="grp"><span class="gl">General</span><ul><li><a href="index.html">Inicio</a></li></ul></div><div class="grp"><span class="gl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="grp"><span class="gl">Crear</span><ul><li><a href="agentes.html" aria-current="page">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="grp"><span class="gl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="grp"><span class="gl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
+<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><ul><li><a href="areas.html">Por área</a></li><li><a href="agentes.html" aria-current="page">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li><li><a href="glosario.html">Glosario</a></li><li><details class="more"><summary>Más<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="drop"><li><a href="tips.html">Tips</a></li><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material del curso</a></li></ul></details></li></ul></nav><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Secciones</summary><div class="panel"><nav class="mnav" aria-label="Secciones del sitio"><div class="mgrp"><span class="mlbl">General</span><ul><li><a href="index.html">Inicio</a></li></ul></div><div class="mgrp"><span class="mlbl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="mgrp"><span class="mlbl">Crear</span><ul><li><a href="agentes.html" aria-current="page">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="mgrp"><span class="mlbl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="mgrp"><span class="mlbl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
 <main id="contenido" class="wrap">
 <div class="page-head">
   <h1>Agentes: un asistente con su propio manual</h1>
@@ -39,7 +41,7 @@
 
 <section id="crear">
 <h2>Crear un agente en Copilot Chat, paso a paso</h2>
-<p class="sub">Con la cuenta institucional (Copilot Chat sin licencia adicional). Los nombres de los botones pueden variar levemente porque Microsoft actualiza la interfaz con frecuencia.</p>
+<p class="sub">Con la cuenta institucional (<a class="gt" href="glosario.html#copilot-chat" title="Asistente de IA de Microsoft. Con la cuenta institucional tiene protección de datos empresariales.">Copilot Chat</a> sin licencia adicional). Los nombres de los botones pueden variar levemente porque Microsoft actualiza la interfaz con frecuencia.</p>
 <ol class="steps">
   <li><b>Abre Copilot Chat</b><span>Entra a <a href="https://m365.cloud.microsoft/chat" target="_blank" rel="noopener">m365.cloud.microsoft/chat</a> con tu cuenta del Gobierno Regional.</span></li>
   <li><b>Busca «Crear agente»</b><span>En el panel izquierdo, en la sección Agentes, elige «Crear agente» o «Nuevo agente». Verás dos pestañas: «Describir» (lo armas conversando) y «Configurar» (completas los campos). Usa «Configurar»: tienes más control.</span></li>
@@ -145,7 +147,7 @@ Reglas:
   <div class="card"><h3>1 · Rol y alcance</h3><p>Quién es, a quién atiende y sobre qué temas responde. «Solo respondes sobre el manual de compras».</p></div>
   <div class="card"><h3>2 · Fuentes</h3><p>Qué debe consultar y qué hacer si la respuesta no está: «di que no lo encuentras y deriva a la Unidad de Compras».</p></div>
   <div class="card"><h3>3 · Formato</h3><p>Extensión, estructura y tono. «Respuestas breves, con el numeral citado».</p></div>
-  <div class="card"><h3>4 · Prohibiciones</h3><p>«No inventes montos, plazos ni nombres». «No pidas datos personales».</p></div>
+  <div class="card"><h3>4 · Prohibiciones</h3><p>«No inventes montos, plazos ni nombres». «No pidas <a class="gt" href="glosario.html#datos-personales-y-sensibles" title="Información de personas identificables. Los sensibles (salud, por ejemplo) tienen más protección legal (Ley 19.628 y Ley 21.719).">datos personales</a>».</p></div>
   <div class="card"><h3>5 · Casos difíciles</h3><p>Qué hacer si le preguntan algo fuera de tema, si la pregunta es ambigua o si le piden saltarse reglas.</p></div>
   <div class="card"><h3>6 · Ejemplos</h3><p>Una pregunta y la respuesta ideal. Es la forma más rápida de que imite el estilo que quieres.</p></div>
 </div>
@@ -177,7 +179,7 @@ Reglas:
 
 <section id="avanzado">
 <h2>Nivel avanzado</h2>
-<div class="tbl"><table>
+<div class="tbl" tabindex="0" role="region" aria-label="Tabla (desplázala hacia el lado si no se ve completa)"><table>
   <thead><tr><th>Concepto</th><th>Qué hace</th><th>Ejemplo en el GORE</th></tr></thead>
   <tbody>
     <tr><td><b>Agente con conocimiento</b></td><td>Responde usando documentos o sitios (técnica <a href="glosario.html#rag">RAG</a>).</td><td>Agente con las bases de todos los concursos vigentes en SharePoint.</td></tr>
@@ -187,14 +189,14 @@ Reglas:
     <tr><td><b>Uso del computador</b></td><td>El agente opera un navegador o programas como lo haría una persona.</td><td>Buscar en un portal público que no tiene conexión directa.</td></tr>
   </tbody>
 </table></div>
-<p>Los agentes con acciones y autónomos se construyen en herramientas como Microsoft Copilot Studio y requieren licencias, permisos y aprobación del área TI. La regla en todos los casos: <b>una persona revisa antes de que algo salga de la institución</b>.</p>
+<p>Los agentes con acciones y autónomos se construyen en herramientas como Microsoft <a class="gt" href="glosario.html#copilot-studio" title="Herramienta de Microsoft para crear agentes con conocimiento, acciones, flujos y conexiones a sistemas. Requiere licencia.">Copilot Studio</a> y requieren licencias, permisos y aprobación del área TI. La regla en todos los casos: <b>una persona revisa antes de que algo salga de la institución</b>.</p>
 <div class="callout">
-  <span class="t">Agente, Skill y conector: no son lo mismo</span>
+  <span class="t">Agente, <a class="gt" href="glosario.html#skill" title="Carpeta con un archivo SKILL.md de instrucciones y archivos de apoyo que enseña a un asistente de IA a hacer una tarea. Se carga sola cuando la tarea coincide.">Skill</a> y conector: no son lo mismo</span>
   <p>El <b>agente</b> es el asistente. Una <a href="glosario.html#skill"><b>Skill</b></a> es una receta que le enseña <i>cómo</i> hacer una tarea. Un <b>conector</b> le da <i>acceso</i> a un sistema o una fuente de datos. Un buen agente suele combinar los tres. <a href="skills.html">Ver la página de Skills →</a></p>
 </div>
 </section>
 </main>
-<!--@footer--><footer class="site-foot"><div class="wrap"><p class="m0">Capacitación en IA · Gobierno Regional de O'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</p><ul><li><a href="material.html">Documentos del curso</a></li><li><a href="Presentacion_Relator.html">Presentación de la jornada (para computador)</a></li></ul></div></footer><a class="totop" href="#top" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a><!--/@footer-->
+<!--@footer--><div class="wrap"><div class="divider" aria-hidden="true"></div></div><footer class="site-foot"><div class="wrap"><p class="m0">Capacitación en IA · Gobierno Regional de O'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</p><ul><li><a href="material.html">Documentos del curso</a></li><li><a href="Presentacion_Relator.html">Presentación de la jornada (para computador)</a></li></ul></div></footer><a class="totop" href="#top" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a><!--/@footer-->
 <script src="assets/site.js" defer></script>
 </body>
 </html>

@@ -22,4 +22,7 @@ Lectura (guías, glosario) con componentes de operación (filtrar y copiar promp
 - Los objetivos táctiles miden al menos 44 px en pantallas táctiles.
 - Foco visible de 2 px en color greda en todos los controles.
 - Contenido, navegación y listas se generan en el HTML con `tools/build.py`; JavaScript solo mejora (copiar, filtrar, enlaces compartibles).
-- Un motivo propio: la línea de cerros e hileras de viñedo del inicio y del logotipo.
+- Un motivo propio: la línea de cerros e hileras de viñedo. Aparece en el inicio, en el logotipo, como separador antes del pie de página y en los mensajes de búsqueda sin resultados (`.divider`).
+- Menú de escritorio: cinco secciones principales y «Más» (Tips, En grupo, Material). En el celular, menú «Secciones» agrupado en Usar, Crear, Practicar y Consultar.
+- La primera mención de los términos clave en cada página se enlaza al glosario automáticamente (`tools/build.py`, lista `TERMS`), con subrayado punteado.
+- Los controles que necesitan JavaScript llevan `js-only`; sin JavaScript se muestran enlaces equivalentes (`nojs-only`).

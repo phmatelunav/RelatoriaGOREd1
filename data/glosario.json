@@ -1,12 +1,17 @@
 [
  {
   "termino": "Agente",
-  "definicion": "Asistente de IA que recibe un objetivo, planifica pasos, usa herramientas (correo, archivos, buscadores) y revisa su resultado.",
+  "definicion": "Asistente de IA configurado con instrucciones y fuentes propias para una tarea, por ejemplo responder dudas sobre un manual. Lo configuras una vez y lo reutilizas o compartes.",
   "nivel": "b"
  },
  {
   "termino": "Agente autónomo",
   "definicion": "Agente que se activa solo ante un evento (un correo, una fecha, un archivo nuevo) y ejecuta varios pasos sin que alguien lo invoque.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Agente con herramientas",
+  "definicion": "Agente que además de responder puede actuar: buscar en sistemas, leer correos, completar registros o enviar mensajes. Requiere conexiones, permisos y que una persona revise antes de que algo salga de la institución.",
   "nivel": "a"
  },
  {
