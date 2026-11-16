@@ -1,0 +1,92 @@
+[
+ {
+  "grupo": "g1",
+  "codigo": "K1",
+  "titulo": "Memorándum de la Unidad de Control",
+  "descripcion": "Observaciones a la rendición de cuentas de un proyecto del Fondo 8%, con montos y plazos.",
+  "formato": "Word",
+  "archivo": "K1_Memorandum_Unidad_de_Control.docx",
+  "ejercicio": "G1-2"
+ },
+ {
+  "grupo": "g1",
+  "codigo": "K2",
+  "titulo": "Solicitud de acceso a la información",
+  "descripcion": "Solicitud ciudadana por Ley de Transparencia y los antecedentes internos para responderla.",
+  "formato": "Word",
+  "archivo": "K2_Solicitud_Transparencia.docx",
+  "ejercicio": "G1-3 · Estación A"
+ },
+ {
+  "grupo": "g1",
+  "codigo": "K3",
+  "titulo": "Acta de comisión del Consejo Regional",
+  "descripcion": "Acta de una sesión con acuerdos, responsables y plazos repartidos en el texto.",
+  "formato": "Word",
+  "archivo": "K3_Acta_Comision_Consejo_Regional.docx",
+  "ejercicio": "G1-3 · Estación B · G1-4"
+ },
+ {
+  "grupo": "g1",
+  "codigo": "K4",
+  "titulo": "Bandeja de 20 correos",
+  "descripcion": "Correos de pagos, compras, consultas y reclamos para clasificar, con columnas para completar.",
+  "formato": "Excel",
+  "archivo": "K4_Bandeja_20_correos.xlsx",
+  "ejercicio": "G1-3 · Estaciones C y E"
+ },
+ {
+  "grupo": "g1",
+  "codigo": "K5",
+  "titulo": "Bases de licitación del servicio de aseo",
+  "descripcion": "Bases administrativas y técnicas con plazos, criterios de evaluación, garantías y multas.",
+  "formato": "PDF",
+  "archivo": "K5_Bases_Licitacion_Aseo.pdf",
+  "ejercicio": "G1-3 · Estación D"
+ },
+ {
+  "grupo": "g1",
+  "codigo": "K6",
+  "titulo": "Indicadores de gestión 2026",
+  "descripcion": "Planilla con 8 indicadores, metas anuales y avance de tres trimestres.",
+  "formato": "Excel",
+  "archivo": "K6_Indicadores_Gestion_2026.xlsx",
+  "ejercicio": "G1-5"
+ },
+ {
+  "grupo": "g1",
+  "codigo": "K7",
+  "titulo": "Manual de procedimientos de compras",
+  "descripcion": "Manual con procedimientos, plazos, garantías y preguntas frecuentes, para crear un agente.",
+  "formato": "PDF",
+  "archivo": "K7_Manual_Procedimientos_Compras.pdf",
+  "ejercicio": "G1-6"
+ },
+ {
+  "grupo": "g2",
+  "codigo": "K8",
+  "titulo": "Informe de avance de un proyecto FRIL",
+  "descripcion": "Informe mensual de una obra: avance físico y financiero, hitos, garantías y situaciones del período.",
+  "formato": "PDF",
+  "archivo": "K8_Informe_Avance_FRIL.pdf",
+  "ejercicio": "G2-2 · G2-3 · G2-4"
+ },
+ {
+  "grupo": "g2",
+  "codigo": "K9",
+  "titulo": "Convenio de transferencia FRIL",
+  "descripcion": "Convenio entre el Gobierno Regional y un municipio, con presupuesto por partidas e hitos.",
+  "formato": "PDF",
+  "archivo": "K9_Convenio_Transferencia_FRIL.pdf",
+  "ejercicio": "G2-3 · G2-4"
+ },
+ {
+  "grupo": "g2",
+  "codigo": "K10",
+  "titulo": "Cartera de proyectos",
+  "descripcion": "Planilla con 15 proyectos de cinco instrumentos: montos, avance físico y financiero, y fechas de término.",
+  "formato": "Excel",
+  "archivo": "K10_Cartera_Proyectos.xlsx",
+  "ejercicio": "G2-5 · G2-7"
+ }
+]

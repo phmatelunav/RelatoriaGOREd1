@@ -1,0 +1,477 @@
+[
+ {
+  "termino": "Agente",
+  "definicion": "Asistente de IA que recibe un objetivo, planifica pasos, usa herramientas (correo, archivos, buscadores) y revisa su resultado.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Agente autónomo",
+  "definicion": "Agente que se activa solo ante un evento (un correo, una fecha, un archivo nuevo) y ejecuta varios pasos sin que alguien lo invoque.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Agente de código",
+  "definicion": "Agente que lee, escribe y ejecuta código en un proyecto: corrige errores, agrega funciones y prueba, con supervisión de una persona.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Ajuste fino (fine-tuning)",
+  "definicion": "Entrenamiento adicional de un modelo ya existente con datos de un tema o institución, para especializarlo.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Alineamiento",
+  "definicion": "Trabajo para que un modelo actúe según las intenciones y los valores de las personas: útil, honesto y sin causar daño.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Alucinación",
+  "definicion": "Respuesta falsa entregada con total seguridad: cifras, fechas, normas o citas que no existen.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Anonimización",
+  "definicion": "Eliminar o transformar los datos que permiten identificar a una persona. Quitar nombre y RUT no siempre basta.",
+  "nivel": "b"
+ },
+ {
+  "termino": "API",
+  "definicion": "Puerta de acceso que permite que un sistema use un servicio de IA desde otro programa, sin pasar por el chat.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Barreras de seguridad (guardrails)",
+  "definicion": "Reglas y filtros que impiden que un sistema de IA produzca contenido dañino, filtre datos o actúe fuera de su rol.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Base de conocimiento",
+  "definicion": "Documentos o sitios que se entregan a un agente para que responda con esa información.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Base de datos vectorial",
+  "definicion": "Base de datos que guarda embeddings y permite encontrar textos por similitud de significado. Es una pieza habitual de los sistemas RAG.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Búsqueda híbrida",
+  "definicion": "Combinación de búsqueda por palabras exactas y búsqueda semántica. Suele dar mejores resultados que cada una por separado.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Búsqueda semántica",
+  "definicion": "Búsqueda por significado y no por palabras exactas: «término de contrata» encuentra también «no renovación del empleo».",
+  "nivel": "a"
+ },
+ {
+  "termino": "C2PA (credenciales de contenido)",
+  "definicion": "Estándar que agrega a imágenes y videos un registro verificable de cómo se crearon y editaron, incluido el uso de IA.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Cadena de pensamiento (chain of thought)",
+  "definicion": "Técnica en que el modelo desarrolla su razonamiento paso a paso antes de responder. Mejora los resultados en problemas complejos.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Cadena de prompts",
+  "definicion": "Flujo en que la respuesta de un prompt se usa como entrada del siguiente, para dividir una tarea grande en etapas.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Chatbot",
+  "definicion": "Programa que conversa por escrito con las personas. Los actuales usan modelos de lenguaje.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Clonación de voz",
+  "definicion": "Generar una voz sintética que imita a una persona real a partir de grabaciones suyas. Requiere su consentimiento expreso.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Computer use (uso del computador)",
+  "definicion": "Capacidad de un agente de operar un computador como una persona: ver la pantalla, mover el mouse, escribir y usar programas.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Conector",
+  "definicion": "Integración que permite a la IA leer o usar otra aplicación, como el correo, un calendario o una carpeta de archivos.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Copilot Chat",
+  "definicion": "Asistente de IA de Microsoft. Con la cuenta institucional tiene protección de datos empresariales.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Copilot Studio",
+  "definicion": "Herramienta de Microsoft para crear agentes con conocimiento, acciones, flujos y conexiones a sistemas. Requiere licencia.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Cuantización",
+  "definicion": "Reducir la precisión de los números de un modelo para que ocupe menos memoria y funcione más rápido, con una pequeña pérdida de calidad.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Cuota de uso",
+  "definicion": "Cantidad de consultas o funciones que una cuenta puede usar en un período. Al superarla, hay que esperar o contar con otra licencia.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Datos de entrenamiento",
+  "definicion": "Textos, imágenes u otros datos con los que se entrenó un modelo. De ellos depende lo que sabe y sus sesgos.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Datos personales y sensibles",
+  "definicion": "Información de personas identificables. Los sensibles (salud, por ejemplo) tienen más protección legal (Ley 19.628 y Ley 21.719).",
+  "nivel": "b"
+ },
+ {
+  "termino": "Deep Learning",
+  "definicion": "Aprendizaje automático con redes neuronales de muchas capas. Es la base del reconocimiento de imágenes, voz y lenguaje.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Deepfake",
+  "definicion": "Video, imagen o audio falso, generado con IA, que muestra a una persona real diciendo o haciendo algo que nunca ocurrió.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Destilación",
+  "definicion": "Entrenar un modelo pequeño para imitar a uno grande. Se obtiene un modelo más rápido y barato, con parte de las capacidades del original.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Embedding",
+  "definicion": "Representación de un texto como una lista de números que captura su significado. Permite buscar documentos parecidos.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Entrenamiento",
+  "definicion": "Proceso en que el modelo ajusta sus parámetros a partir de grandes cantidades de datos.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Evaluaciones (evals)",
+  "definicion": "Conjuntos de pruebas para medir qué tan bien funciona un modelo, un prompt o un agente en una tarea concreta.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Fecha de corte de conocimiento",
+  "definicion": "Fecha hasta la cual llegan los datos de entrenamiento de un modelo. Lo posterior no lo sabe, salvo que busque en la web o se lo entreguen.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Few-shot (ejemplos en el prompt)",
+  "definicion": "Incluir uno o más ejemplos del resultado esperado dentro de la instrucción para que la IA imite el formato.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Fragmentación (chunking)",
+  "definicion": "Dividir documentos largos en trozos para indexarlos en un sistema RAG. El tamaño de los trozos influye en la calidad de las respuestas.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Gobernanza de IA",
+  "definicion": "Conjunto de políticas, roles y controles con que una institución decide qué herramientas de IA usa, para qué y con qué resguardos.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Grounding (anclaje en fuentes)",
+  "definicion": "Hacer que el modelo responda basándose en fuentes concretas (documentos, web, bases de datos) y no solo en lo que aprendió.",
+  "nivel": "a"
+ },
+ {
+  "termino": "IA generativa",
+  "definicion": "IA que crea contenido nuevo (texto, imágenes, audio o código) a partir de una instrucción.",
+  "nivel": "b"
+ },
+ {
+  "termino": "IA tradicional (predictiva)",
+  "definicion": "IA que clasifica, predice o detecta patrones dentro de opciones conocidas, como filtrar spam.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Imagen a video",
+  "definicion": "Generación de un clip de video a partir de una imagen fija, que la herramienta anima según una descripción.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Inferencia",
+  "definicion": "Momento en que un modelo ya entrenado responde una consulta. Es lo que ocurre cada vez que usamos el chat.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Ingeniería de contexto",
+  "definicion": "Diseño de toda la información que recibe el modelo (instrucciones, documentos, ejemplos, herramientas e historial) para obtener el mejor resultado.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Ingeniería de prompts",
+  "definicion": "Práctica de redactar instrucciones claras y estructuradas para obtener mejores respuestas (por ejemplo, RTCFR).",
+  "nivel": "b"
+ },
+ {
+  "termino": "Inteligencia artificial (IA)",
+  "definicion": "Sistemas que realizan tareas que normalmente requieren inteligencia humana: reconocer, clasificar, predecir o redactar.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Inyección de instrucciones (prompt injection)",
+  "definicion": "Ataque en que un texto, documento o página web contiene instrucciones escondidas que intentan desviar a la IA de lo que pidió el usuario.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Jailbreak",
+  "definicion": "Intento de engañar a un modelo con prompts diseñados para que se salte sus reglas de seguridad.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Latencia",
+  "definicion": "Tiempo que tarda un sistema de IA en empezar a responder.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Límite de tasa (rate limit)",
+  "definicion": "Máximo de solicitudes que se pueden hacer a un servicio en un período. Cuando se supera, hay que esperar.",
+  "nivel": "a"
+ },
+ {
+  "termino": "LLM (modelo de lenguaje grande)",
+  "definicion": "Modelo entrenado con enormes volúmenes de texto que genera lenguaje prediciendo la palabra siguiente. Copilot, Claude, ChatGPT y Gemini usan LLM.",
+  "nivel": "b"
+ },
+ {
+  "termino": "LoRA",
+  "definicion": "Técnica de ajuste fino que modifica solo una pequeña parte de un modelo. Permite especializarlo con pocos recursos.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Machine Learning",
+  "definicion": "Aprendizaje automático: sistemas que aprenden reglas a partir de ejemplos, sin que una persona las escriba.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Marca de agua digital",
+  "definicion": "Señal invisible que se incrusta en contenido generado con IA para poder identificarlo después.",
+  "nivel": "a"
+ },
+ {
+  "termino": "MCP (Model Context Protocol)",
+  "definicion": "Estándar abierto para conectar modelos de IA con herramientas y fuentes de datos de forma ordenada.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Mezcla de expertos (MoE)",
+  "definicion": "Arquitectura en que el modelo tiene varias subredes especializadas y activa solo algunas en cada respuesta, lo que lo hace más eficiente.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Modelo",
+  "definicion": "Programa resultante del entrenamiento. Recibe una entrada y produce una salida: una clasificación, un número o un texto.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Modelo de difusión",
+  "definicion": "Tipo de modelo que genera imágenes, audio o video partiendo de ruido aleatorio y refinándolo paso a paso hasta formar el resultado.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Modelo de pesos abiertos",
+  "definicion": "Modelo cuyos parámetros se publican y pueden descargarse y ejecutarse en servidores propios, por ejemplo Llama, Mistral o Qwen.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Modelo de razonamiento",
+  "definicion": "Modelo que desarrolla pasos intermedios antes de responder. Suele ser mejor en cálculos y problemas complejos, pero es más lento.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Modelo fundacional",
+  "definicion": "Modelo grande entrenado con datos muy amplios, que sirve de base para muchas tareas y productos distintos.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Modelo pequeño (SLM)",
+  "definicion": "Modelo de lenguaje de menor tamaño que puede funcionar en un computador o celular, con menos costo y sin enviar datos a la nube.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Multiagente",
+  "definicion": "Sistema en que varios agentes especializados colaboran y se reparten una tarea, coordinados por un agente principal.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Multimodal",
+  "definicion": "Modelo que entiende o genera más de un tipo de contenido: texto, imágenes, audio o video.",
+  "nivel": "b"
+ },
+ {
+  "termino": "OCR",
+  "definicion": "Reconocimiento óptico de caracteres: convierte el texto de una imagen o un PDF escaneado en texto editable.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Opción de no entrenamiento (opt-out)",
+  "definicion": "Configuración que impide que una empresa use tus conversaciones para entrenar sus modelos. No reemplaza la autorización institucional.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Orquestación",
+  "definicion": "Coordinación de modelos, herramientas y pasos dentro de un flujo de IA: qué se ejecuta, en qué orden y con qué datos.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Parámetros",
+  "definicion": "Números internos que el modelo ajusta durante el entrenamiento. Un LLM tiene miles de millones.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Persona en el circuito (human in the loop)",
+  "definicion": "Diseño en que una persona revisa o aprueba las acciones de la IA antes de que tengan efectos.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Preentrenamiento",
+  "definicion": "Primera fase del entrenamiento de un modelo, en la que aprende patrones del lenguaje con enormes volúmenes de texto.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Prompt",
+  "definicion": "Instrucción que le damos a la IA: la tarea, el contexto, los documentos y el formato esperado.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Prompt de sistema (instrucciones)",
+  "definicion": "Instrucciones permanentes que definen cómo se comporta un asistente o agente en todas sus respuestas.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Protección de datos empresariales",
+  "definicion": "Condición de Copilot con cuenta institucional: lo que se ingresa no se usa para entrenar modelos y queda bajo el contrato de la institución.",
+  "nivel": "b"
+ },
+ {
+  "termino": "RAG (generación aumentada por recuperación)",
+  "definicion": "Técnica en que el sistema busca primero en documentos o bases de datos y entrega lo encontrado al modelo, para que responda con esa información y cite la fuente.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Razonamiento extendido",
+  "definicion": "Modo en que el modelo dedica más tiempo y tokens a pensar antes de responder. Mejora tareas difíciles a cambio de más demora.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Red neuronal",
+  "definicion": "Modelo formado por capas de unidades conectadas, inspirado de forma simple en el cerebro.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Red teaming",
+  "definicion": "Pruebas en que un equipo intenta hacer fallar o abusar de un sistema de IA para encontrar sus debilidades antes de que lo hagan otros.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Reordenamiento (reranking)",
+  "definicion": "Paso de un sistema de búsqueda que reordena los resultados encontrados para dejar primero los más pertinentes.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Residencia de datos",
+  "definicion": "Lugar geográfico donde se almacenan y procesan los datos. Puede ser un requisito en contratos públicos.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Retención de datos",
+  "definicion": "Tiempo durante el cual un proveedor guarda las conversaciones y archivos que se le entregan.",
+  "nivel": "a"
+ },
+ {
+  "termino": "RLHF",
+  "definicion": "Aprendizaje por refuerzo con retroalimentación humana: personas califican respuestas del modelo y esas calificaciones se usan para mejorarlo.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Servidor MCP",
+  "definicion": "Programa que expone una herramienta o fuente de datos usando el protocolo MCP, para que cualquier asistente compatible pueda usarla.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Sesgo",
+  "definicion": "Tendencia sistemática de un modelo a favorecer o perjudicar a ciertos grupos o resultados, normalmente heredada de sus datos.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Sistema de IA de alto riesgo",
+  "definicion": "Categoría usada en regulaciones, como la europea o el proyecto de ley chileno, para sistemas que pueden afectar derechos, salud o seguridad, sujetos a más exigencias.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Skill (habilidad)",
+  "definicion": "Carpeta con un archivo SKILL.md de instrucciones y archivos de apoyo que enseña a un asistente de IA a hacer una tarea. Se carga sola cuando la tarea coincide.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Temperatura",
+  "definicion": "Ajuste que controla qué tan variadas o predecibles son las respuestas. Baja: más consistente. Alta: más creativa.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Texto a imagen / texto a video",
+  "definicion": "Generación de imágenes o clips de video a partir de una descripción escrita.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Texto a voz (TTS)",
+  "definicion": "Tecnología que convierte texto escrito en voz sintética.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Token",
+  "definicion": "Unidad en que el modelo divide el texto: una palabra, parte de una palabra o un signo. Los límites y costos se miden en tokens.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Tokenizador",
+  "definicion": "Componente que divide el texto en tokens antes de entregarlo al modelo. Por eso el español suele usar más tokens que el inglés.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Top-p",
+  "definicion": "Ajuste que limita las palabras candidatas a las más probables. Junto con la temperatura, controla la variedad de las respuestas.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Transformer",
+  "definicion": "Arquitectura de red neuronal presentada en 2017 que es la base de los modelos de lenguaje actuales.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Uso de herramientas (tool use)",
+  "definicion": "Capacidad de un modelo de llamar funciones externas: buscar en la web, consultar una base de datos, hacer un cálculo o enviar un correo.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Ventana de contexto",
+  "definicion": "Cantidad máxima de texto, medida en tokens, que el modelo puede considerar a la vez: instrucciones, documentos y conversación.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Vibe coding",
+  "definicion": "Programar describiendo en lenguaje natural lo que se quiere y dejando que la IA escriba el código. Útil para prototipos; el código igual debe revisarse.",
+  "nivel": "a"
+ },
+ {
+  "termino": "Visión por computador",
+  "definicion": "Rama de la IA que analiza imágenes y video: reconocer objetos, rostros o texto.",
+  "nivel": "b"
+ },
+ {
+  "termino": "Voz a texto (STT)",
+  "definicion": "Tecnología que transcribe voz a texto escrito. Es la base de la transcripción de reuniones y los subtítulos automáticos.",
+  "nivel": "a"
+ }
+]

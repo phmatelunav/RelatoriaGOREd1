@@ -1,32 +1,33 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" id="top">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IA para comunicaciones</title>
 <meta name="description" content="IA generativa para imagen, diseño, video, audio, música y animación en el Gobierno Regional de O'Higgins: herramientas, prompts y reglas de uso.">
+<meta name="theme-color" content="#f6f1e8">
+<link rel="preload" href="assets/fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<header id="site-head"></header>
-<main class="wrap">
+<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><div class="grp"><span class="gl">General</span><ul><li><a href="index.html">Inicio</a></li></ul></div><div class="grp"><span class="gl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="grp"><span class="gl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html" aria-current="page">Comunicaciones</a></li></ul></div><div class="grp"><span class="gl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="grp"><span class="gl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Secciones</summary><div class="panel"><nav class="nav" aria-label="Secciones del sitio"><div class="grp"><span class="gl">General</span><ul><li><a href="index.html">Inicio</a></li></ul></div><div class="grp"><span class="gl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="grp"><span class="gl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html" aria-current="page">Comunicaciones</a></li></ul></div><div class="grp"><span class="gl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="grp"><span class="gl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
+<main id="contenido" class="wrap">
 <div class="page-head">
-  <p class="kicker">Para el equipo de comunicaciones y quien produzca contenido</p>
   <h1>IA generativa para imagen, video, audio y animación</h1>
   <p class="lead">Herramientas, prompts de ejemplo y un flujo completo para producir una cápsula de video. Al final, las reglas para usar contenido generado con IA en una institución pública.</p>
-  <nav class="toc" aria-label="En esta página">
+  <nav class="toc-nav" aria-label="En esta página">
     <a href="#herramientas">Herramientas</a><a href="#imagen">Imagen y diseño</a><a href="#video">Video</a><a href="#audio">Voz y audio</a><a href="#musica">Música</a><a href="#animacion">Animación</a><a href="#flujo">Flujo: cápsula de 45 s</a><a href="#reglas">Reglas de uso</a>
   </nav>
 </div>
 
 <section id="herramientas">
 <h2>Herramientas</h2>
-<p class="sub">Las marcadas como <span class="tag">Institucional</span> se usan con la cuenta del Gobierno Regional. Las <span class="tag warn">Externas</span> requieren autorización, revisar sus términos de uso y no subir información interna ni imágenes de personas.</p>
+<p class="sub">Las marcadas como <span class="tag ok">Institucional</span> se usan con la cuenta del Gobierno Regional. Las <span class="tag warn">Externas</span> requieren autorización, revisar sus términos de uso y no subir información interna ni imágenes de personas.</p>
 <div class="grid g3">
-  <div class="card"><div class="tags"><span class="tag">Institucional</span></div><h3>Copilot Chat</h3><p>Guiones, textos, ideas y prompts para otras herramientas. También genera imágenes a partir de una descripción.</p></div>
-  <div class="card"><div class="tags"><span class="tag">Institucional</span></div><h3>Microsoft 365 Copilot · Crear</h3><p>Imágenes, afiches, banners, infografías y edición de imágenes desde plantillas. El video depende de que el área TI habilite Clipchamp.</p></div>
-  <div class="card"><div class="tags"><span class="tag">Institucional</span><span class="tag muted">si está habilitado</span></div><h3>Clipchamp</h3><p>Editor de video de Microsoft: subtítulos automáticos, texto a voz, recortes y plantillas para formatos verticales.</p></div>
-  <div class="card"><div class="tags"><span class="tag">Institucional</span></div><h3>PowerPoint</h3><p>Transición «Transformar» (Morph) para animaciones simples, exportación a video y diseños sugeridos.</p></div>
+  <div class="card"><div class="tags"><span class="tag ok">Institucional</span></div><h3>Copilot Chat</h3><p>Guiones, textos, ideas y prompts para otras herramientas. También genera imágenes a partir de una descripción.</p></div>
+  <div class="card"><div class="tags"><span class="tag ok">Institucional</span></div><h3>Microsoft 365 Copilot · Crear</h3><p>Imágenes, afiches, banners, infografías y edición de imágenes desde plantillas. El video depende de que el área TI habilite Clipchamp.</p></div>
+  <div class="card"><div class="tags"><span class="tag ok">Institucional</span><span class="tag">si está habilitado</span></div><h3>Clipchamp</h3><p>Editor de video de Microsoft: subtítulos automáticos, texto a voz, recortes y plantillas para formatos verticales.</p></div>
+  <div class="card"><div class="tags"><span class="tag ok">Institucional</span></div><h3>PowerPoint</h3><p>Transición «Transformar» (Morph) para animaciones simples, exportación a video y diseños sugeridos.</p></div>
   <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>Adobe Firefly</h3><p>Imagen, video y efectos. Adobe declara que sus modelos se entrenan con contenido licenciado, lo que reduce riesgos de derechos.</p></div>
   <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>Canva</h3><p>Diseño con plantillas, generación de imágenes, animación de elementos y redimensión automática para cada red.</p></div>
   <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>Video generativo</h3><p>Google Veo (en Gemini), Runway, Kling y otros. Crean clips de 4 a 10 segundos desde texto o desde una imagen.</p></div>
@@ -60,13 +61,14 @@
     </ul>
   </div>
 </div>
-<div class="grid g2" style="margin-top:14px">
+<div class="grid g2 gap-top">
   <div class="prompt"><div class="lbl"><span>Afiche de convocatoria</span></div><pre>Ilustración plana y colorida para afiche vertical 4:5 de una convocatoria de fondos culturales regionales. Muestra a vecinos de distintas edades preparando una muestra de cueca y artesanía en greda en una plaza de pueblo del valle central de Chile, con cerros y viñedos al fondo. Colores cálidos con verde oscuro. Deja el tercio superior libre para el título. Sin texto ni logos en la imagen.</pre></div>
   <div class="prompt"><div class="lbl"><span>Ilustración para una nota</span></div><pre>Ilustración editorial estilo vectorial, horizontal 16:9: una llave de agua en una casa rural chilena de adobe, con un estanque de agua potable rural al fondo y el atardecer sobre los cerros. Estilo limpio, colores suaves azul y ocre, sin personas, sin texto.</pre></div>
   <div class="prompt"><div class="lbl"><span>Banner para el sitio web</span></div><pre>Banner horizontal 3:1 con fondo abstracto de formas geométricas suaves que evocan campos de cultivo vistos desde el aire, en verdes y dorados, estilo minimalista. Deja el lado izquierdo despejado para texto. Sin texto, sin personas.</pre></div>
   <div class="prompt"><div class="lbl"><span>Infografía (primero, el contenido)</span></div><pre>Con los datos adjuntos, propón el contenido de una infografía vertical para Instagram: título de máximo 8 palabras, 4 cifras clave con una frase breve cada una, un ícono sugerido para cada cifra y una frase de cierre. No cambies ninguna cifra. Luego escribe un prompt para generar el fondo ilustrado de la infografía, sin texto.</pre></div>
 </div>
-<div class="callout info"><b>Para infografías, separa datos y diseño</b><p>Los generadores de imagen todavía cometen errores con cifras y letras. Deja que la IA proponga contenido y fondo, y arma las cifras tú en Canva, PowerPoint o la herramienta de diseño.</p></div>
+<div class="callout info">
+  <span class="t">Para infografías, separa datos y diseño</span><p>Los generadores de imagen todavía cometen errores con cifras y letras. Deja que la IA proponga contenido y fondo, y arma las cifras tú en Canva, PowerPoint o la herramienta de diseño.</p></div>
 </section>
 
 <section id="video">
@@ -82,7 +84,7 @@
     <p>«De imagen a video» da más control: generas o eliges una imagen y le pides a la herramienta que la anime. Así mantienes el estilo entre tomas.</p>
   </div>
 </div>
-<div class="grid g2" style="margin-top:14px">
+<div class="grid g2 gap-top">
   <div class="prompt"><div class="lbl"><span>Clip de apoyo (texto a video)</span></div><pre>Toma aérea lenta avanzando sobre un valle agrícola del centro de Chile al amanecer, con hileras de viñedos, niebla baja entre los cerros y la cordillera nevada al fondo. Movimiento de dron suave hacia adelante, luz dorada, estilo documental realista. 8 segundos, horizontal 16:9, sin personas, sin texto.</pre></div>
   <div class="prompt"><div class="lbl"><span>Storyboard desde un guion</span></div><pre>Convierte este guion en un storyboard de 8 tomas en tabla: número, duración, tipo de plano (general, medio, detalle), lo que se ve, movimiento de cámara, si se graba con cámara propia o se genera con IA, y el prompt para generar las tomas que correspondan. Las tomas con personas o lugares reales se graban, no se generan.
 GUION: [pega el guion]</pre></div>
@@ -96,12 +98,13 @@ GUION: [pega el guion]</pre></div>
   <div class="card"><h3>Transcripción y subtítulos</h3><p>Transcribe entrevistas y genera subtítulos automáticos. Revisa nombres propios, comunas y cifras: es donde más se equivoca.</p></div>
   <div class="card"><h3>Pódcast y resúmenes en audio</h3><p>La IA puede convertir un informe en un guion de conversación de 3 minutos para grabar o sintetizar.</p></div>
 </div>
-<div class="grid g2" style="margin-top:14px">
+<div class="grid g2 gap-top">
   <div class="prompt"><div class="lbl"><span>Texto preparado para locución</span></div><pre>Adapta este texto para ser leído en voz alta por una voz sintética en 40 segundos (unas 100 palabras): frases cortas, cifras escritas como se pronuncian ("mil doscientos millones de pesos"), siglas desarrolladas y pausas marcadas con puntos suspensivos. Tono cálido e institucional.
 TEXTO: [pega el texto]</pre></div>
   <div class="prompt"><div class="lbl"><span>Guion de pódcast breve</span></div><pre>Con el informe adjunto, escribe el guion de un pódcast de 3 minutos entre dos voces: una periodista que pregunta y una profesional del Gobierno Regional que explica. Lenguaje cotidiano, 3 ideas principales, una cifra destacada y un cierre con dónde informarse. Marca las pausas y los cambios de voz.</pre></div>
 </div>
-<div class="callout warn"><b>Voces de personas reales</b><p>No clones la voz de autoridades, funcionarios ni vecinos. La voz es un dato personal: usarla requiere consentimiento expreso, y una voz clonada de una autoridad puede confundirse con una declaración oficial.</p></div>
+<div class="callout warn">
+  <span class="t">Voces de personas reales</span><p>No clones la voz de autoridades, funcionarios ni vecinos. La voz es un dato personal: usarla requiere consentimiento expreso, y una voz clonada de una autoridad puede confundirse con una declaración oficial.</p></div>
 </section>
 
 <section id="musica">
@@ -127,7 +130,7 @@ TEXTO: [pega el texto]</pre></div>
   <div class="card"><h3>Gráficos en movimiento</h3><p>Cifras que suben, íconos que aparecen y mapas que se iluminan, con plantillas de Canva o con la transición Transformar de PowerPoint.</p></div>
   <div class="card"><h3>Animaciones para la web</h3><p>Copilot puede escribir el código HTML y CSS de una animación simple (un contador o una línea de tiempo) que luego se inserta en el sitio.</p></div>
 </div>
-<div class="grid g2" style="margin-top:14px">
+<div class="grid g2 gap-top">
   <div class="prompt"><div class="lbl"><span>Animar una ilustración</span></div><pre>Anima suavemente esta ilustración: el agua del canal fluye, las hojas de los árboles se mueven con brisa leve y las nubes avanzan despacio. Cámara fija, sin cambios en las formas ni en los colores. 5 segundos, que el final empalme con el inicio para repetirse en bucle.</pre></div>
   <div class="prompt"><div class="lbl"><span>Animación con PowerPoint</span></div><pre>Quiero mostrar en un video de 20 segundos cómo creció la inversión regional en agua potable rural entre 2022 y 2026 con estos datos: [datos]. Explícame paso a paso cómo hacerlo en PowerPoint con la transición Transformar: cuántas diapositivas, qué cambia en cada una y cómo exportarlo como video vertical.</pre></div>
 </div>
@@ -160,7 +163,7 @@ TEXTO: [pega el texto]</pre></div>
 </div>
 </section>
 </main>
-<footer id="site-foot"></footer>
-<script src="assets/site.js"></script>
+<!--@footer--><footer class="site-foot"><div class="wrap"><p class="m0">Capacitación en IA · Gobierno Regional de O'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</p><ul><li><a href="material.html">Documentos del curso</a></li><li><a href="Presentacion_Relator.html">Presentación de la jornada (para computador)</a></li></ul></div></footer><a class="totop" href="#top" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a><!--/@footer-->
+<script src="assets/site.js" defer></script>
 </body>
 </html>

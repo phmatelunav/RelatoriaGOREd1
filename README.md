@@ -15,4 +15,8 @@ Sitio estático de contenido sobre inteligencia artificial para funcionarios del
 - `assets/`: estilos y scripts compartidos.
 - `skills/src/`: fuentes de las Skills; los ZIP se generan comprimiendo cada carpeta.
 
-No requiere compilación: en Vercel, preset "Other" y sin comando de build.
+- `data/`: prompts, glosario y material en JSON.
+- `tools/build.py`: escribe en el HTML el menú, el pie de página y las listas generadas desde `data/`. Ejecutar `python3 tools/build.py` después de cambiar los datos o el menú, y subir el resultado.
+- `PRODUCT.md` y `DESIGN.md`: público, tono y sistema visual.
+
+En Vercel no hay paso de compilación: preset "Other" y sin comando de build. Los archivos HTML ya están generados.

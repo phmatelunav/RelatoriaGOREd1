@@ -1,0 +1,295 @@
+{
+ "areas": {
+  "com": "Comunicaciones",
+  "jur": "Jurídica",
+  "inv": "Presupuesto e inversión",
+  "pla": "Planificación",
+  "soc": "Desarrollo social",
+  "fom": "Fomento e industria",
+  "inf": "Infraestructura y transporte",
+  "adm": "Administración, finanzas y compras",
+  "per": "Gestión de personas",
+  "gab": "Gabinete y Consejo Regional",
+  "con": "Control"
+ },
+ "prompts": [
+  {
+   "area": "com",
+   "titulo": "Comunicado de prensa desde un documento",
+   "situacion": "Tienes el acta o la ficha de un proyecto y necesitas la nota de prensa.",
+   "prompt": "Actúa como periodista del Departamento de Comunicaciones del Gobierno Regional de O'Higgins. Con el documento adjunto, redacta un comunicado de prensa de máximo 350 palabras:\n- Título de máximo 12 palabras y una bajada de 2 líneas.\n- Primer párrafo con qué, quién, dónde, cuándo y por qué.\n- Monto, comuna y número de beneficiarios tal como aparecen en el documento.\n- Deja la cita de la autoridad como [CITA A VALIDAR]; no la inventes.\nUsa lenguaje claro, sin siglas sin explicar.",
+   "revisa": "Cifras, nombres de autoridades y comunas contra el documento. La cita la valida la autoridad."
+  },
+  {
+   "area": "com",
+   "titulo": "Un mensaje, cuatro redes sociales",
+   "situacion": "Adaptar una noticia a cada plataforma.",
+   "prompt": "Con el comunicado adjunto, escribe publicaciones para:\n1. Instagram: hasta 150 palabras, tono cercano, 3 a 5 hashtags regionales.\n2. Facebook: hasta 120 palabras, con llamado a la acción.\n3. X: máximo 260 caracteres.\n4. LinkedIn: hasta 120 palabras, tono institucional, foco en impacto.\nAgrega a cada una una sugerencia de imagen y su texto alternativo para personas con discapacidad visual.",
+   "revisa": "Que ninguna versión agregue datos que no estén en el comunicado."
+  },
+  {
+   "area": "com",
+   "titulo": "Guion de cápsula de video de 45 segundos",
+   "situacion": "Video vertical para redes sobre un proyecto.",
+   "prompt": "Escribe el guion de una cápsula vertical de 45 segundos sobre [proyecto] en [comuna]. Entrégalo en una tabla con columnas: segundo, lo que se ve (plano y acción), texto en pantalla, locución. Máximo 110 palabras de locución. Termina con el cierre institucional del Gobierno Regional. Incluye una versión de 15 segundos.",
+   "revisa": "Duración real, leyendo en voz alta.",
+   "enlace": [
+    "comunicaciones.html#flujo",
+    "Flujo completo para producir la cápsula"
+   ]
+  },
+  {
+   "area": "com",
+   "titulo": "Preguntas difíciles para una vocería",
+   "situacion": "Preparar a la autoridad para una entrevista.",
+   "prompt": "Con la información adjunta sobre [tema], prepara 10 preguntas que un periodista podría hacer a la autoridad, incluyendo 4 preguntas incómodas. Para cada una propone una respuesta breve basada solo en el documento y señala con [FALTA DATO] lo que el documento no permite responder.",
+   "revisa": "Las respuestas las valida el equipo técnico y la jefatura."
+  },
+  {
+   "area": "com",
+   "titulo": "Texto en lectura fácil",
+   "situacion": "Hacer comprensible una convocatoria para todo público.",
+   "prompt": "Reescribe el texto adjunto en lectura fácil para personas mayores y público general: frases cortas, una idea por oración, palabras comunes, sin siglas. Mantén fechas, requisitos y montos exactos. Al final, agrega una lista «Lo más importante» con 5 puntos.",
+   "revisa": "Que no se pierda ningún requisito ni plazo."
+  },
+  {
+   "area": "com",
+   "titulo": "Afiche de una convocatoria",
+   "situacion": "Texto e imagen para difundir un concurso o una actividad.",
+   "prompt": "Con las bases adjuntas, propón el contenido de un afiche vertical para la convocatoria [nombre]:\n1. Título de máximo 6 palabras y una frase de apoyo.\n2. Los 4 datos que deben verse sí o sí (a quién va dirigido, monto, fecha de cierre, dónde postular), copiados exactos de las bases.\n3. Un llamado a la acción breve.\n4. Un prompt para generar la ilustración de fondo: sin texto, sin logos, sin personas reales, con el tercio superior libre para el título.",
+   "revisa": "Fechas y montos contra las bases. El logo va desde el archivo oficial, nunca generado.",
+   "enlace": [
+    "comunicaciones.html#imagen",
+    "Más ejemplos de imagen y diseño"
+   ]
+  },
+  {
+   "area": "jur",
+   "titulo": "Resumen de un dictamen o resolución",
+   "situacion": "Entender rápido un pronunciamiento.",
+   "prompt": "Resume el dictamen adjunto en este formato:\n1. Consulta planteada (2 líneas).\n2. Criterio de la Contraloría (3 a 5 líneas).\n3. Normas citadas, con artículo.\n4. Qué significa para un gobierno regional.\n5. Dudas o puntos que requieren revisión de la unidad jurídica.\nCita textual entre comillas las frases clave con su párrafo.",
+   "revisa": "El número y la fecha del dictamen; el criterio, contra el texto completo."
+  },
+  {
+   "area": "jur",
+   "titulo": "Revisión de bases de licitación",
+   "situacion": "Lista de chequeo antes de publicar.",
+   "prompt": "Revisa las bases adjuntas y entrega una tabla con: aspecto revisado, qué dicen las bases (con numeral), observación y prioridad (alta, media, baja). Revisa al menos: plazos de publicación y consultas, criterios de evaluación y ponderaciones que sumen 100 %, garantías, multas y su procedimiento, causales de término y requisitos de admisibilidad. No afirmes incumplimientos normativos: marca como «revisar» lo que te parezca dudoso.",
+   "revisa": "La IA orienta; la conformidad legal la determina la unidad jurídica."
+  },
+  {
+   "area": "jur",
+   "titulo": "Borrador de respuesta a solicitud de transparencia",
+   "situacion": "Responder una solicitud de acceso a la información.",
+   "prompt": "Con la solicitud y los antecedentes adjuntos (sin datos del solicitante), redacta un borrador de respuesta formal de acceso a la información pública según la Ley 20.285: identifica qué se pide, qué información se entrega y en qué formato, y si alguna parte podría requerir análisis de causal de reserva (solo señálalo, no la apliques). Agrega al final los plazos legales de respuesta y prórroga.",
+   "revisa": "Plazos, causales y firma los revisa la unidad de transparencia."
+  },
+  {
+   "area": "jur",
+   "titulo": "Comparar dos versiones de un convenio",
+   "situacion": "Detectar qué cambió entre borradores.",
+   "prompt": "Compara las dos versiones adjuntas del convenio. Entrega una tabla con: cláusula, versión 1, versión 2 y efecto práctico del cambio. Destaca los cambios en montos, plazos, garantías, obligaciones de rendición y causales de término. No resumas cláusulas que no cambiaron.",
+   "revisa": "Revisa en el documento los cambios marcados como relevantes."
+  },
+  {
+   "area": "inv",
+   "titulo": "Alertas de una cartera de proyectos",
+   "situacion": "Seguimiento semanal de proyectos.",
+   "prompt": "Con la planilla adjunta y fecha de corte [fecha], lista los proyectos que: (a) terminan en menos de 30 días, (b) tienen más de 15 puntos de diferencia entre avance físico y financiero, o (c) no registran avance en el último mes. Para cada uno indica responsable, criterio de alerta y una acción sugerida. Entrega una tabla ordenada por urgencia.",
+   "revisa": "Recalcula en Excel las brechas de 2 o 3 proyectos al azar."
+  },
+  {
+   "area": "inv",
+   "titulo": "Ficha resumen para el Consejo Regional",
+   "situacion": "Presentar un proyecto en una página.",
+   "prompt": "Con los antecedentes adjuntos, elabora una ficha de una página para consejeros regionales: nombre, comuna, instrumento, monto solicitado, beneficiarios, problema que resuelve, plazo de ejecución, estado de la recomendación técnica y 3 puntos a considerar. Lenguaje claro, sin siglas sin explicar.",
+   "revisa": "Montos y estado RS/RATE contra la fuente oficial."
+  },
+  {
+   "area": "inv",
+   "titulo": "Explicar una modificación presupuestaria",
+   "situacion": "Traducir números a texto para la autoridad.",
+   "prompt": "Con la tabla adjunta de la modificación presupuestaria, explica en máximo 200 palabras qué subtítulos aumentan, cuáles disminuyen, el monto neto y la razón declarada. Agrega una tabla resumen con montos en miles de pesos. No hagas supuestos sobre razones que no estén en el documento.",
+   "revisa": "Suma y resta los montos tú mismo antes de enviar."
+  },
+  {
+   "area": "pla",
+   "titulo": "Ordenar respuestas abiertas de una consulta ciudadana",
+   "situacion": "Cientos de opiniones en texto libre.",
+   "prompt": "En la planilla adjunta hay respuestas abiertas de una consulta ciudadana (sin nombres ni RUT). Agrúpalas en un máximo de 8 temas. Para cada tema entrega: nombre, descripción en una línea, número aproximado de menciones, 2 citas textuales representativas y comunas donde más aparece. Indica qué respuestas no pudiste clasificar.",
+   "revisa": "Lee una muestra de respuestas por tema. Elimina datos personales antes de subir la planilla."
+  },
+  {
+   "area": "pla",
+   "titulo": "Proponer indicadores para un objetivo estratégico",
+   "situacion": "Seguimiento de la Estrategia Regional de Desarrollo.",
+   "prompt": "Para el objetivo «[objetivo de la estrategia regional]», propone 5 indicadores. Para cada uno: nombre, fórmula de cálculo, fuente de datos pública posible en Chile (INE, Casen, ministerios), periodicidad y una advertencia sobre su limitación. Formato tabla.",
+   "revisa": "Que las fuentes existan y publiquen ese dato a nivel regional."
+  },
+  {
+   "area": "pla",
+   "titulo": "Síntesis de un estudio largo",
+   "situacion": "Un informe de 120 páginas para leer en 5 minutos.",
+   "prompt": "Resume el estudio adjunto para una jefatura: (1) objetivo y metodología en 3 líneas, (2) 5 hallazgos principales con la página donde aparece cada uno, (3) recomendaciones del estudio, (4) qué implican para la región de O'Higgins y (5) limitaciones que reconoce el propio estudio.",
+   "revisa": "Abre las páginas citadas y confirma 2 o 3 hallazgos."
+  },
+  {
+   "area": "soc",
+   "titulo": "Preguntas frecuentes de un concurso",
+   "situacion": "Responder dudas de postulantes al Fondo 8 %.",
+   "prompt": "Con las bases adjuntas del concurso, redacta 15 preguntas frecuentes con sus respuestas, pensadas para dirigentes de organizaciones sociales. Cita el numeral de las bases en cada respuesta. Si algo no está en las bases, escribe «Consultar a [unidad]» en vez de responder.",
+   "revisa": "Cada respuesta contra el numeral citado."
+  },
+  {
+   "area": "soc",
+   "titulo": "Pauta para revisar postulaciones",
+   "situacion": "Ordenar la revisión de admisibilidad.",
+   "prompt": "Con las bases adjuntas, crea una pauta de revisión de admisibilidad en tabla: requisito, documento que lo acredita, numeral de las bases y casilla de cumple / no cumple / observación. Agrega al final los errores más comunes que un postulante podría cometer según las bases.",
+   "revisa": "La IA arma la pauta; la evaluación y la decisión las hacen personas."
+  },
+  {
+   "area": "soc",
+   "titulo": "Informe de un programa con lenguaje inclusivo",
+   "situacion": "Comunicar resultados a la comunidad.",
+   "prompt": "Con los datos agregados adjuntos del programa [nombre], redacta un informe de resultados de una página para la comunidad: qué se hizo, a cuántas personas llegó por comuna, qué cambió y qué viene. Usa lenguaje claro e inclusivo y evita términos que estigmaticen a los beneficiarios.",
+   "revisa": "Usa solo datos agregados, nunca listados de personas."
+  },
+  {
+   "area": "fom",
+   "titulo": "Ficha de una convocatoria para emprendedores",
+   "situacion": "Difundir un instrumento de fomento.",
+   "prompt": "Con las bases adjuntas, crea una ficha para emprendedores con: a quién está dirigido, qué financia y qué no, monto máximo, cofinanciamiento, requisitos, fechas clave, documentos a preparar y dónde postular. Máximo una página, con viñetas.",
+   "revisa": "Fechas y montos, que son lo que más se consulta."
+  },
+  {
+   "area": "fom",
+   "titulo": "Análisis de datos de una convocatoria cerrada",
+   "situacion": "Entender quién postuló.",
+   "prompt": "Con la planilla adjunta de postulaciones (sin nombres ni RUT), entrega: total por comuna y por rubro, porcentaje de postulaciones lideradas por mujeres, monto promedio solicitado y 3 observaciones sobre la distribución territorial. Muestra los cálculos en tablas.",
+   "revisa": "Repite 2 cálculos con una tabla dinámica en Excel."
+  },
+  {
+   "area": "fom",
+   "titulo": "Preparar una reunión con un gremio",
+   "situacion": "Llegar con contexto a una mesa de trabajo.",
+   "prompt": "Voy a reunirme con [gremio o sector] de la región. Con los documentos adjuntos, prepara: contexto del sector en 5 líneas, 3 temas que probablemente plantearán, programas regionales vigentes relacionados y 5 preguntas que conviene hacerles.",
+   "revisa": "Que los programas mencionados estén efectivamente vigentes."
+  },
+  {
+   "area": "inf",
+   "titulo": "Resumen de un informe de avance de obra",
+   "situacion": "Lo importante de un informe mensual.",
+   "prompt": "Resume el informe de avance adjunto en: avance físico y financiero del período y acumulado, hitos cumplidos y atrasados, situaciones que requieren decisión, vigencia de garantías y próximos pasos. Al final, una lista de alertas ordenadas por gravedad.",
+   "revisa": "Porcentajes y fechas de vencimiento de garantías."
+  },
+  {
+   "area": "inf",
+   "titulo": "Acta de visita a terreno desde notas",
+   "situacion": "Pasar notas desordenadas a un acta formal.",
+   "prompt": "Ordena mis notas de visita a terreno en un acta formal con: fecha, lugar, participantes (solo cargos), observaciones por partida, compromisos con responsable y plazo, y registro fotográfico sugerido. No agregues información que no esté en las notas.\nNOTAS: [pega aquí tus notas]",
+   "revisa": "Que los compromisos queden con responsable y plazo reales."
+  },
+  {
+   "area": "inf",
+   "titulo": "Matriz de riesgos de un proyecto",
+   "situacion": "Anticipar problemas de una obra.",
+   "prompt": "Para un proyecto de [tipo de obra] en [comuna], elabora una matriz de riesgos con 10 riesgos: descripción, probabilidad (alta, media, baja), impacto, medida de mitigación y responsable sugerido. Considera riesgos de clima, permisos, contratista, presupuesto y comunidad.",
+   "revisa": "Ajusta probabilidades con tu experiencia; la IA no conoce el proyecto."
+  },
+  {
+   "area": "adm",
+   "titulo": "Oficio de respuesta",
+   "situacion": "Responder formalmente a otro servicio o a un municipio.",
+   "prompt": "Redacta un oficio ordinario de respuesta del Gobierno Regional de O'Higgins con este formato: ANT. (el documento que se responde, con número y fecha), MAT. (materia en una línea), DE, A, cuerpo y distribución.\n- Primer párrafo: menciona el antecedente.\n- Segundo párrafo: la respuesta, con numerales si hay más de tres puntos.\n- Cierre con unidad de contacto y \"Sin otro particular, saluda atentamente a usted,\".\nUsa [corchetes] para número de oficio, fechas, nombres y cargos que no te entregue.\nANTECEDENTE: [pega o adjunta el documento que se responde]\nRESPUESTA: [en 2 o 3 líneas, lo que se quiere responder]",
+   "revisa": "Número de oficio, cargos y distribución; los asigna la unidad y Oficina de Partes.",
+   "enlace": [
+    "skills.html#descargas",
+    "Skill de oficios para descargar"
+   ]
+  },
+  {
+   "area": "adm",
+   "titulo": "Términos de referencia",
+   "situacion": "Primer borrador de una contratación.",
+   "prompt": "Redacta términos de referencia para contratar [servicio] por un plazo de [meses]. Incluye: antecedentes, objetivo general y específicos, alcance, productos esperados con plazos, perfil del equipo, criterios de evaluación sugeridos con ponderación y forma de pago. Marca con [DEFINIR] los datos que debo completar.",
+   "revisa": "Ajusta al formato y a la normativa de compras vigente (Ley 19.886 y su reglamento)."
+  },
+  {
+   "area": "adm",
+   "titulo": "Cuadro comparativo de cotizaciones",
+   "situacion": "Comparar ofertas de forma ordenada.",
+   "prompt": "Con las tres cotizaciones adjuntas, arma un cuadro comparativo: proveedor, precio neto, IVA, total, plazo de entrega, garantía, condiciones de pago y qué incluye o excluye cada una. Señala diferencias que hagan que las ofertas no sean comparables directamente.",
+   "revisa": "Recalcula totales e IVA."
+  },
+  {
+   "area": "adm",
+   "titulo": "Correo formal a un proveedor",
+   "situacion": "Reclamar un atraso con buen tono.",
+   "prompt": "Redacta un correo formal al proveedor [nombre] por el atraso de [días] días en la entrega de [producto] de la orden de compra [número]. Tono firme y respetuoso. Solicita fecha comprometida de entrega en 2 días hábiles y menciona que se evaluará la aplicación de las multas establecidas en las bases.",
+   "revisa": "Que la referencia a multas coincida con las bases."
+  },
+  {
+   "area": "per",
+   "titulo": "Descripción de cargo",
+   "situacion": "Ordenar funciones de un perfil.",
+   "prompt": "Elabora una descripción de cargo para [cargo] de la [división]: propósito del cargo, 6 a 8 funciones principales, competencias técnicas y conductuales, requisitos formales, relaciones internas y externas. Lenguaje no sexista.",
+   "revisa": "Que los requisitos coincidan con la normativa y el escalafón."
+  },
+  {
+   "area": "per",
+   "titulo": "Plan de inducción",
+   "situacion": "Recibir a una persona nueva.",
+   "prompt": "Diseña un plan de inducción de 2 semanas para una persona que ingresa a [unidad]: día a día, con actividades, responsables (por cargo), documentos que debe leer y un checklist de accesos y herramientas. Incluye una sesión sobre uso responsable de IA.",
+   "revisa": ""
+  },
+  {
+   "area": "per",
+   "titulo": "Preguntas para una entrevista",
+   "situacion": "Preparar un proceso de selección.",
+   "prompt": "Propón 10 preguntas por competencias para el cargo de [cargo], con lo que se busca evaluar en cada una y ejemplos de respuesta débil y sólida. No incluyas preguntas sobre vida privada, salud, religión, estado civil ni otras que puedan ser discriminatorias.",
+   "revisa": "La IA no decide ni evalúa a postulantes: no subas currículums con datos personales."
+  },
+  {
+   "area": "gab",
+   "titulo": "Minuta de una página para la autoridad",
+   "situacion": "Lo esencial antes de una reunión.",
+   "prompt": "Con los antecedentes adjuntos, elabora una minuta de una página para el Gobernador Regional sobre [tema]: contexto (3 líneas), estado actual, puntos clave en viñetas, riesgos, posición sugerida y datos duros. Escribe para alguien que la leerá en 2 minutos.",
+   "revisa": "Datos duros y fechas contra las fuentes."
+  },
+  {
+   "area": "gab",
+   "titulo": "Acuerdos y compromisos de un acta",
+   "situacion": "Seguimiento de sesiones del Consejo Regional.",
+   "prompt": "Del acta adjunta, extrae en una tabla todos los acuerdos y compromisos: número de acuerdo, descripción, responsable, plazo y votación si aparece. Agrega una lista de los compromisos sin responsable o sin plazo.",
+   "revisa": "Que no falte ningún acuerdo: cuenta los del acta."
+  },
+  {
+   "area": "gab",
+   "titulo": "Discurso breve para una ceremonia",
+   "situacion": "Palabras para una inauguración.",
+   "prompt": "Escribe un discurso de 2 minutos (unas 260 palabras) para la autoridad en la inauguración de [obra] en [comuna]. Agradece a la comunidad y al municipio, menciona el monto y el beneficio concreto y cierra con una idea de futuro. Tono cercano, sin frases hechas.",
+   "revisa": "Nombres, cargos y protocolo los valida Gabinete."
+  },
+  {
+   "area": "con",
+   "titulo": "Revisar una rendición contra el convenio",
+   "situacion": "Detectar inconsistencias antes de aprobar.",
+   "prompt": "Compara la rendición de cuentas adjunta con el convenio de transferencia adjunto. Entrega una tabla con: ítem, monto en convenio, monto rendido, diferencia y observación (gasto fuera de plazo, ítem no autorizado, falta respaldo). Considera la Resolución N° 30 de 2015 de la Contraloría solo como referencia general.",
+   "revisa": "Cada observación contra los respaldos originales."
+  },
+  {
+   "area": "con",
+   "titulo": "Programa de una auditoría",
+   "situacion": "Planificar una revisión.",
+   "prompt": "Propón un programa de auditoría para revisar [proceso] en la [unidad]: objetivo, alcance, riesgos a cubrir, procedimientos de revisión, muestra sugerida y evidencia que se solicitará. Formato tabla.",
+   "revisa": "Ajusta al plan anual y a la metodología de la unidad."
+  },
+  {
+   "area": "con",
+   "titulo": "Redactar observaciones claras",
+   "situacion": "Pasar hallazgos a texto formal.",
+   "prompt": "Redacta las siguientes observaciones de auditoría en formato formal: condición (qué se encontró), criterio (qué debía ser, con la norma), causa, efecto y recomendación. Tono objetivo, sin juicios personales.\nHALLAZGOS: [pega aquí tus hallazgos, sin nombres de personas]",
+   "revisa": "Que el criterio normativo citado sea exacto."
+  }
+ ]
+}

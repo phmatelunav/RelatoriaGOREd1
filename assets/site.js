@@ -1,80 +1,138 @@
-// Navegación, botones de copiar y filtros compartidos por todas las páginas.
+// Mejoras progresivas: el contenido y la navegación ya están en el HTML.
 (function () {
-  const PAGES = [
-    ['index.html', 'Inicio'],
-    ['areas.html', 'Por área'],
-    ['agentes.html', 'Agentes'],
-    ['skills.html', 'Skills'],
-    ['comunicaciones.html', 'Comunicaciones'],
-    ['tips.html', 'Tips'],
-    ['grupos.html', 'En grupo'],
-    ['glosario.html', 'Glosario'],
-    ['material.html', 'Material del curso']
-  ];
-  const here = (location.pathname.split('/').pop() || 'index.html').replace(/^$/, 'index.html');
-  const head = document.getElementById('site-head');
-  if (head) {
-    head.className = 'site-head';
-    head.innerHTML = '<div class="wrap"><a class="brand" href="index.html"><span class="dot" aria-hidden="true">IA</span><span class="full">IA · GORE O\'Higgins</span></a><nav class="nav" aria-label="Secciones">' +
-      PAGES.map(([h, t]) => `<a href="${h}"${h === here || (here === '' && h === 'index.html') ? ' aria-current="page"' : ''}>${t}</a>`).join('') + '</nav></div>';
-    const cur = head.querySelector('[aria-current]');
-    if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest', inline: 'center' });
-    window.scrollTo(0, 0);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const live = document.createElement('div');
+  live.className = 'sr'; live.setAttribute('aria-live', 'polite'); document.body.appendChild(live);
+  const say = t => { live.textContent = ''; setTimeout(() => { live.textContent = t; }, 30); };
+  const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+
+  async function copyText(txt) {
+    try { await navigator.clipboard.writeText(txt); return true; }
+    catch (e) {
+      const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand('copy'); } catch (_) {}
+      ta.remove(); return ok;
+    }
   }
-  const foot = document.getElementById('site-foot');
-  if (foot) {
-    foot.className = 'site-foot';
-    foot.innerHTML = '<div class="wrap"><div>Capacitación en IA · Gobierno Regional de O\'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</div><div><a href="Presentacion_Relator.html">Presentación de la jornada</a> · <a href="material.html">Documentos del curso</a></div></div>';
+  function flash(b, label) {
+    const old = b.innerHTML; b.classList.add('ok'); b.innerHTML = ICON_COPY + label; say(label);
+    setTimeout(() => { b.classList.remove('ok'); b.innerHTML = old; }, 1600);
   }
 
-  // Copiar: cualquier .prompt con <pre>
-  document.querySelectorAll('.prompt').forEach(p => {
-    const pre = p.querySelector('pre');
-    if (!pre) return;
+  // Botones de copiar: [data-copy="#id"] o .prompt con <pre>
+  $$('.prompt').forEach((p, i) => {
+    const pre = p.querySelector('pre'); if (!pre) return;
+    if (!pre.id) pre.id = 'pr' + i;
+    if (p.closest('.pc')) return; // las tarjetas de Por área traen su propio botón
     let lbl = p.querySelector('.lbl');
     if (!lbl) { lbl = document.createElement('div'); lbl.className = 'lbl'; lbl.innerHTML = '<span>Prompt</span>'; p.prepend(lbl); }
+    const name = (lbl.querySelector('span') || lbl).textContent.trim();
     const b = document.createElement('button');
-    b.type = 'button'; b.className = 'copy'; b.textContent = 'Copiar';
-    b.addEventListener('click', async () => {
-      const txt = pre.innerText;
-      try { await navigator.clipboard.writeText(txt); }
-      catch (e) {
-        const r = document.createRange(); r.selectNodeContents(pre);
-        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-        try { document.execCommand('copy'); } catch (_) {}
-        s.removeAllRanges();
-      }
-      b.textContent = 'Copiado'; b.classList.add('ok');
-      setTimeout(() => { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1600);
-    });
+    b.type = 'button'; b.className = 'copy'; b.dataset.copy = '#' + pre.id;
+    b.setAttribute('aria-label', 'Copiar: ' + name);
+    b.innerHTML = ICON_COPY + 'Copiar';
     lbl.appendChild(b);
   });
+  $$('.pc').forEach(c => {
+    const pre = c.querySelector('pre'); const h = c.querySelector('h3');
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'copy'; b.dataset.copy = '#' + pre.id;
+    b.setAttribute('aria-label', 'Copiar prompt: ' + h.textContent);
+    b.innerHTML = ICON_COPY + 'Copiar';
+    c.querySelector('.head').appendChild(b);
+  });
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-copy]'); if (!b) return;
+    const el = document.querySelector(b.dataset.copy);
+    if (el && await copyText(el.textContent.trim())) flash(b, 'Copiado');
+  });
 
-  // Filtros: <div class="filters" data-target="#lista"> con .search y .chip[data-f="clave:valor"]
-  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-  document.querySelectorAll('.filters[data-target]').forEach(f => {
+  // Filtros
+  $$('.filters[data-target]').forEach(f => {
     const list = document.querySelector(f.dataset.target);
-    if (!list) return;
-    const items = [...list.querySelectorAll('[data-item]')];
+    const empty = document.querySelector(f.dataset.empty || '#none');
+    const items = $$('[data-item]', list);
     items.forEach(it => { it._t = norm(it.textContent); });
     const input = f.querySelector('.search');
-    const chips = [...f.querySelectorAll('.chip')];
-    const count = document.querySelector(f.dataset.count || '#none');
+    const chips = $$('.chip', f);
+    const sel = f.querySelector('.sel');
+    const count = f.querySelector('.count');
+    const reset = f.querySelector('.reset');
+    const share = f.querySelector('.share');
+    const noun = f.dataset.noun || 'elementos';
     const state = {};
-    const apply = () => {
+    const params = new URLSearchParams(location.search);
+    chips.concat(sel ? [sel] : []).forEach(c => { const k = (c.dataset.f || '').split(':')[0]; if (params.get(k)) state[k] = params.get(k); });
+    if (input && params.get('q')) input.value = params.get('q');
+
+    const sync = () => {
+      const p = new URLSearchParams();
+      for (const k in state) if (state[k]) p.set(k, state[k]);
+      if (input && input.value.trim()) p.set('q', input.value.trim());
+      const qs = p.toString();
+      try { history.replaceState(null, '', qs ? '?' + qs : location.pathname); } catch (_) {}
+      return qs;
+    };
+    const apply = (announce) => {
       const q = norm(input ? input.value.trim() : '');
       let n = 0;
       items.forEach(it => {
         let ok = !q || it._t.includes(q);
-        for (const k in state) if (state[k] && !(` ${it.dataset[k] || ''} `).includes(` ${state[k]} `)) ok = false;
+        for (const k in state) if (state[k] && !(' ' + (it.dataset[k] || '') + ' ').includes(' ' + state[k] + ' ')) ok = false;
         it.classList.toggle('hide', !ok); if (ok) n++;
       });
+      $$('[data-group]', list).forEach(g => g.classList.toggle('hide', !g.querySelector('[data-item]:not(.hide)')));
       chips.forEach(c => { const [k, v] = c.dataset.f.split(':'); c.setAttribute('aria-pressed', String((state[k] || '') === v)); });
-      if (count) count.textContent = n === items.length ? `${n} elementos` : `${n} de ${items.length}`;
-      list.querySelectorAll('[data-group]').forEach(g => g.classList.toggle('hide', !g.querySelector('[data-item]:not(.hide)')));
+      if (sel) sel.value = state[sel.dataset.f] || '';
+      const filtered = n !== items.length;
+      const txt = filtered ? `${n} de ${items.length} ${noun}` : `${items.length} ${noun}`;
+      if (count) count.textContent = txt;
+      if (announce) say(n ? txt : 'Sin resultados');
+      if (reset) reset.classList.toggle('hide', !filtered);
+      if (share) share.classList.toggle('hide', !Object.values(state).some(Boolean));
+      if (empty) {
+        empty.classList.toggle('hide', n > 0);
+        const w = empty.querySelector('[data-q]'); if (w) w.textContent = input && input.value.trim() ? '«' + input.value.trim() + '»' : 'ese filtro';
+      }
+      sync();
     };
-    if (input) input.addEventListener('input', apply);
-    chips.forEach(c => c.addEventListener('click', () => { const [k, v] = c.dataset.f.split(':'); state[k] = v; apply(); }));
-    apply();
+    const jump = () => {
+      const first = list.querySelector('[data-group]:not(.hide)') || list.querySelector('[data-item]:not(.hide)') || empty;
+      if (!first) return;
+      const r = first.getBoundingClientRect();
+      if (r.top > innerHeight * 0.7 || r.top < 0) {
+        const off = 76;
+        scrollTo({ top: scrollY + r.top - off, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }
+    };
+    let tm;
+    if (input) input.addEventListener('input', () => { clearTimeout(tm); apply(false); tm = setTimeout(() => apply(true), 600); });
+    chips.forEach(c => c.addEventListener('click', () => { const [k, v] = c.dataset.f.split(':'); state[k] = v; apply(true); jump(); }));
+    if (sel) sel.addEventListener('change', () => { state[sel.dataset.f] = sel.value; apply(true); jump(); });
+    const clear = () => { for (const k in state) state[k] = ''; if (input) input.value = ''; apply(true); };
+    if (reset) reset.addEventListener('click', clear);
+    $$('[data-reset]').forEach(b => b.addEventListener('click', () => { clear(); if (input) input.focus(); }));
+    if (share) share.addEventListener('click', async () => {
+      const ok = await copyText(location.href);
+      const old = share.textContent; share.textContent = ok ? 'Enlace copiado' : 'Copia el enlace de la barra de direcciones';
+      say(share.textContent); setTimeout(() => { share.textContent = old; }, 1800);
+    });
+    apply(false);
   });
+
+  // Menú móvil: cerrar al elegir o con Esc
+  const menu = document.querySelector('.menu');
+  if (menu) {
+    menu.addEventListener('click', e => { if (e.target.closest('a')) menu.open = false; });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); } });
+  }
+
+  // Volver arriba
+  const top = document.querySelector('.totop');
+  if (top) {
+    const on = () => top.classList.toggle('on', scrollY > innerHeight * 1.5);
+    addEventListener('scroll', on, { passive: true }); on();
+  }
 })();
