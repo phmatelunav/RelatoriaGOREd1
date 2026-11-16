@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA para comunicaciones</title>
+<meta name="description" content="IA generativa para imagen, diseño, video, audio, música y animación en el Gobierno Regional de O'Higgins: herramientas, prompts y reglas de uso.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+<div class="page-head">
+  <p class="kicker">Para el equipo de comunicaciones y quien produzca contenido</p>
+  <h1>IA generativa para imagen, video, audio y animación</h1>
+  <p class="lead">Herramientas, prompts de ejemplo y un flujo completo para producir una cápsula de video. Al final, las reglas para usar contenido generado con IA en una institución pública.</p>
+  <nav class="toc" aria-label="En esta página">
+    <a href="#herramientas">Herramientas</a><a href="#imagen">Imagen y diseño</a><a href="#video">Video</a><a href="#audio">Voz y audio</a><a href="#musica">Música</a><a href="#animacion">Animación</a><a href="#flujo">Flujo: cápsula de 45 s</a><a href="#reglas">Reglas de uso</a>
+  </nav>
+</div>
+
+<section id="herramientas">
+<h2>Herramientas</h2>
+<p class="sub">Las marcadas como <span class="tag">Institucional</span> se usan con la cuenta del Gobierno Regional. Las <span class="tag warn">Externas</span> requieren autorización, revisar sus términos de uso y no subir información interna ni imágenes de personas.</p>
+<div class="grid g3">
+  <div class="card"><div class="tags"><span class="tag">Institucional</span></div><h3>Copilot Chat</h3><p>Guiones, textos, ideas y prompts para otras herramientas. También genera imágenes a partir de una descripción.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Institucional</span></div><h3>Microsoft 365 Copilot · Crear</h3><p>Imágenes, afiches, banners, infografías y edición de imágenes desde plantillas. El video depende de que el área TI habilite Clipchamp.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Institucional</span><span class="tag muted">si está habilitado</span></div><h3>Clipchamp</h3><p>Editor de video de Microsoft: subtítulos automáticos, texto a voz, recortes y plantillas para formatos verticales.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Institucional</span></div><h3>PowerPoint</h3><p>Transición «Transformar» (Morph) para animaciones simples, exportación a video y diseños sugeridos.</p></div>
+  <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>Adobe Firefly</h3><p>Imagen, video y efectos. Adobe declara que sus modelos se entrenan con contenido licenciado, lo que reduce riesgos de derechos.</p></div>
+  <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>Canva</h3><p>Diseño con plantillas, generación de imágenes, animación de elementos y redimensión automática para cada red.</p></div>
+  <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>Video generativo</h3><p>Google Veo (en Gemini), Runway, Kling y otros. Crean clips de 4 a 10 segundos desde texto o desde una imagen.</p></div>
+  <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>ElevenLabs</h3><p>Voz sintética en español, efectos de sonido y música. Los planes gratuitos suelen limitar el uso comercial.</p></div>
+  <div class="card"><div class="tags"><span class="tag warn">Externa</span></div><h3>Música generativa</h3><p>Suno, Udio, Stable Audio y otros. Revisa la licencia: en varios, el plan gratuito no permite uso comercial ni institucional.</p></div>
+</div>
+<p class="updated">Las herramientas cambian rápido: Sora de OpenAI, por ejemplo, cerró en septiembre de 2026. Revisa el estado y los términos vigentes antes de adoptar una.</p>
+</section>
+
+<section id="imagen">
+<h2>Imagen y diseño</h2>
+<div class="grid g2">
+  <div class="card">
+    <h3>La fórmula de un buen prompt de imagen</h3>
+    <ol>
+      <li><b>Sujeto</b>: qué se ve.</li>
+      <li><b>Acción y entorno</b>: qué ocurre y dónde.</li>
+      <li><b>Estilo</b>: fotografía, ilustración plana, acuarela, 3D.</li>
+      <li><b>Composición</b>: plano general o detalle, espacio libre para texto.</li>
+      <li><b>Luz y color</b>: luz de tarde, paleta institucional.</li>
+      <li><b>Formato</b>: cuadrado 1:1, vertical 9:16, horizontal 16:9.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h3>Lo que funciona mejor</h3>
+    <ul>
+      <li>Ilustraciones y fondos, más que fotografías «realistas» de lugares concretos.</li>
+      <li>Poco o ningún texto dentro de la imagen: agrégalo después en PowerPoint o Canva con la tipografía institucional.</li>
+      <li>Nunca generes el logo del Gobierno Regional: usa siempre el archivo oficial.</li>
+      <li>Pide 3 o 4 variantes y elige; luego corrige con instrucciones puntuales.</li>
+    </ul>
+  </div>
+</div>
+<div class="grid g2" style="margin-top:14px">
+  <div class="prompt"><div class="lbl"><span>Afiche de convocatoria</span></div><pre>Ilustración plana y colorida para afiche vertical 4:5 de una convocatoria de fondos culturales regionales. Muestra a vecinos de distintas edades preparando una muestra de cueca y artesanía en greda en una plaza de pueblo del valle central de Chile, con cerros y viñedos al fondo. Colores cálidos con verde oscuro. Deja el tercio superior libre para el título. Sin texto ni logos en la imagen.</pre></div>
+  <div class="prompt"><div class="lbl"><span>Ilustración para una nota</span></div><pre>Ilustración editorial estilo vectorial, horizontal 16:9: una llave de agua en una casa rural chilena de adobe, con un estanque de agua potable rural al fondo y el atardecer sobre los cerros. Estilo limpio, colores suaves azul y ocre, sin personas, sin texto.</pre></div>
+  <div class="prompt"><div class="lbl"><span>Banner para el sitio web</span></div><pre>Banner horizontal 3:1 con fondo abstracto de formas geométricas suaves que evocan campos de cultivo vistos desde el aire, en verdes y dorados, estilo minimalista. Deja el lado izquierdo despejado para texto. Sin texto, sin personas.</pre></div>
+  <div class="prompt"><div class="lbl"><span>Infografía (primero, el contenido)</span></div><pre>Con los datos adjuntos, propón el contenido de una infografía vertical para Instagram: título de máximo 8 palabras, 4 cifras clave con una frase breve cada una, un ícono sugerido para cada cifra y una frase de cierre. No cambies ninguna cifra. Luego escribe un prompt para generar el fondo ilustrado de la infografía, sin texto.</pre></div>
+</div>
+<div class="callout info"><b>Para infografías, separa datos y diseño</b><p>Los generadores de imagen todavía cometen errores con cifras y letras. Deja que la IA proponga contenido y fondo, y arma las cifras tú en Canva, PowerPoint o la herramienta de diseño.</p></div>
+</section>
+
+<section id="video">
+<h2>Video</h2>
+<p class="sub">La IA ayuda en tres momentos: escribir el guion, generar clips de apoyo y editar más rápido (subtítulos, recortes, formatos).</p>
+<div class="grid g2">
+  <div class="card">
+    <h3>Prompt de un clip de video</h3>
+    <p>Describe <b>una sola toma</b>: escena, sujeto, acción, movimiento de cámara, luz, estilo y duración. Los clips generados duran de 4 a 10 segundos; un video se arma uniendo varios.</p>
+  </div>
+  <div class="card">
+    <h3>Mejor con imagen de partida</h3>
+    <p>«De imagen a video» da más control: generas o eliges una imagen y le pides a la herramienta que la anime. Así mantienes el estilo entre tomas.</p>
+  </div>
+</div>
+<div class="grid g2" style="margin-top:14px">
+  <div class="prompt"><div class="lbl"><span>Clip de apoyo (texto a video)</span></div><pre>Toma aérea lenta avanzando sobre un valle agrícola del centro de Chile al amanecer, con hileras de viñedos, niebla baja entre los cerros y la cordillera nevada al fondo. Movimiento de dron suave hacia adelante, luz dorada, estilo documental realista. 8 segundos, horizontal 16:9, sin personas, sin texto.</pre></div>
+  <div class="prompt"><div class="lbl"><span>Storyboard desde un guion</span></div><pre>Convierte este guion en un storyboard de 8 tomas en tabla: número, duración, tipo de plano (general, medio, detalle), lo que se ve, movimiento de cámara, si se graba con cámara propia o se genera con IA, y el prompt para generar las tomas que correspondan. Las tomas con personas o lugares reales se graban, no se generan.
+GUION: [pega el guion]</pre></div>
+</div>
+</section>
+
+<section id="audio">
+<h2>Voz y audio</h2>
+<div class="grid g3">
+  <div class="card"><h3>Locución sintética</h3><p>Texto a voz en Clipchamp o ElevenLabs para borradores, videos internos o accesibilidad. Para piezas oficiales, la voz humana sigue siendo preferible.</p></div>
+  <div class="card"><h3>Transcripción y subtítulos</h3><p>Transcribe entrevistas y genera subtítulos automáticos. Revisa nombres propios, comunas y cifras: es donde más se equivoca.</p></div>
+  <div class="card"><h3>Pódcast y resúmenes en audio</h3><p>La IA puede convertir un informe en un guion de conversación de 3 minutos para grabar o sintetizar.</p></div>
+</div>
+<div class="grid g2" style="margin-top:14px">
+  <div class="prompt"><div class="lbl"><span>Texto preparado para locución</span></div><pre>Adapta este texto para ser leído en voz alta por una voz sintética en 40 segundos (unas 100 palabras): frases cortas, cifras escritas como se pronuncian ("mil doscientos millones de pesos"), siglas desarrolladas y pausas marcadas con puntos suspensivos. Tono cálido e institucional.
+TEXTO: [pega el texto]</pre></div>
+  <div class="prompt"><div class="lbl"><span>Guion de pódcast breve</span></div><pre>Con el informe adjunto, escribe el guion de un pódcast de 3 minutos entre dos voces: una periodista que pregunta y una profesional del Gobierno Regional que explica. Lenguaje cotidiano, 3 ideas principales, una cifra destacada y un cierre con dónde informarse. Marca las pausas y los cambios de voz.</pre></div>
+</div>
+<div class="callout warn"><b>Voces de personas reales</b><p>No clones la voz de autoridades, funcionarios ni vecinos. La voz es un dato personal: usarla requiere consentimiento expreso, y una voz clonada de una autoridad puede confundirse con una declaración oficial.</p></div>
+</section>
+
+<section id="musica">
+<h2>Música</h2>
+<div class="grid g2">
+  <div class="prompt"><div class="lbl"><span>Música de fondo</span></div><pre>Música instrumental optimista para un video institucional de obras públicas: guitarra acústica, percusión suave y piano, 95 bpm, sin voces, 45 segundos, con un final que se apague suavemente.</pre></div>
+  <div class="card">
+    <h3>Antes de publicar</h3>
+    <ul>
+      <li>Revisa que tu plan permita uso comercial o institucional.</li>
+      <li>Algunas herramientas conservan derechos sobre lo que generas.</li>
+      <li>No pidas música «al estilo de» un artista concreto.</li>
+      <li>Alternativa segura: bibliotecas de música libre de derechos de las propias herramientas de edición.</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section id="animacion">
+<h2>Animación</h2>
+<div class="grid g3">
+  <div class="card"><h3>Animar una imagen fija</h3><p>Herramientas de imagen a video dan movimiento sutil a una ilustración: agua que corre, nubes, hojas. Ideal para fondos en redes.</p></div>
+  <div class="card"><h3>Gráficos en movimiento</h3><p>Cifras que suben, íconos que aparecen y mapas que se iluminan, con plantillas de Canva o con la transición Transformar de PowerPoint.</p></div>
+  <div class="card"><h3>Animaciones para la web</h3><p>Copilot puede escribir el código HTML y CSS de una animación simple (un contador o una línea de tiempo) que luego se inserta en el sitio.</p></div>
+</div>
+<div class="grid g2" style="margin-top:14px">
+  <div class="prompt"><div class="lbl"><span>Animar una ilustración</span></div><pre>Anima suavemente esta ilustración: el agua del canal fluye, las hojas de los árboles se mueven con brisa leve y las nubes avanzan despacio. Cámara fija, sin cambios en las formas ni en los colores. 5 segundos, que el final empalme con el inicio para repetirse en bucle.</pre></div>
+  <div class="prompt"><div class="lbl"><span>Animación con PowerPoint</span></div><pre>Quiero mostrar en un video de 20 segundos cómo creció la inversión regional en agua potable rural entre 2022 y 2026 con estos datos: [datos]. Explícame paso a paso cómo hacerlo en PowerPoint con la transición Transformar: cuántas diapositivas, qué cambia en cada una y cómo exportarlo como video vertical.</pre></div>
+</div>
+</section>
+
+<section id="flujo">
+<h2>Flujo completo: cápsula de 45 segundos</h2>
+<p class="sub">Ejemplo ficticio: inauguración de una sede social financiada con un proyecto FRIL en una comuna de la región.</p>
+<ol class="steps">
+  <li><b>Guion</b> · Copilot Chat<span>Con la ficha del proyecto, pide el guion en tabla (segundo, imagen, texto en pantalla, locución). Usa el prompt «Guion de cápsula» de la página <a href="areas.html">Por área</a>.</span></li>
+  <li><b>Storyboard</b> · Copilot Chat<span>Convierte el guion en tomas y define cuáles se graban (personas, autoridades, la obra real) y cuáles se generan (fondos, transiciones, paisaje).</span></li>
+  <li><b>Grabación y generación</b> · Cámara o celular + generador de imágenes o video<span>Graba la obra real y a los vecinos con su consentimiento. Genera solo recursos de apoyo sin personas.</span></li>
+  <li><b>Locución</b> · Voz humana o texto a voz<span>Adapta el texto para ser leído y grábalo, o usa una voz sintética si es un borrador o una pieza interna.</span></li>
+  <li><b>Edición y subtítulos</b> · Clipchamp u otro editor<span>Arma la secuencia, agrega subtítulos automáticos (y corrígelos), música con licencia y el cierre institucional con el logo oficial.</span></li>
+  <li><b>Revisión y etiqueta</b> · Equipo de Comunicaciones<span>Verifica cifras, nombres y comunas. Si hay tomas generadas con IA, indícalo en la descripción de la publicación.</span></li>
+</ol>
+</section>
+
+<section id="reglas">
+<h2>Reglas para contenido generado con IA en el Gobierno Regional</h2>
+<div class="grid g2">
+  <div class="card"><h3>1 · Transparencia</h3><p>Si una imagen, voz o video fue generado con IA, dilo: «Imagen generada con IA» en la pieza o en su descripción. La confianza en la información pública es lo primero.</p></div>
+  <div class="card"><h3>2 · Nada de personas reales generadas</h3><p>No generes ni alteres rostros o voces de autoridades, funcionarios o vecinos. Un video falso de una autoridad, aunque sea con buena intención, es un riesgo institucional.</p></div>
+  <div class="card"><h3>3 · No mostrar como real lo que no lo es</h3><p>No uses imágenes generadas para mostrar una obra, un lugar o un evento como si fueran fotos reales. Para eso está el registro fotográfico.</p></div>
+  <div class="card"><h3>4 · Imagen y voz son datos personales</h3><p>No subas fotos o grabaciones de personas a herramientas externas. La Ley 21.719 de protección de datos personales refuerza estas obligaciones.</p></div>
+  <div class="card"><h3>5 · Derechos y licencias</h3><p>Revisa que la herramienta permita uso institucional, no imites estilos de artistas concretos y usa música con licencia.</p></div>
+  <div class="card"><h3>6 · Marca e identidad</h3><p>Logo, colores y tipografías salen del manual de marca oficial, nunca de un generador. La IA propone; Comunicaciones aprueba.</p></div>
+  <div class="card"><h3>7 · Accesibilidad</h3><p>Aprovecha la IA para lo que suma: textos alternativos, subtítulos y versiones en lectura fácil. Para lengua de señas, recurre a intérpretes.</p></div>
+  <div class="card"><h3>8 · Verificación</h3><p>Todo dato en pantalla se revisa contra la fuente. Las cifras y los nombres propios son los errores más frecuentes.</p></div>
+</div>
+</section>
+</main>
+<footer id="site-foot"></footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

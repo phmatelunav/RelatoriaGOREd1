@@ -3,47 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Capacitación en IA</title>
-<meta name="description" content="Capacitación en Inteligencia Artificial para funcionarios del Gobierno Regional de O'Higgins, 12 y 13 de noviembre de 2026.">
-<style>
-:root{--bg:#eef0ec;--card:#ffffff;--ink:#14181f;--muted:#56606c;--line:#d9dcd4;--accent:#0f5c4d;--accent-2:#e3f0ec}
-@media (prefers-color-scheme: dark){:root{--bg:#15181d;--card:#1e232a;--ink:#eef0ec;--muted:#a2abb6;--line:#2f353e;--accent:#5cc2a8;--accent-2:#1c3530}}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:32px 16px}
-main{width:100%;max-width:880px}
-.kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
-h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:0 0 12px;letter-spacing:-.01em}
-.lead{font-size:18px;color:var(--muted);margin:0 0 32px;line-height:1.5}
-.choices{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.choice{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:28px 26px;transition:border-color .15s,transform .15s}
-.choice:hover,.choice:focus-visible{border-color:var(--accent);transform:translateY(-2px);outline:none}
-.choice .head{display:flex;align-items:center;gap:12px}
-.choice .icon{color:var(--accent);display:flex;flex:none}
-.choice h2{font-size:26px;margin:0}
-.choice p{margin:0;color:var(--muted);font-size:16px;line-height:1.5}
-.choice .go{margin-top:auto;padding-top:8px;font-weight:700;color:var(--accent);font-size:15px}
-footer{margin-top:28px;font-size:14px;color:var(--muted);line-height:1.6}
-@media (max-width:640px){.choices{grid-template-columns:1fr}}
-</style>
+<title>IA en el GORE O'Higgins</title>
+<meta name="description" content="Ejemplos prácticos, prompts, guías de agentes y Skills, IA para comunicaciones y glosario para funcionarios del Gobierno Regional de O'Higgins.">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<main>
-  <p class="kicker">Gobierno Regional de O'Higgins · 12 y 13 de noviembre de 2026</p>
-  <h1>Capacitación en Inteligencia Artificial</h1>
-  <p class="lead">Elige cómo quieres entrar.</p>
-  <div class="choices">
-    <a class="choice" href="participantes.html">
-      <div class="head"><span class="icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span><h2>Soy participante</h2></div>
-      <p>Descarga los documentos de los ejercicios y revisa la presentación de la jornada cuando lo necesites.</p>
-      <span class="go">Ver materiales →</span>
-    </a>
-    <a class="choice" href="Presentacion_Relator.html">
-      <div class="head"><span class="icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M12 16v4"/></svg></span><h2>Soy relator</h2></div>
-      <p>Abre la presentación principal de la jornada, con la agenda, los ejercicios y las respuestas.</p>
-      <span class="go">Abrir presentación →</span>
-    </a>
+<header id="site-head"></header>
+<main class="wrap">
+
+<section class="hero">
+  <p class="kicker">Gobierno Regional de O'Higgins · Después de la capacitación</p>
+  <h1>Inteligencia artificial para el trabajo del Gobierno Regional</h1>
+  <p class="lead">Ejemplos para copiar y adaptar a tu área, guías paso a paso para crear agentes y Skills, IA generativa para contenido audiovisual y un glosario para seguir aprendiendo.</p>
+  <div class="cta">
+    <a class="btn" href="areas.html">Ver ejemplos de mi área</a>
+    <a class="btn ghost" href="material.html">Documentos y presentación del curso</a>
   </div>
-  <footer>Relator: Patricio Mateluna · Los documentos de los ejercicios son ficticios: nombres, RUT, comunas y montos son inventados.</footer>
+</section>
+
+<h2 style="margin-top:20px">Explora</h2>
+<div class="grid g3">
+  <a class="card" href="areas.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+    <h3>Ejemplos por área</h3>
+    <p>Más de 35 prompts listos para copiar, ordenados por división: comunicaciones, jurídica, inversión, planificación, compras, personas y más.</p>
+    <span class="go">Ver ejemplos →</span>
+  </a>
+  <a class="card" href="agentes.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4"/><circle cx="9" cy="13" r="1.2"/><circle cx="15" cy="13" r="1.2"/></svg></span>
+    <h3>Agentes</h3>
+    <p>La parte que quedó pendiente por la caída de Microsoft: cómo crear un agente en Copilot Chat, con cuatro plantillas para el GORE.</p>
+    <span class="go">Crear un agente →</span>
+  </a>
+  <a class="card" href="skills.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h5"/></svg></span>
+    <h3>Skills</h3>
+    <p>Qué son, cómo se crean y el caso de la búsqueda de dictámenes de la Contraloría. Incluye tres Skills para descargar.</p>
+    <span class="go">Conocer las Skills →</span>
+  </a>
+  <a class="card" href="comunicaciones.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+    <h3>Comunicaciones y audiovisual</h3>
+    <p>Imagen, diseño, video, voz, música y animación con IA generativa. Flujo completo para una cápsula de video y reglas de uso institucional.</p>
+    <span class="go">Ver ejemplos creativos →</span>
+  </a>
+  <a class="card" href="tips.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></span>
+    <h3>Tips y buenas prácticas</h3>
+    <p>Trucos para mejores respuestas, cómo verificar, errores comunes, técnicas avanzadas y cursos gratuitos para seguir aprendiendo.</p>
+    <span class="go">Ver tips →</span>
+  </a>
+  <a class="card" href="grupos.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.3c.6-.2 1.3-.3 2-.3 2.8 0 5 2.2 5 5"/></svg></span>
+    <h3>Trabajo en grupo</h3>
+    <p>Siete dinámicas para practicar IA en equipo dentro de tu unidad, con roles, tiempos y una pauta para evaluar respuestas.</p>
+    <span class="go">Ver dinámicas →</span>
+  </a>
+  <a class="card" href="glosario.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 8h6"/></svg></span>
+    <h3>Glosario básico y avanzado</h3>
+    <p>Más de 90 conceptos, desde «prompt» hasta «inyección de instrucciones» o «base de datos vectorial», con buscador.</p>
+    <span class="go">Abrir glosario →</span>
+  </a>
+  <a class="card" href="material.html">
+    <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span>
+    <h3>Material del curso</h3>
+    <p>Los diez documentos ficticios de los ejercicios (K1 a K10) y la presentación de la jornada del 12 y 13 de noviembre.</p>
+    <span class="go">Descargar →</span>
+  </a>
+</div>
+
+<h2>Lo que nos dijeron y dónde está la respuesta</h2>
+<p class="sub">Este sitio se armó a partir de los comentarios de la encuesta de la jornada.</p>
+<div class="feedback">
+  <div class="fb"><q>Me interesa conocer más sobre las Skills, como la búsqueda de dictámenes de Contraloría.</q><a href="skills.html#dictamenes">Caso dictámenes CGR →</a></div>
+  <div class="fb"><q>Me faltó la parte de los agentes.</q><a href="agentes.html">Guía completa de agentes →</a></div>
+  <div class="fb"><q>Esperaba más aplicación a mi área.</q><a href="areas.html">Ejemplos por división →</a></div>
+  <div class="fb"><q>Ejemplos audiovisuales, diseño, audio y animaciones con IA generativa.</q><a href="comunicaciones.html">Comunicaciones y audiovisual →</a></div>
+  <div class="fb"><q>Trabajar en grupos.</q><a href="grupos.html">Dinámicas para equipos →</a></div>
+  <div class="fb"><q>Falta que los servicios se instruyan aún más en las nuevas tecnologías.</q><a href="tips.html#aprender">Cursos gratuitos y novedades →</a></div>
+</div>
+
+<h2>Empieza en tres pasos</h2>
+<ol class="steps">
+  <li><b>Entra a Copilot Chat con tu cuenta institucional</b><span>En <a href="https://m365.cloud.microsoft/chat" target="_blank" rel="noopener">m365.cloud.microsoft/chat</a> o desde Edge, Teams u Outlook. Verifica que aparezca el escudo verde de protección de datos empresariales.</span></li>
+  <li><b>Elige un ejemplo de tu área y adáptalo</b><span>Copia el prompt, cambia lo que está entre [corchetes] y adjunta tu documento si corresponde.</span></li>
+  <li><b>Revisa antes de usar</b><span>Contrasta cifras, fechas, normas y nombres con el documento original. La responsabilidad del resultado sigue siendo tuya.</span></li>
+</ol>
+
+<div class="callout warn">
+  <b>Regla de oro</b>
+  <p>Nunca ingreses datos personales o sensibles (RUT, salud, situación socioeconómica, datos de menores), claves ni información reservada en una herramienta de IA sin autorización expresa. Ante la duda, usa el semáforo del módulo 3: rojo no se ingresa, amarillo se anonimiza, verde se puede usar.</p>
+</div>
+
 </main>
+<footer id="site-foot"></footer>
+<script src="assets/site.js"></script>
 </body>
 </html>

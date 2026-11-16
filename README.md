@@ -1,10 +1,18 @@
-# Capacitación en IA · Gobierno Regional de O'Higgins
+# IA en el GORE O'Higgins
 
-Sitio estático de la capacitación del 12 y 13 de noviembre de 2026.
+Sitio estático de contenido sobre inteligencia artificial para funcionarios del Gobierno Regional de O'Higgins, creado a partir de la capacitación del 12 y 13 de noviembre de 2026.
 
-- `index.html`: portada con dos entradas (participante y relator).
-- `participantes.html`: descarga de los documentos ficticios del kit (K1 a K10).
+- `index.html`: portada y mapa de secciones.
+- `areas.html`: prompts por división, con buscador y filtros.
+- `agentes.html`: guía para crear agentes en Copilot Chat y plantillas.
+- `skills.html`: Skills, caso de búsqueda de dictámenes de la Contraloría y descargas (`skills/`).
+- `comunicaciones.html`: IA generativa para imagen, video, audio, música y animación.
+- `tips.html`: buenas prácticas, técnicas avanzadas, marco normativo y cursos.
+- `grupos.html`: dinámicas para practicar en equipo.
+- `glosario.html`: glosario básico y avanzado.
+- `material.html`: documentos ficticios del curso (K1 a K10) y presentación.
 - `Presentacion_Relator.html`: presentación de la jornada (funciona sin internet).
-- `Kit_participantes/`: documentos ficticios usados en los ejercicios.
+- `assets/`: estilos y scripts compartidos.
+- `skills/src/`: fuentes de las Skills; los ZIP se generan comprimiendo cada carpeta.
 
-No requiere compilación: en Vercel, importar el repositorio con el preset "Other" y sin comando de build.
+No requiere compilación: en Vercel, preset "Other" y sin comando de build.

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Material del curso</title>
+<meta name="description" content="Documentos ficticios de los ejercicios y presentación de la Capacitación en IA del Gobierno Regional de O'Higgins.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap narrow">
+<div class="page-head">
+  <p class="kicker">Capacitación del 12 y 13 de noviembre de 2026</p>
+  <h1>Material del curso</h1>
+  <p class="lead">Los documentos ficticios de los ejercicios y la presentación de la jornada. Sirven también para las <a href="grupos.html">dinámicas en equipo</a>.</p>
+</div>
+
+<div class="callout" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+  <p style="margin:0"><b>Presentación de la jornada.</b> Consignas, prompts de cada ejercicio y glosario, con botón para copiar.</p>
+  <a class="btn" href="Presentacion_Relator.html">Ver presentación</a>
+</div>
+
+<h2>Grupo 1 · Gestión institucional</h2>
+<p class="sub">Jueves 12 de noviembre</p>
+<div class="grid" style="gap:12px" id="g1"></div>
+
+<h2>Grupo 2 · Proyectos y programas</h2>
+<p class="sub">Viernes 13 de noviembre</p>
+<div class="grid" style="gap:12px" id="g2"></div>
+
+<div class="callout warn" style="margin-top:30px"><b>Importante</b><p>Todos los documentos son ficticios y llevan la marca «Documento ficticio – uso exclusivo capacitación». Nombres, RUT, comunas, montos y números de documento son inventados. Para practicar con información real del Gobierno Regional, usa siempre tu cuenta institucional y nunca ingreses datos personales o sensibles.</p></div>
+</main>
+<footer id="site-foot"></footer>
+<script>
+const F = [
+  ['g1','K1','Memorándum de la Unidad de Control','Observaciones a la rendición de cuentas de un proyecto del Fondo 8%, con montos y plazos.','Word','K1_Memorandum_Unidad_de_Control.docx','G1-2'],
+  ['g1','K2','Solicitud de acceso a la información','Solicitud ciudadana por Ley de Transparencia y los antecedentes internos para responderla.','Word','K2_Solicitud_Transparencia.docx','G1-3 · Estación A'],
+  ['g1','K3','Acta de comisión del Consejo Regional','Acta de una sesión con acuerdos, responsables y plazos repartidos en el texto.','Word','K3_Acta_Comision_Consejo_Regional.docx','G1-3 · Estación B · G1-4'],
+  ['g1','K4','Bandeja de 20 correos','Correos de pagos, compras, consultas y reclamos para clasificar, con columnas para completar.','Excel','K4_Bandeja_20_correos.xlsx','G1-3 · Estaciones C y E'],
+  ['g1','K5','Bases de licitación del servicio de aseo','Bases administrativas y técnicas con plazos, criterios de evaluación, garantías y multas.','PDF','K5_Bases_Licitacion_Aseo.pdf','G1-3 · Estación D'],
+  ['g1','K6','Indicadores de gestión 2026','Planilla con 8 indicadores, metas anuales y avance de tres trimestres.','Excel','K6_Indicadores_Gestion_2026.xlsx','G1-5'],
+  ['g1','K7','Manual de procedimientos de compras','Manual con procedimientos, plazos, garantías y preguntas frecuentes, para crear un agente.','PDF','K7_Manual_Procedimientos_Compras.pdf','G1-6'],
+  ['g2','K8','Informe de avance de un proyecto FRIL','Informe mensual de una obra: avance físico y financiero, hitos, garantías y situaciones del período.','PDF','K8_Informe_Avance_FRIL.pdf','G2-2 · G2-3 · G2-4'],
+  ['g2','K9','Convenio de transferencia FRIL','Convenio entre el Gobierno Regional y un municipio, con presupuesto por partidas e hitos.','PDF','K9_Convenio_Transferencia_FRIL.pdf','G2-3 · G2-4'],
+  ['g2','K10','Cartera de proyectos','Planilla con 15 proyectos de cinco instrumentos: montos, avance físico y financiero, y fechas de término.','Excel','K10_Cartera_Proyectos.xlsx','G2-5 · G2-7'],
+];
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+for (const [g,k,t,d,fmt,file,ex] of F) {
+  const el = document.createElement('div');
+  el.className = 'file';
+  el.innerHTML = `<div class="code">${esc(k)}</div><div><h3>${esc(t)}</h3><p>${esc(d)}</p><div class="tags"><span class="tag">${esc(fmt)}</span><span class="tag ${g==='g1'?'info':'warn'}">${esc(ex)}</span></div></div><a class="dl" href="Kit_participantes/${encodeURI(file)}" download>Descargar</a>`;
+  document.getElementById(g).appendChild(el);
+}
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

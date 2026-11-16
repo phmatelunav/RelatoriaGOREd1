@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills de IA</title>
+<meta name="description" content="Qué son las Skills de IA, cómo se crean y el caso de la búsqueda de dictámenes de la Contraloría. Con Skills para descargar.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+<div class="page-head">
+  <p class="kicker">Para usuarios que quieren ir más allá</p>
+  <h1>Skills: enséñale a la IA a hacer una tarea a tu manera</h1>
+  <p class="lead">Una Skill es una receta guardada: instrucciones, plantillas y ejemplos que la IA carga sola cuando la tarea lo requiere. Así trabajan hoy muchos abogados que usan IA para buscar jurisprudencia o redactar escritos.</p>
+  <nav class="toc" aria-label="En esta página">
+    <a href="#que-es">Qué es</a><a href="#diferencias">Skill, agente o conector</a><a href="#donde">Dónde funcionan</a><a href="#dictamenes">Caso: dictámenes CGR</a><a href="#crear">Crear una Skill</a><a href="#descargas">Descargas</a><a href="#cuidados">Cuidados</a>
+  </nav>
+</div>
+
+<section id="que-es">
+<h2>Qué es una Skill</h2>
+<p class="sub">Es una carpeta con un archivo de texto llamado <code>SKILL.md</code> y, si hace falta, archivos de apoyo. Anthropic la presentó en octubre de 2025 y en diciembre la publicó como estándar abierto: hoy la usan Claude, Microsoft Copilot Studio, GitHub Copilot y otras herramientas.</p>
+<div class="grid g2">
+  <div class="card">
+    <h3>Qué contiene</h3>
+    <div class="prompt"><div class="lbl"><span>Estructura de una Skill</span></div><pre>buscar-dictamenes-cgr/
+├── SKILL.md              ← nombre, descripción e instrucciones
+└── references/
+    └── consejos-busqueda.md   ← material de apoyo</pre></div>
+    <p style="margin-top:10px">El archivo <code>SKILL.md</code> empieza con un <b>nombre</b> y una <b>descripción</b>. Después vienen los pasos, el formato de salida y las reglas.</p>
+  </div>
+  <div class="card">
+    <h3>Cómo la usa la IA</h3>
+    <ol>
+      <li>La IA siempre ve el nombre y la descripción de cada Skill instalada.</li>
+      <li>Cuando tu pedido coincide con una descripción, lee las instrucciones completas.</li>
+      <li>Solo si las necesita, abre los archivos de apoyo.</li>
+    </ol>
+    <p style="margin-top:10px">Por eso puedes tener muchas Skills sin saturar a la IA: carga cada una solo cuando corresponde. Tú no tienes que invocarla; basta con pedir la tarea.</p>
+  </div>
+</div>
+<div class="callout">
+  <b>La diferencia con un prompt guardado</b>
+  <p>Un prompt guardado hay que buscarlo y pegarlo cada vez. Una Skill se activa sola, puede traer plantillas y ejemplos, y se comparte como un archivo: toda la unidad trabaja con el mismo método.</p>
+</div>
+</section>
+
+<section id="diferencias">
+<h2>Skill, agente o conector</h2>
+<div class="cmp">
+  <div class="card"><span class="tag">Skill</span><h3>Enseña cómo</h3><p>El método: pasos, formato, reglas, ejemplos.</p><p><i>«Así se buscan y verifican dictámenes».</i></p></div>
+  <div class="card"><span class="tag info">Conector</span><h3>Da acceso</h3><p>La conexión a un sistema o una base de datos (en el mundo técnico, un servidor MCP).</p><p><i>«Puedes consultar esta base de dictámenes».</i></p></div>
+  <div class="card"><span class="tag warn">Agente</span><h3>Hace el trabajo</h3><p>El asistente que combina instrucciones, Skills y conectores.</p><p><i>«Busca, verifica y redacta la minuta».</i></p></div>
+</div>
+<p>Una Skill <b>no le da acceso a nada</b> a la IA: le enseña un procedimiento. Si la tarea requiere entrar a un sistema, también se necesita un conector o que la IA pueda navegar la web.</p>
+</section>
+
+<section id="donde">
+<h2>Dónde funcionan (noviembre de 2026)</h2>
+<div class="tbl"><table>
+  <thead><tr><th>Herramienta</th><th>Skills</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td><b>Claude</b> (claude.ai, escritorio)</td><td>Sí, en todos los planes, incluido el gratuito</td><td>Requiere activar «Crear y editar archivos» en Configuración. Se suben como archivo ZIP.</td></tr>
+    <tr><td><b>Microsoft Copilot Studio</b></td><td>Sí, dentro de agentes</td><td>Requiere licencia y permisos del área TI.</td></tr>
+    <tr><td><b>GitHub Copilot, Codex, Gemini CLI</b></td><td>Sí</td><td>Herramientas de programación.</td></tr>
+    <tr><td><b>Copilot Chat</b> (cuenta institucional sin licencia)</td><td>No directamente</td><td>Alternativa: pega el contenido del <code>SKILL.md</code> en las instrucciones de un <a href="agentes.html">agente</a>. Funciona como Skill «manual».</td></tr>
+  </tbody>
+</table></div>
+<div class="callout warn">
+  <b>Antes de usar una herramienta distinta de Copilot institucional</b>
+  <p>Necesitas autorización del Gobierno Regional y no debes ingresar información interna, datos personales ni documentos reservados. Las Skills de esta página están pensadas para trabajar con información pública.</p>
+</div>
+</section>
+
+<section id="dictamenes">
+<h2>Caso: buscar dictámenes de la Contraloría</h2>
+<p class="sub">La pregunta de la encuesta: ¿cómo hacen los abogados para que la IA busque en la plataforma de la Contraloría? Hay tres niveles, de menor a mayor automatización.</p>
+
+<div class="grid g3">
+  <div class="card"><span class="tag muted">Nivel 1</span><h3>Tú buscas, la IA te ayuda</h3><p>La IA prepara los términos de búsqueda; tú buscas en el portal oficial y le entregas los dictámenes para que los resuma.</p><p><b style="color:var(--ink)">Sirve con Copilot institucional.</b></p></div>
+  <div class="card hl"><span class="tag">Nivel 2</span><h3>Skill + navegación web</h3><p>La Skill le enseña el método y la IA busca en la web, abre cada dictamen y lo verifica antes de citarlo.</p><p><b style="color:var(--ink)">Claude con búsqueda web, o un navegador con IA.</b></p></div>
+  <div class="card"><span class="tag info">Nivel 3</span><h3>Skill + conector a una base</h3><p>Un conector da acceso directo a una base de dictámenes ya ordenada. La IA consulta y cita sin pasar por el buscador.</p><p><b style="color:var(--ink)">Servicios privados de pago.</b></p></div>
+</div>
+
+<h3 style="margin-top:28px">Nivel 1 · Buscar en el portal oficial con ayuda de Copilot</h3>
+<ol class="steps">
+  <li><b>Pide la estrategia de búsqueda</b><span>Usa el prompt de abajo. Copilot te entrega palabras clave, sinónimos y normas para buscar.</span></li>
+  <li><b>Busca en el portal de la Contraloría</b><span>En <a href="https://www.contraloria.cl" target="_blank" rel="noopener">contraloria.cl</a>, sección Jurisprudencia, abre el buscador de dictámenes. Puedes buscar por número y año, o por palabras. Usa comillas para frases exactas.</span></li>
+  <li><b>Descarga o copia los dictámenes pertinentes</b><span>Son documentos públicos: puedes subirlos a Copilot sin problema.</span></li>
+  <li><b>Pide el resumen y la comparación</b><span>Usa el segundo prompt. Copilot ordena los criterios y te dice si cambiaron en el tiempo.</span></li>
+  <li><b>Verifica</b><span>Revisa que cada dictamen no haya sido reconsiderado por uno posterior: busca su número en el mismo portal.</span></li>
+</ol>
+<div class="grid g2">
+  <div class="prompt"><div class="lbl"><span>1 · Estrategia de búsqueda</span></div><pre>Necesito encontrar dictámenes de la Contraloría General de la República sobre [tema], aplicables a un gobierno regional. Propón 5 búsquedas para el buscador de jurisprudencia de contraloria.cl: palabras clave, sinónimos administrativos, frases exactas entre comillas y normas con su número. No me cites dictámenes específicos: solo quiero los términos de búsqueda.</pre></div>
+  <div class="prompt"><div class="lbl"><span>2 · Resumen de los dictámenes encontrados</span></div><pre>Te adjunto [número] dictámenes de la Contraloría sobre [tema]. Para cada uno entrega en una tabla: número, fecha, consulta, criterio (cita textual de la conclusión) y normas citadas. Después explica en 5 líneas si el criterio se mantuvo o cambió en el tiempo. Usa solo los documentos adjuntos.</pre></div>
+</div>
+<div class="callout warn">
+  <b>No le pidas a la IA «dame dictámenes sobre…» sin documentos</b>
+  <p>Sin acceso a la fuente, la IA puede inventar números de dictamen que parecen reales. Es uno de los errores más comunes y más graves en el uso jurídico de la IA.</p>
+</div>
+
+<h3 style="margin-top:28px">Nivel 2 · La Skill de búsqueda de dictámenes</h3>
+<p>Esta es la Skill completa. Le enseña a la IA a preparar la búsqueda, ir a la fuente oficial, verificar cada dictamen y marcar como «sin verificar» lo que no pudo confirmar. <a href="skills/buscar-dictamenes-cgr.zip" download>Descargar ZIP</a>.</p>
+<div class="prompt"><div class="lbl"><span>SKILL.md · buscar-dictamenes-cgr</span></div><pre>---
+name: buscar-dictamenes-cgr
+description: Busca, verifica y resume dictámenes de la Contraloría General de la República de Chile (jurisprudencia administrativa). Úsala cuando pidan dictámenes, jurisprudencia de Contraloría, el criterio de la CGR sobre un tema (personal, compras públicas, probidad, transferencias, rendiciones, gobiernos regionales, municipios) o verificar un número de dictamen.
+---
+
+# Búsqueda de dictámenes de la Contraloría General de la República
+
+## Objetivo
+Encontrar dictámenes pertinentes a la consulta, confirmar que existen en la fuente oficial y entregar una síntesis con cita. Nunca inventar números, fechas ni criterios.
+
+## Fuente oficial
+- Portal de la Contraloría: https://www.contraloria.cl, sección Jurisprudencia, buscador de dictámenes.
+- Las fuentes secundarias (bases jurídicas, prensa especializada, blogs) sirven solo para orientar la búsqueda. Todo dictamen se confirma en la fuente oficial.
+- Si no puedes abrir el sitio (no tienes navegación web o el acceso está bloqueado), dilo claramente y entrega la estrategia de búsqueda del paso 2 para que la persona la ejecute en el buscador.
+
+## Pasos
+1. **Entender la consulta.** Identifica: materia, tipo de entidad (gobierno regional, municipio, servicio público), normas involucradas y período de interés. Si falta algo esencial, haz una sola pregunta.
+2. **Preparar la estrategia de búsqueda.** Propón de 3 a 6 búsquedas combinando:
+   - palabras clave y sinónimos administrativos (ver `references/consejos-busqueda.md`);
+   - normas con su número (por ejemplo, "Ley 19.175", "Ley 19.886");
+   - frases exactas entre comillas;
+   - el tipo de entidad ("gobierno regional").
+3. **Buscar.** Ejecuta las búsquedas en la fuente oficial. Si solo tienes búsqueda web general, restringe al dominio contraloria.cl.
+4. **Verificar cada dictamen.** Abre el texto y confirma número, fecha y que el criterio responde la consulta. Revisa si fue reconsiderado, complementado o aplicado por dictámenes posteriores (busca el número del dictamen para ver menciones posteriores).
+5. **Entregar** en el formato de salida.
+
+## Formato de salida
+1. **Respuesta breve** (3 a 5 líneas) con el criterio general de la Contraloría.
+2. **Tabla**: Número | Fecha | Criterio en una línea | Estado (verificado / reconsiderado / sin verificar) | Enlace.
+3. **Búsquedas usadas**, para que la persona pueda repetirlas.
+4. **Advertencias**: qué no se pudo verificar y la frase "Esta síntesis no reemplaza la lectura del texto completo ni la opinión de la unidad jurídica."
+
+## Reglas
+- Un dictamen que no abriste en la fuente se marca "sin verificar". Nunca lo presentes como cierto.
+- No cites dictámenes de memoria.
+- Prioriza los dictámenes más recientes y los dirigidos a gobiernos regionales.
+- No incluyas en las búsquedas nombres, RUT ni otros datos personales que aparezcan en la consulta.
+- Si el criterio cambió en el tiempo, explica la evolución con fechas.</pre></div>
+<div class="callout info">
+  <b>Una limitación real</b>
+  <p>El portal de la Contraloría no permite que herramientas automáticas lean todas sus páginas. Si la IA no logra abrirlo, la Skill le indica que lo diga y te entregue la estrategia de búsqueda (vuelves al nivel 1). Por eso los abogados que automatizan este trabajo suelen combinar la Skill con un navegador controlado por IA o con un conector.</p>
+</div>
+
+<h3 style="margin-top:28px">Nivel 3 · Conectores a bases de jurisprudencia</h3>
+<p>Existen servicios privados chilenos que ordenan la jurisprudencia administrativa y la conectan con asistentes de IA mediante MCP, por ejemplo <a href="https://dictamina.cl" target="_blank" rel="noopener">dictamina.bot</a>, que según su sitio reúne cerca de 90.000 dictámenes y se actualiza cada día. Son de pago y no son fuentes oficiales: cualquier uso institucional requiere evaluación del Gobierno Regional y verificar siempre en el portal de la Contraloría.</p>
+</section>
+
+<section id="crear">
+<h2>Crear una Skill en 5 pasos</h2>
+<ol class="steps">
+  <li><b>Elige una tarea que repites</b><span>Que tenga un método claro: un oficio, una minuta, una revisión de bases, un comunicado.</span></li>
+  <li><b>Responde seis preguntas</b><span>¿Cuándo se usa? ¿Qué recibe? ¿Qué entrega? ¿Hasta dónde llega? ¿Qué no debe hacer? ¿Qué hace si falta información?</span></li>
+  <li><b>Escribe el SKILL.md</b><span>Nombre en minúsculas con guiones, una descripción que diga cuándo usarla y, debajo, los pasos, el formato y las reglas. Puedes pedirle ayuda a la IA con el prompt de abajo.</span></li>
+  <li><b>Empaqueta</b><span>Pon el archivo en una carpeta con el mismo nombre de la Skill y comprímela en ZIP.</span></li>
+  <li><b>Súbela y pruébala</b><span>En Claude: Personalizar → Skills → «+» → Crear skill → Subir una skill. Actívala y pide la tarea con tus palabras, sin nombrarla, para ver si se activa sola.</span></li>
+</ol>
+<div class="prompt"><div class="lbl"><span>Prompt para crear tu propia Skill</span></div><pre>Quiero crear una Skill (archivo SKILL.md) para que una IA haga esta tarea de mi trabajo: [describe la tarea]. Hazme preguntas, de a una, sobre: cuándo se usa, qué información recibe, qué debe entregar y en qué formato, qué no debe hacer y qué hacer si falta información. Después escribe el SKILL.md con:
+- un encabezado entre líneas --- con "name" (minúsculas y guiones) y "description" (qué hace y cuándo usarla, con las palabras que usaría alguien al pedirla);
+- secciones: Objetivo, Pasos, Formato de salida y Reglas.
+Máximo 400 líneas.</pre></div>
+</section>
+
+<section id="descargas">
+<h2>Skills para descargar</h2>
+<p class="sub">Tres Skills de ejemplo para el Gobierno Regional. Úsalas tal cual o como punto de partida.</p>
+<div class="grid" style="gap:12px">
+  <div class="file"><div class="code">CGR</div><div><h3>buscar-dictamenes-cgr</h3><p>Busca, verifica y resume dictámenes de la Contraloría, con tabla de estado y advertencias.</p><div class="tags"><span class="tag">Jurídica</span><span class="tag muted">2 archivos</span></div></div><a class="dl" href="skills/buscar-dictamenes-cgr.zip" download>Descargar ZIP</a></div>
+  <div class="file"><div class="code">ORD</div><div><h3>oficio-gore</h3><p>Redacta oficios ordinarios con el formato administrativo (ANT., MAT., DE, A, distribución).</p><div class="tags"><span class="tag">Todas las áreas</span><span class="tag muted">2 archivos</span></div></div><a class="dl" href="skills/oficio-gore.zip" download>Descargar ZIP</a></div>
+  <div class="file"><div class="code">COM</div><div><h3>comunicado-prensa-gore</h3><p>Comunicados, piezas para redes y guiones de video corto con estilo institucional y sin inventar datos.</p><div class="tags"><span class="tag">Comunicaciones</span><span class="tag muted">1 archivo</span></div></div><a class="dl" href="skills/comunicado-prensa-gore.zip" download>Descargar ZIP</a></div>
+</div>
+<p class="updated">¿Usas Copilot Chat sin licencia? Abre el ZIP, copia el contenido del SKILL.md y pégalo en las instrucciones de un agente.</p>
+</section>
+
+<section id="cuidados">
+<h2>Cuidados</h2>
+<div class="callout warn">
+  <ul>
+    <li>Revisa siempre una Skill de terceros antes de instalarla: puede traer instrucciones o programas que no esperas.</li>
+    <li>No pongas datos personales, claves ni información reservada dentro de una Skill.</li>
+    <li>Una Skill no reemplaza la revisión profesional: ordena el trabajo, pero el resultado se verifica.</li>
+    <li>Mantenla actualizada cuando cambie la normativa o el procedimiento.</li>
+  </ul>
+</div>
+<p class="updated">Fuentes: <a href="https://www.anthropic.com/research/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">Anthropic, Agent Skills</a> · <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener">Centro de ayuda de Claude</a> · <a href="https://microsoft.github.io/mwkorea/monthlycopilot/CopilotSkillsIntro/" target="_blank" rel="noopener">Microsoft, Copilot Skills</a>. Revisado el 16 de noviembre de 2026.</p>
+</section>
+</main>
+<footer id="site-foot"></footer>
+<script src="assets/site.js"></script>
+</body>
+</html>
