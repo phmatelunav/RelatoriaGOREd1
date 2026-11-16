@@ -165,6 +165,11 @@
   "nivel": "a"
  },
  {
+  "termino": "Extensión de escritorio",
+  "definicion": "Conector que se instala en la aplicación de escritorio de un asistente (por ejemplo, Claude) para que la IA trabaje con archivos o programas del computador. Técnicamente es un servidor MCP local empaquetado.",
+  "nivel": "a"
+ },
+ {
   "termino": "Fecha de corte de conocimiento",
   "definicion": "Fecha hasta la cual llegan los datos de entrenamiento de un modelo. Lo posterior no lo sabe, salvo que busque en la web o se lo entreguen.",
   "nivel": "a"
@@ -190,9 +195,19 @@
   "nivel": "a"
  },
  {
+  "termino": "Harness (arnés)",
+  "definicion": "Programa que rodea al modelo y lo convierte en agente: le da herramientas, organiza el ciclo de planificar, actuar y revisar, maneja la memoria y pide permiso antes de acciones delicadas. Con el mismo modelo, un mejor harness hace un agente más capaz y seguro.",
+  "nivel": "a"
+ },
+ {
   "termino": "IA generativa",
   "definicion": "IA que crea contenido nuevo (texto, imágenes, audio o código) a partir de una instrucción.",
   "nivel": "b"
+ },
+ {
+  "termino": "IA local",
+  "definicion": "Modelo de IA que se descarga y funciona en el propio computador o en un servidor de la institución, sin enviar los textos a un proveedor externo. Herramientas como Ollama o LM Studio lo hacen posible.",
+  "nivel": "a"
  },
  {
   "termino": "IA tradicional (predictiva)",

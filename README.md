@@ -10,6 +10,8 @@ Sitio estático de contenido sobre inteligencia artificial para funcionarios del
 - `tips.html`: buenas prácticas, técnicas avanzadas, marco normativo y cursos.
 - `grupos.html`: dinámicas para practicar en equipo.
 - `glosario.html`: glosario básico y avanzado.
+- `plataformas.html`: agentes, Skills y conectores MCP en Claude, ChatGPT y Gemini; aplicación de escritorio y harness.
+- `ia-local.html`: IA local (Ollama, LM Studio, Hermes y otros).
 - `material.html`: documentos ficticios del curso (K1 a K10) y presentación.
 - `Presentacion_Relator.html`: presentación de la jornada (funciona sin internet).
 - `assets/`: estilos y scripts compartidos.

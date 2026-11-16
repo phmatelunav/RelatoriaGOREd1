@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es" id="top">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.className+=' js';try{var t=localStorage.getItem('tema');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA local</title>
+<meta name="description" content="IA que funciona en tu propio computador: Ollama, LM Studio, Hermes y otros. Ventajas, límites, requisitos y cómo empezar.">
+<meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191512" media="(prefers-color-scheme: dark)">
+<link rel="preload" href="assets/fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><ul><li><a href="areas.html">Por área</a></li><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li><li><a href="glosario.html">Glosario</a></li><li><details class="more"><summary class="on">Más<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="drop"><li><a href="plataformas.html">Claude, ChatGPT y Gemini</a></li><li><a href="ia-local.html" aria-current="page">IA local</a></li><li><a href="tips.html">Tips</a></li><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material del curso</a></li></ul></details></li></ul></nav><button type="button" class="theme js-only" aria-label="Cambiar a modo oscuro"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/></svg></button><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="ml">Secciones</span></summary><div class="panel"><nav class="mnav" aria-label="Secciones del sitio"><div class="mgrp"><span class="mlbl">General</span><ul><li><a href="index.html">Inicio</a></li></ul></div><div class="mgrp"><span class="mlbl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="mgrp"><span class="mlbl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="mgrp"><span class="mlbl">Profundizar</span><ul><li><a href="plataformas.html">Claude, ChatGPT y Gemini</a></li><li><a href="ia-local.html" aria-current="page">IA local</a></li></ul></div><div class="mgrp"><span class="mlbl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="mgrp"><span class="mlbl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
+<main id="contenido" class="wrap">
+<div class="page-head">
+  <h1>IA local: modelos que funcionan en tu computador</h1>
+  <p class="lead">Copilot, Claude, ChatGPT y Gemini funcionan en servidores de cada empresa. La IA local descarga un modelo de <a class="gt" href="glosario.html#modelo-de-pesos-abiertos" data-term="Modelo de pesos abiertos" data-def="Modelo cuyos parámetros se publican y pueden descargarse y ejecutarse en servidores propios, por ejemplo Llama, Mistral o Qwen.">pesos abiertos</a> y lo ejecuta en tu propio equipo, sin enviar los textos a internet.</p>
+  <div class="callout warn">
+    <span class="t">Instalar software requiere autorización</span>
+    <p>En un computador del Gobierno Regional, instalar estas herramientas o descargar modelos debe pasar por el área TI. Que los datos no salgan del equipo no elimina las obligaciones de la ley de protección de datos ni el semáforo: solo cambia dónde se procesan.</p>
+  </div>
+  <nav class="toc-nav" aria-label="En esta página">
+    <a href="#por-que">Por qué y cuándo</a><a href="#herramientas">Herramientas</a><a href="#modelos">Modelos</a><a href="#equipo">Qué computador se necesita</a><a href="#empezar">Cómo empezar</a><a href="#agentes-locales">Agentes locales</a>
+  </nav>
+</div>
+
+<section id="por-que">
+<h2>Por qué y cuándo usar IA local</h2>
+<div class="tbl" tabindex="0" role="region" aria-label="Tabla (desplázala hacia el lado si no se ve completa)"><table>
+  <thead><tr><th>Criterio</th><th>IA en la nube (Copilot, Claude, ChatGPT, Gemini)</th><th>IA local (Ollama, LM Studio)</th></tr></thead>
+  <tbody>
+    <tr><td><b>Dónde se procesa</b></td><td>En servidores del proveedor</td><td>En tu computador; puede funcionar sin internet</td></tr>
+    <tr><td><b>Calidad</b></td><td>Los modelos más capaces</td><td>Buena para resumir, clasificar y redactar; menor en razonamiento complejo</td></tr>
+    <tr><td><b>Velocidad</b></td><td>Rápida y constante</td><td>Depende del equipo: puede ser lenta sin una buena tarjeta gráfica o un Mac reciente</td></tr>
+    <tr><td><b>Costo</b></td><td>Licencia o suscripción, y cuotas de uso</td><td>Gratis el software y muchos modelos; el costo es el equipo</td></tr>
+    <tr><td><b>Funciones</b></td><td>Búsqueda web, archivos, conectores, imágenes, voz</td><td>Chat y documentos; lo demás requiere configuración</td></tr>
+    <tr><td><b>Soporte y gobierno</b></td><td>Contrato, administración central</td><td>Lo administra el área TI o el propio usuario</td></tr>
+  </tbody>
+</table></div>
+<div class="grid g2 gap-top">
+  <div class="card"><span class="tag ok">Buen uso</span><h3>Cuándo conviene</h3><ul><li>Documentos internos que no deben salir del equipo, una vez autorizado su uso.</li><li>Clasificar o resumir grandes volúmenes de texto sin consumir cuotas.</li><li>Lugares sin conexión estable.</li><li>Aprender cómo funcionan los modelos por dentro.</li></ul></div>
+  <div class="card"><span class="tag warn">Precaución</span><h3>Cuándo no conviene</h3><ul><li>Análisis jurídicos o cálculos donde un error cuesta caro: los modelos pequeños alucinan más.</li><li>Equipos con menos de 16 GB de memoria.</li><li>Cuando nadie en la unidad puede mantenerlo y actualizarlo.</li></ul></div>
+</div>
+</section>
+
+<section id="herramientas">
+<h2>Herramientas</h2>
+<div class="grid g3">
+  <div class="card"><div class="tags"><span class="tag">Gratis</span><span class="tag">Windows · macOS · Linux</span></div><h3>LM Studio</h3><p>La más amigable: una aplicación con ventanas para buscar, descargar y conversar con modelos. Gratis también para uso laboral. Trae cliente <a class="gt" href="glosario.html#mcp" data-term="MCP (Model Context Protocol)" data-def="Estándar abierto para conectar modelos de IA con herramientas y fuentes de datos de forma ordenada.">MCP</a> para conectar herramientas.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Gratis</span><span class="tag">Windows · macOS · Linux</span></div><h3>Ollama</h3><p>Pensada para usarse desde la terminal y conectarse con otros programas. Descargas un modelo con una línea y queda disponible para otras aplicaciones del computador.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Código abierto</span><span class="tag adv">Avanzado</span></div><h3>Hermes</h3><p>Nous Research publica dos cosas con este nombre: los <b>modelos Hermes</b>, de pesos abiertos, que se pueden cargar en Ollama o LM Studio; y <b>Hermes Agent</b>, un <a class="gt" href="glosario.html#agente" data-term="Agente" data-def="Asistente de IA configurado con instrucciones y fuentes propias para una tarea, por ejemplo responder dudas sobre un manual. Lo configuras una vez y lo reutilizas o compartes.">agente</a> de código abierto con memoria, <a class="gt" href="glosario.html#skill" data-term="Skill (habilidad)" data-def="Carpeta con un archivo SKILL.md de instrucciones y archivos de apoyo que enseña a un asistente de IA a hacer una tarea. Se carga sola cuando la tarea coincide.">Skills</a> que crea solo y tareas programadas, que funciona con modelos locales o en la nube.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Código abierto</span></div><h3>Jan y GPT4All</h3><p>Aplicaciones de escritorio parecidas a LM Studio, enfocadas en privacidad y en conversar con tus documentos.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Código abierto</span><span class="tag adv">Avanzado</span></div><h3>Open WebUI</h3><p>Una interfaz web estilo ChatGPT sobre Ollama. Permite que el área TI instale un servidor interno y que varias personas lo usen desde el navegador.</p></div>
+  <div class="card"><div class="tags"><span class="tag">Código abierto</span><span class="tag adv">Avanzado</span></div><h3>llama.cpp</h3><p>El motor que usan por dentro LM Studio y Ollama. Para quien quiere el máximo control y rendimiento.</p></div>
+</div>
+</section>
+
+<section id="modelos">
+<h2>Modelos de pesos abiertos</h2>
+<p class="sub">Se descargan una vez y se usan sin conexión. Se nombran por familia y tamaño: «8B» significa 8 mil millones de parámetros. Más grande suele ser mejor, pero exige más equipo.</p>
+<div class="grid g3">
+  <div class="card"><h3>Qwen (Alibaba)</h3><p>Muy buenos en español y en tareas con herramientas. Varios tamaños.</p></div>
+  <div class="card"><h3>Gemma (Google)</h3><p>Livianos y de buena calidad para su tamaño, algunos entienden imágenes.</p></div>
+  <div class="card"><h3>gpt-oss (OpenAI)</h3><p><a class="gt" href="glosario.html#modelo-de-razonamiento" data-term="Modelo de razonamiento" data-def="Modelo que desarrolla pasos intermedios antes de responder. Suele ser mejor en cálculos y problemas complejos, pero es más lento.">Modelos de razonamiento</a> de pesos abiertos. El de 20B funciona en un computador con 16 GB de memoria.</p></div>
+  <div class="card"><h3>Llama (Meta) y Mistral</h3><p>Familias muy difundidas, con muchas variantes ajustadas por la comunidad.</p></div>
+  <div class="card"><h3>DeepSeek</h3><p>Modelos de razonamiento; las versiones completas son muy grandes, las reducidas caben en equipos comunes.</p></div>
+  <div class="card"><h3>Hermes (Nous Research)</h3><p>Variantes ajustadas para seguir instrucciones y usar herramientas.</p></div>
+</div>
+<div class="callout info"><span class="t">Revisa la licencia de cada modelo</span><p>«Pesos abiertos» no siempre significa uso libre. Algunos modelos usan licencias permisivas (como Apache 2.0) y otros tienen condiciones propias. Antes de usarlo en el trabajo, revisa la licencia en su página de descarga.</p></div>
+</section>
+
+<section id="equipo">
+<h2>Qué computador se necesita</h2>
+<div class="tbl" tabindex="0" role="region" aria-label="Tabla (desplázala hacia el lado si no se ve completa)"><table>
+  <thead><tr><th>Equipo</th><th>Tamaño de modelo razonable</th><th>Para qué alcanza</th></tr></thead>
+  <tbody>
+    <tr><td>8 GB de memoria</td><td>Hasta unos 7B, comprimido</td><td>Probar, resúmenes breves; lento</td></tr>
+    <tr><td>16 GB de memoria</td><td>8B a 20B</td><td>Redacción, resúmenes y clasificación de uso diario</td></tr>
+    <tr><td>32 GB o tarjeta gráfica con 16 GB o más</td><td>30B o más</td><td>Análisis más complejos y documentos largos</td></tr>
+  </tbody>
+</table></div>
+<p class="updated">Los Mac con chip Apple aprovechan bien la memoria para estos modelos. La cifra es orientativa: depende de la compresión del modelo (<a href="glosario.html#cuantizacion">cuantización</a>) y del largo de los documentos.</p>
+</section>
+
+<section id="empezar">
+<h2>Cómo empezar</h2>
+<div class="grid g2">
+  <div>
+    <h3 class="h-sub">Con LM Studio (sin terminal)</h3>
+    <ol class="steps">
+      <li><b>Descarga e instala</b><span>Desde lmstudio.ai, con autorización del área TI.</span></li>
+      <li><b>Busca un modelo</b><span>En la pestaña de búsqueda escribe, por ejemplo, «qwen» o «gemma». LM Studio indica si el modelo cabe en tu equipo.</span></li>
+      <li><b>Cárgalo y conversa</b><span>Elige el modelo arriba y escribe como en cualquier chat. Puedes arrastrar un PDF a la conversación.</span></li>
+      <li><b>Compara</b><span>Haz la misma pregunta en Copilot y en el modelo local, y compara calidad y tiempo.</span></li>
+    </ol>
+  </div>
+  <div>
+    <h3 class="h-sub">Con Ollama (terminal)</h3>
+    <ol class="steps">
+      <li><b>Instala</b><span>Desde ollama.com.</span></li>
+      <li><b>Descarga y abre un modelo</b><span>En la terminal: <code>ollama run gpt-oss:20b</code>. La primera vez descarga varios GB.</span></li>
+      <li><b>Conversa</b><span>Escribe en la misma terminal; <code>/bye</code> para salir.</span></li>
+      <li><b>Conéctalo</b><span>Otras aplicaciones (Open WebUI, Hermes Agent, editores de código) usan Ollama como motor.</span></li>
+    </ol>
+  </div>
+</div>
+<div class="prompt"><div class="lbl"><span>Prueba para comparar un modelo local con Copilot</span></div><pre>Resume el siguiente texto en 5 viñetas para una jefatura, indica las fechas y montos que aparecen y señala con [NO ENCONTRADO] lo que falte para tomar una decisión.
+TEXTO: [pega un texto público o ficticio, por ejemplo uno del kit del curso]</pre></div>
+<p class="updated">Usa los <a href="material.html">documentos ficticios del curso</a> para probar: son ideales para comparar herramientas sin riesgo.</p>
+</section>
+
+<section id="agentes-locales">
+<h2>Agentes locales <span class="tag adv">Avanzado</span></h2>
+<p class="sub">Un modelo local también puede ser el cerebro de un agente, con las mismas piezas de las otras plataformas: un <a href="plataformas.html#harness">harness</a>, Skills y conectores MCP.</p>
+<div class="grid g3">
+  <div class="card"><h3>LM Studio + MCP</h3><p>LM Studio incluye cliente MCP: puedes conectarle, por ejemplo, un servidor que lea una carpeta local, y todo queda en el equipo.</p></div>
+  <div class="card"><h3>Hermes Agent</h3><p>Un <a class="gt" href="glosario.html#harness" data-term="Harness (arnés)" data-def="Programa que rodea al modelo y lo convierte en agente: le da herramientas, organiza el ciclo de planificar, actuar y revisar, maneja la memoria y pide permiso antes de acciones delicadas. Con el mismo modelo, un mejor harness hace un agente más capaz y seguro.">harness</a> de código abierto (licencia MIT) para Windows, macOS y Linux. Recuerda conversaciones, crea sus propias Skills y ejecuta tareas programadas. Puede usar un modelo local o uno en la nube.</p></div>
+  <div class="card"><h3>Servidor interno</h3><p>El área TI puede instalar Ollama y Open WebUI en un servidor de la red del Gobierno Regional, para que varias unidades usen un modelo sin que los datos salgan de la institución.</p></div>
+</div>
+<div class="callout warn"><span class="t">Un agente local también se equivoca</span><p>Con un modelo más pequeño, el agente comete más errores al usar herramientas. Mantén a una persona revisando, dale permisos mínimos y no lo conectes a correo ni a sistemas que modifiquen datos sin supervisión.</p></div>
+<p class="updated">Revisado el 16 de noviembre de 2026. Fuentes: <a href="https://www.kunalganglani.com/blog/lm-studio-vs-ollama" target="_blank" rel="noopener">LM Studio y Ollama en 2026</a> · <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes Agent (Nous Research)</a> · <a href="https://pinggy.io/amp/blog/top_5_local_llm_tools_and_models/" target="_blank" rel="noopener">Herramientas y modelos locales</a>.</p>
+</section>
+</main>
+<!--@footer--><div class="wrap"><div class="divider" aria-hidden="true"></div></div><footer class="site-foot"><div class="wrap"><p class="m0">Capacitación en IA · Gobierno Regional de O'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</p><ul><li><a href="material.html">Documentos del curso</a></li><li><a href="Presentacion_Relator.html">Presentación de la jornada (para computador)</a></li></ul></div></footer><a class="totop" href="#top" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a><!--/@footer-->
+<script src="assets/site.js" defer></script>
+</body>
+</html>

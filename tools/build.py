@@ -10,18 +10,19 @@ from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = lambda s: html.escape(str(s), quote=True)
-PAGES = ['index', 'areas', 'agentes', 'skills', 'comunicaciones', 'tips', 'grupos', 'glosario', 'material']
+PAGES = ['index', 'areas', 'agentes', 'skills', 'comunicaciones', 'tips', 'grupos', 'glosario', 'material', 'plataformas', 'ia-local']
 REVISADO = '16 de noviembre de 2026'
 
 # Menú de escritorio: lo principal a la vista y el resto en "Más".
 TOP = [('areas.html', 'Por área'), ('agentes.html', 'Agentes'), ('skills.html', 'Skills'),
        ('comunicaciones.html', 'Comunicaciones'), ('glosario.html', 'Glosario')]
-MORE = [('tips.html', 'Tips'), ('grupos.html', 'En grupo'), ('material.html', 'Material del curso')]
+MORE = [('plataformas.html', 'Claude, ChatGPT y Gemini'), ('ia-local.html', 'IA local'), ('tips.html', 'Tips'), ('grupos.html', 'En grupo'), ('material.html', 'Material del curso')]
 # Menú móvil: agrupado por intención.
 GROUPS = [
     ('General', [('index.html', 'Inicio')]),
     ('Usar', [('areas.html', 'Por área'), ('tips.html', 'Tips')]),
     ('Crear', [('agentes.html', 'Agentes'), ('skills.html', 'Skills'), ('comunicaciones.html', 'Comunicaciones')]),
+    ('Profundizar', [('plataformas.html', 'Claude, ChatGPT y Gemini'), ('ia-local.html', 'IA local')]),
     ('Practicar', [('grupos.html', 'En grupo'), ('material.html', 'Material')]),
     ('Consultar', [('glosario.html', 'Glosario')]),
 ]
@@ -236,6 +237,9 @@ TERMS = [  # (expresión, ancla del glosario, páginas donde no se enlaza)
     (r'\btexto a voz\b', 'texto-a-voz', ()),
     (r'\bmultimodal\b', 'multimodal', ()),
     (r'\bsemáforo de datos\b', 'semaforo-de-datos', ()),
+    (r'\bharness\b', 'harness', ()),
+    (r'\bIA local\b', 'ia-local', ('ia-local',)),
+    (r'\bpesos abiertos\b', 'modelo-de-pesos-abiertos', ()),
 ]
 GLOS_EXTRA = [
     (r'\bLLM\b', 'llm', ()),
@@ -245,6 +249,9 @@ GLOS_EXTRA = [
     (r'\bajuste fino\b', 'ajuste-fino', ()),
     (r'\bpersona en el circuito\b', 'persona-en-el-circuito', ()),
     (r'\bsemáforo de datos\b', 'semaforo-de-datos', ()),
+    (r'\bharness\b', 'harness', ()),
+    (r'\bIA local\b', 'ia-local', ('ia-local',)),
+    (r'\bpesos abiertos\b', 'modelo-de-pesos-abiertos', ()),
 ]
 SKIP_TAGS = {'b', 'strong', 'a', 'h1', 'h2', 'h3', 'pre', 'code', 'button', 'summary', 'script', 'style', 'nav', 'label', 'option', 'select', 'q', 'mark', 'svg', 'textarea'}
 VOID = {'br', 'img', 'input', 'meta', 'link', 'hr', 'source', 'wbr', 'path', 'circle', 'rect'}
