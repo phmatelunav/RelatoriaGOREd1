@@ -10,16 +10,16 @@ from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = lambda s: html.escape(str(s), quote=True)
-PAGES = ['index', 'areas', 'agentes', 'skills', 'comunicaciones', 'tips', 'grupos', 'glosario', 'material', 'plataformas', 'ia-local']
+PAGES = ['index', 'curso', 'areas', 'agentes', 'skills', 'comunicaciones', 'tips', 'grupos', 'glosario', 'material', 'plataformas', 'ia-local']
 REVISADO = '16 de noviembre de 2026'
 
 # Menú de escritorio: lo principal a la vista y el resto en "Más".
-TOP = [('areas.html', 'Por área'), ('agentes.html', 'Agentes'), ('skills.html', 'Skills'),
+TOP = [('curso.html', 'Curso'), ('areas.html', 'Por área'), ('agentes.html', 'Agentes'), ('skills.html', 'Skills'),
        ('comunicaciones.html', 'Comunicaciones'), ('glosario.html', 'Glosario')]
 MORE = [('plataformas.html', 'Claude, ChatGPT y Gemini'), ('ia-local.html', 'IA local'), ('tips.html', 'Tips'), ('grupos.html', 'En grupo'), ('material.html', 'Material del curso')]
 # Menú móvil: agrupado por intención.
 GROUPS = [
-    ('General', [('index.html', 'Inicio')]),
+    ('General', [('index.html', 'Inicio'), ('curso.html', 'Tu curso')]),
     ('Usar', [('areas.html', 'Por área'), ('tips.html', 'Tips')]),
     ('Crear', [('agentes.html', 'Agentes'), ('skills.html', 'Skills'), ('comunicaciones.html', 'Comunicaciones')]),
     ('Profundizar', [('plataformas.html', 'Claude, ChatGPT y Gemini'), ('ia-local.html', 'IA local')]),

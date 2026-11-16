@@ -3,6 +3,7 @@
 Sitio estático de contenido sobre inteligencia artificial para funcionarios del Gobierno Regional de O'Higgins, creado a partir de la capacitación del 12 y 13 de noviembre de 2026.
 
 - `index.html`: portada y mapa de secciones.
+- `curso.html`: curso por niveles (básico, intermedio, avanzado) con seis módulos cada uno y avance guardado en el navegador.
 - `areas.html`: prompts por división, con buscador y filtros.
 - `agentes.html`: guía para crear agentes en Copilot Chat y plantillas.
 - `skills.html`: Skills, caso de búsqueda de dictámenes de la Contraloría y descargas (`skills/`).

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es" id="top">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.className+=' js';try{var t=localStorage.getItem('tema');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);var n=new URLSearchParams(location.search).get('nivel')||localStorage.getItem('nivel');if(n==='basico'||n==='intermedio'||n==='avanzado')document.documentElement.setAttribute('data-nivel',n)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tu curso de IA</title>
+<meta name="description" content="Curso de inteligencia artificial por niveles para funcionarios del Gobierno Regional de O'Higgins: básico, intermedio y avanzado.">
+<meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191512" media="(prefers-color-scheme: dark)">
+<link rel="preload" href="assets/fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><ul><li><a href="curso.html" aria-current="page">Curso</a></li><li><a href="areas.html">Por área</a></li><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li><li><a href="glosario.html">Glosario</a></li><li><details class="more"><summary>Más<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="drop"><li><a href="plataformas.html">Claude, ChatGPT y Gemini</a></li><li><a href="ia-local.html">IA local</a></li><li><a href="tips.html">Tips</a></li><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material del curso</a></li></ul></details></li></ul></nav><button type="button" class="theme js-only" aria-label="Cambiar a modo oscuro"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/></svg></button><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="ml">Secciones</span></summary><div class="panel"><nav class="mnav" aria-label="Secciones del sitio"><div class="mgrp"><span class="mlbl">General</span><ul><li><a href="index.html">Inicio</a></li><li><a href="curso.html" aria-current="page">Tu curso</a></li></ul></div><div class="mgrp"><span class="mlbl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="mgrp"><span class="mlbl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="mgrp"><span class="mlbl">Profundizar</span><ul><li><a href="plataformas.html">Claude, ChatGPT y Gemini</a></li><li><a href="ia-local.html">IA local</a></li></ul></div><div class="mgrp"><span class="mlbl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="mgrp"><span class="mlbl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
+<main id="contenido" class="wrap">
+<div class="page-head" id="elegir">
+  <h1>Tu curso de inteligencia artificial</h1>
+  <p class="lead">Tres rutas, de seis módulos cada una. Elige tu nivel: el sitio te muestra primero lo que corresponde y guarda tu avance en este navegador.</p>
+  <nav class="seg" aria-label="Elegir nivel">
+    <a href="?nivel=basico#ruta" data-lvl="basico">Básico</a>
+    <a href="?nivel=intermedio#ruta" data-lvl="intermedio">Intermedio</a>
+    <a href="?nivel=avanzado#ruta" data-lvl="avanzado">Avanzado</a>
+  </nav>
+  <p class="updated">¿No sabes cuál elegir? <b>Básico</b> si nunca o casi nunca has usado IA. <b>Intermedio</b> si ya usas Copilot y quieres sacarle más provecho. <b>Avanzado</b> si te interesan los <a class="gt" href="glosario.html#agente" data-term="Agente" data-def="Asistente de IA configurado con instrucciones y fuentes propias para una tarea, por ejemplo responder dudas sobre un manual. Lo configuras una vez y lo reutilizas o compartes.">agentes</a>, <a class="gt" href="glosario.html#skill" data-term="Skill (habilidad)" data-def="Carpeta con un archivo SKILL.md de instrucciones y archivos de apoyo que enseña a un asistente de IA a hacer una tarea. Se carga sola cuando la tarea coincide.">Skills</a>, conectores y otras herramientas.</p>
+</div>
+
+<div id="ruta"></div>
+
+<!-- ===================== BÁSICO ===================== -->
+<section class="route" id="basico" data-route="basico">
+  <div class="rhead"><h2>Nivel básico · Para empezar</h2><div class="prog js-only" aria-live="polite"><div class="bar"><i></i></div><span>0 de 6</span></div></div>
+  <p class="sub">Para quien recién empieza. Al terminar sabrás pedirle algo útil a Copilot, trabajar con un documento, reconocer un error y decidir qué información puedes usar. Unas dos horas en total.</p>
+  <ol class="mods">
+
+    <li class="mod" id="b1">
+      <h3>Cómo «piensa» la IA y por qué se equivoca</h3>
+      <p class="obj">Entender cinco ideas que explican casi todo lo que hace bien y mal.</p>
+      <details class="acc" open><summary>Las cinco ideas</summary><div class="in">
+        <div class="tbl" tabindex="0" role="region" aria-label="Tabla (desplázala hacia el lado si no se ve completa)"><table>
+          <thead><tr><th>Cómo funciona</th><th>Qué significa para ti</th></tr></thead>
+          <tbody>
+            <tr><td>Genera el texto eligiendo la palabra más probable según lo que aprendió, sin verificar si es cierto.</td><td>Puede inventar datos con total seguridad. Lo que importa, se revisa.</td></tr>
+            <tr><td>Su conocimiento llega hasta una fecha de corte y no incluye tus documentos ni lo ocurrido después.</td><td>Entrégale el documento y pídele que responda solo con él.</td></tr>
+            <tr><td>Considera una cantidad limitada de texto a la vez, así que en conversaciones muy largas lo del principio pierde peso.</td><td>Un chat nuevo por tema. Si la conversación se alarga, empieza otra con un resumen.</td></tr>
+            <tr><td>Ajusta la respuesta a la información que recibe; sin contexto, entrega algo genérico.</td><td>Dile para quién es, para qué y en qué formato.</td></tr>
+            <tr><td>Escribe cifras como texto y no las calcula como una planilla, por lo que puede equivocarse en sumas y porcentajes.</td><td>Toda cifra importante se recalcula en Excel.</td></tr>
+          </tbody>
+        </table></div>
+      </div></details>
+      <div class="practice"><span class="t">Practica</span><p>Pregúntale a Copilot: «¿Cuál es el monto del proyecto Mejoramiento de la Sede Social Villa Los Aromos?», sin adjuntar nada. Observa si inventa un monto o si reconoce que no lo sabe. Ese proyecto es ficticio.</p></div>
+      <div class="mfoot"><a href="glosario.html#alucinacion">Profundiza: alucinación en el glosario →</a><label class="chk js-only"><input type="checkbox" data-mod="b1"> Lo logré</label></div>
+    </li>
+
+    <li class="mod" id="b2">
+      <h3>Tu primer buen prompt</h3>
+      <p class="obj">Pasar de una pregunta vaga a una instrucción que entrega algo usable a la primera.</p>
+      <details class="acc"><summary>La fórmula y dos ejemplos de antes y después</summary><div class="in">
+        <p>La fórmula de la jornada: <b>Rol</b> (actúa como…), <b>Tarea</b> (qué necesitas), <b>Contexto</b> (para quién y para qué), <b>Formato</b> (tabla, correo, una página) y <b>Restricciones</b> (qué no hacer, extensión, tono). Las respuestas de estos ejemplos son ilustrativas.</p>
+        <div class="ba">
+          <div class="bad-side"><h4>Antes</h4><pre>Resume este documento.</pre><p class="out"><b>Lo que suele responder</b>Tres párrafos generales que repiten el documento, sin fechas ni montos, y que no dicen qué hay que hacer.</p></div>
+          <div class="good-side"><h4>Después</h4><pre>Actúa como analista de la División de Presupuesto. Resume el informe adjunto para el Jefe de División, que lo leerá en el celular: máximo 5 viñetas con avance físico y financiero, fechas de término y garantías por vencer, y al final una línea con la decisión que se necesita. No agregues datos que no estén en el documento.</pre><p class="out"><b>Lo que suele responder</b>Cinco viñetas con cifras y fechas concretas, y una línea final: «Decidir si se aprueba la ampliación de plazo solicitada por el contratista».</p></div>
+        </div>
+        <p class="why"><b>Por qué funciona:</b> dice para quién es (y cómo lo leerá), qué datos importan, el formato exacto y lo que no debe hacer.</p>
+        <div class="ba">
+          <div class="bad-side"><h4>Antes</h4><pre>Escribe un correo al municipio por el atraso.</pre><p class="out"><b>Lo que suele responder</b>Un correo genérico, a veces con un tono demasiado duro o demasiado amable, y con datos inventados.</p></div>
+          <div class="good-side"><h4>Después</h4><pre>Redacta un correo formal y cordial al Director de SECPLAN de [comuna] sobre el atraso de 20 días en la rendición del proyecto [nombre]. Pide la rendición en un plazo de 10 días hábiles y ofrece una reunión si hay dificultades. Máximo 120 palabras. Deja entre corchetes lo que yo deba completar.</pre><p class="out"><b>Lo que suele responder</b>Un correo breve, con el tono adecuado, el plazo correcto y los datos faltantes marcados.</p></div>
+        </div>
+      </div></details>
+      <div class="practice"><span class="t">Practica</span><p>Toma una tarea real de tu semana y escribe su <a class="gt" href="glosario.html#prompt" data-term="Prompt" data-def="Instrucción que le damos a la IA: la tarea, el contexto, los documentos y el formato esperado.">prompt</a> con la fórmula. Pruébalo y ajústalo una vez con una instrucción puntual («más breve», «en tabla»).</p></div>
+      <div class="mfoot"><a href="areas.html">Profundiza: prompts de tu división →</a><label class="chk js-only"><input type="checkbox" data-mod="b2"> Lo logré</label></div>
+    </li>
+
+    <li class="mod" id="b3">
+      <h3>Trabajar con un documento</h3>
+      <p class="obj">Subir un archivo a Copilot y obtener respuestas basadas solo en él, con la página o el numeral de cada dato.</p>
+      <details class="acc"><summary>Cómo hacerlo</summary><div class="in">
+        <ol>
+          <li>En <a class="gt" href="glosario.html#copilot-chat" data-term="Copilot Chat" data-def="Asistente de IA de Microsoft. Con la cuenta institucional tiene protección de datos empresariales.">Copilot Chat</a>, adjunta el archivo con el clip (Word, PDF o Excel).</li>
+          <li>Pide que responda solo con el documento y que cite la página o el numeral.</li>
+          <li>Pide que marque con [NO ENCONTRADO] lo que no esté.</li>
+          <li>Abre dos o tres de las citas y compruébalas.</li>
+        </ol>
+        <div class="prompt"><div class="lbl"><span>Prompt para trabajar con un documento</span></div><pre>Usando solo el documento adjunto, responde: [tu pregunta]. Indica la página o el numeral de donde sale cada dato. Si algo no está en el documento, escribe [NO ENCONTRADO] en vez de suponerlo.</pre></div>
+      </div></details>
+      <div class="practice"><span class="t">Practica</span><p>Descarga el <a href="Kit_participantes/K1_Memorandum_Unidad_de_Control.docx" download>memorándum ficticio K1</a>, súbelo y pregunta qué observaciones tiene la rendición y qué plazos establece. Verifica las citas.</p></div>
+      <div class="mfoot"><a href="material.html">Profundiza: todos los documentos del curso →</a><label class="chk js-only"><input type="checkbox" data-mod="b3"> Lo logré</label></div>
+    </li>
+
+    <li class="mod" id="b4">
+      <h3>Detectar un error</h3>
+      <p class="obj">Encontrar los errores que la IA comete con más frecuencia: cifras, fechas, plazos y datos que nadie dijo.</p>
+      <div class="src"><b>Documento original (ficticio)</b>Proyecto FRIL «Mejoramiento Sede Social Villa Los Aromos». Monto aprobado: $48.500.000. Plazo de ejecución: 120 días corridos desde el acta de entrega de terreno, firmada el 2 de septiembre de 2026. Contratista: Constructora Ejemplo Ltda. Avance al 31 de octubre de 2026: físico 52 %, financiero 38 %. La garantía de fiel cumplimiento vence el 15 de enero de 2027.</div>
+      <div class="src"><b>Resumen que entregó la IA</b>El proyecto «Mejoramiento Sede Social Villa Los Aromos», aprobado por el Consejo Regional en su sesión ordinaria N° 12, tiene un monto de $45.800.000 y un plazo de 120 días hábiles. A fines de octubre registra un avance físico de 38 % y financiero de 52 %. La garantía vence el 15 de enero de 2027.</div>
+      <div class="practice"><span class="t">Practica</span><p>Compara ambos textos y encuentra los cuatro errores antes de abrir la respuesta.</p></div>
+      <details class="acc"><summary>Ver los cuatro errores</summary><div class="in">
+        <ol>
+          <li><b>Monto:</b> $45.800.000 en vez de $48.500.000. Dígitos invertidos: el error más difícil de ver.</li>
+          <li><b>Plazo:</b> «días hábiles» en vez de «días corridos». Cambia la fecha de término en más de un mes.</li>
+          <li><b>Avances invertidos:</b> el físico es 52 % y el financiero 38 %, no al revés.</li>
+          <li><b>Dato inventado:</b> la «sesión ordinaria N° 12» no aparece en el documento.</li>
+        </ol>
+        <p>Lo único correcto es la fecha de la garantía. Por eso se revisa contra la fuente: un resumen puede verse impecable y tener cuatro errores.</p>
+      </div></details>
+      <div class="mfoot"><a href="tips.html#verificar">Profundiza: cómo verificar →</a><label class="chk js-only"><input type="checkbox" data-mod="b4"> Lo logré</label></div>
+    </li>
+
+    <li class="mod" id="b5">
+      <h3>¿Puedo usar IA para esto?</h3>
+      <p class="obj">Decidir en segundos si una información se puede ingresar, con el <a class="gt" href="glosario.html#semaforo-de-datos" data-term="Semáforo de datos" data-def="Regla de la capacitación para decidir qué información ingresar a una herramienta de IA: rojo no se ingresa (RUT, salud, datos de menores, claves, información reservada), amarillo se anonimiza antes y verde se puede usar. Ante la duda, se consulta.">semáforo de datos</a> de la jornada.</p>
+      <details class="acc" open><summary>Tres preguntas, en orden</summary><div class="in">
+        <ol class="steps">
+          <li><b>¿Estoy usando la cuenta institucional?</b><span>Si no, solo información pública. Con información del servicio, siempre Copilot con tu cuenta del Gobierno Regional, salvo autorización expresa.</span></li>
+          <li><b>¿Tiene datos personales o sensibles?</b><span>RUT, nombres asociados a situaciones, domicilios, salud, situación socioeconómica, datos de menores. Si los tiene, quítalos o usa datos agregados. Si no se pueden quitar, no se ingresa.</span></li>
+          <li><b>¿Es reservada, interna aún no publicada o son claves?</b><span>Claves y contraseñas, nunca. Información reservada o aún no publicada, solo con autorización de tu jefatura.</span></li>
+        </ol>
+      </div></details>
+      <details class="acc"><summary>Diez casos resueltos</summary><div class="in">
+        <div class="tbl" tabindex="0" role="region" aria-label="Tabla (desplázala hacia el lado si no se ve completa)"><table>
+          <thead><tr><th>Caso</th><th>Semáforo</th><th>Por qué</th></tr></thead>
+          <tbody>
+            <tr><td>Resumir una ley publicada en el Diario Oficial</td><td><span class="sem-dot g"></span>Verde</td><td>Información pública.</td></tr>
+            <tr><td>Redactar un comunicado de un proyecto ya aprobado públicamente</td><td><span class="sem-dot g"></span>Verde</td><td>Información pública; se revisa antes de publicar.</td></tr>
+            <tr><td>Mejorar la redacción de un oficio sin <a class="gt" href="glosario.html#datos-personales-y-sensibles" data-term="Datos personales y sensibles" data-def="Información de personas identificables. Los sensibles (salud, por ejemplo) tienen más protección legal (Ley 19.628 y Ley 21.719).">datos personales</a></td><td><span class="sem-dot g"></span>Verde</td><td>Sin datos sensibles, en la cuenta institucional.</td></tr>
+            <tr><td>Ordenar respuestas de una consulta ciudadana sin nombres</td><td><span class="sem-dot y"></span>Amarillo</td><td>Revisa antes que ninguna respuesta permita identificar a alguien.</td></tr>
+            <tr><td>Borrador de respuesta a una solicitud de transparencia</td><td><span class="sem-dot y"></span>Amarillo</td><td>Quita los datos del solicitante.</td></tr>
+            <tr><td>Planilla de postulaciones con RUT y domicilios</td><td><span class="sem-dot y"></span>Amarillo</td><td>Solo después de eliminar RUT, nombres y domicilios, o usando totales por comuna.</td></tr>
+            <tr><td>Bases de licitación antes de su publicación</td><td><span class="sem-dot y"></span>Amarillo</td><td>Solo en Copilot institucional y con autorización de la jefatura; nunca en herramientas externas.</td></tr>
+            <tr><td>Resumir el currículum de un postulante</td><td><span class="sem-dot r"></span>Rojo</td><td>Datos personales en un proceso que afecta derechos.</td></tr>
+            <tr><td>Analizar un informe médico de un funcionario</td><td><span class="sem-dot r"></span>Rojo</td><td>Dato sensible de salud.</td></tr>
+            <tr><td>Pegar claves o contraseñas de un sistema</td><td><span class="sem-dot r"></span>Rojo</td><td>Nunca, en ninguna herramienta.</td></tr>
+          </tbody>
+        </table></div>
+        <p class="updated">Resumen de lo visto en el módulo de Cristian Pavez. Ante la duda, consulta a tu jefatura o a la unidad jurídica antes de ingresar la información.</p>
+      </div></details>
+      <div class="practice"><span class="t">Practica</span><p>Piensa en tres documentos que usaste esta semana y clasifícalos con las tres preguntas.</p></div>
+      <div class="mfoot"><a href="glosario.html#semaforo-de-datos">Profundiza: semáforo de datos →</a><label class="chk js-only"><input type="checkbox" data-mod="b5"> Lo logré</label></div>
+    </li>
+
+    <li class="mod" id="b6">
+      <h3>Rendir la cuota de Copilot</h3>
+      <p class="obj">Trabajar dentro del límite de uso de la cuenta institucional sin licencia, y tener un plan B si el servicio falla.</p>
+      <details class="acc"><summary>Siete hábitos</summary><div class="in">
+        <ul>
+          <li><b>Prepara el prompt antes</b> en un documento y pégalo completo: menos idas y vueltas.</li>
+          <li><b>Corrige con una instrucción puntual</b> («acorta el segundo párrafo») en vez de regenerar todo.</li>
+          <li><b>Adjunta solo lo necesario:</b> las páginas que importan, no el expediente completo.</li>
+          <li><b>Pide formatos breves:</b> tabla o viñetas antes que texto largo.</li>
+          <li><b>Un chat por tema:</b> las conversaciones largas consumen más y rinden peor.</li>
+          <li><b>Si aparece un aviso de límite,</b> espera o avanza en otra tarea; Microsoft no publica los umbrales exactos.</li>
+          <li><b>Plan B para caídas:</b> guarda tus prompts y documentos en tu equipo para retomarlos, y sigue con el trabajo manual mientras tanto. Lo ocurrido en la jornada demuestra que pasa.</li>
+        </ul>
+      </div></details>
+      <div class="practice"><span class="t">Practica</span><p>Crea un documento «Mis prompts» y guarda ahí los tres que más usarás. Es el logro de este nivel.</p></div>
+      <div class="mfoot"><a href="tips.html#basicos">Profundiza: tips para empezar →</a><label class="chk js-only"><input type="checkbox" data-mod="b6"> Lo logré</label></div>
+    </li>
+  </ol>
+</section>
+
+<!-- ===================== INTERMEDIO ===================== -->
+<section class="route" id="intermedio" data-route="intermedio">
+  <div class="rhead"><h2>Nivel intermedio · Sacarle provecho</h2><div class="prog js-only" aria-live="polite"><div class="bar"><i></i></div><span>0 de 6</span></div></div>
+  <p class="sub">Para quien ya usa Copilot. Al terminar tendrás tu biblioteca de prompts, técnicas para tareas complejas y tu primer agente. Unas tres horas en total.</p>
+  <ol class="mods">
+    <li class="mod" id="i1">
+      <h3>Tu biblioteca por división</h3>
+      <p class="obj">Encontrar los prompts de tu área, adaptarlos y guardarlos para reutilizarlos cada semana.</p>
+      <div class="practice"><span class="t">Practica</span><p>Elige tu división en <a href="areas.html">Por área</a>, adapta cinco prompts a tu trabajo y guárdalos en tu documento «Mis prompts» con lo que hay que revisar en cada uno.</p></div>
+      <div class="mfoot"><a href="areas.html">Ir a los prompts por división →</a><label class="chk js-only"><input type="checkbox" data-mod="i1"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="i2">
+      <h3>Técnicas para tareas complejas</h3>
+      <p class="obj">Dividir el trabajo en pasos, dar ejemplos y pedir que la IA se evalúe antes de entregar.</p>
+      <details class="acc"><summary>Antes y después: analizar una planilla</summary><div class="in">
+        <div class="ba">
+          <div class="bad-side"><h4>Antes</h4><pre>Analiza esta planilla.</pre><p class="out"><b>Lo que suele responder</b>Observaciones generales, a veces con totales mal sumados y sin criterio claro.</p></div>
+          <div class="good-side"><h4>Después (en tres pasos)</h4><pre>Paso 1: Extrae de la planilla adjunta una tabla con proyecto, comuna, avance físico, avance financiero y fecha de término. No calcules nada todavía.
+Paso 2 (después de revisar la tabla): marca los proyectos con más de 15 puntos de diferencia entre avance físico y financiero, o que terminan en menos de 30 días desde [fecha].
+Paso 3: redacta media página para la jefatura con esos casos y una acción sugerida para cada uno.</pre><p class="out"><b>Lo que suele responder</b>Una tabla que puedes revisar, alertas con criterio explícito y un texto final basado en datos ya verificados.</p></div>
+        </div>
+        <p class="why"><b>Por qué funciona:</b> separar extraer, analizar y redactar te permite revisar en cada paso, y los criterios quedan escritos.</p>
+      </div></details>
+      <div class="practice"><span class="t">Practica</span><p>Con la <a href="Kit_participantes/K10_Cartera_Proyectos.xlsx" download>planilla ficticia K10</a>, aplica los tres pasos y recalcula dos brechas en Excel.</p></div>
+      <div class="mfoot"><a href="tips.html#mejores">Profundiza: técnicas →</a><label class="chk js-only"><input type="checkbox" data-mod="i2"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="i3">
+      <h3>Cruzar documentos</h3>
+      <p class="obj">Comparar dos documentos (un convenio y un informe, dos versiones de unas bases) y obtener las diferencias en una tabla.</p>
+      <div class="prompt"><div class="lbl"><span>Prompt para cruzar documentos</span></div><pre>Compara el convenio y el informe de avance adjuntos. Entrega una tabla con: obligación o hito del convenio (con cláusula), lo que dice el informe (con página), si se cumple (sí, no, parcial o sin información) y una observación. Usa solo los documentos.</pre></div>
+      <div class="practice"><span class="t">Practica</span><p>Usa los documentos ficticios <a href="Kit_participantes/K9_Convenio_Transferencia_FRIL.pdf" download>K9 (convenio)</a> y <a href="Kit_participantes/K8_Informe_Avance_FRIL.pdf" download>K8 (informe de avance)</a>.</p></div>
+      <div class="mfoot"><a href="areas.html#con">Profundiza: prompts de Control →</a><label class="chk js-only"><input type="checkbox" data-mod="i3"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="i4">
+      <h3>Tu primer agente</h3>
+      <p class="obj">Crear en Copilot Chat un asistente con instrucciones propias, probarlo y compartirlo.</p>
+      <details class="acc"><summary>Antes y después: instrucciones de un agente</summary><div class="in">
+        <div class="ba">
+          <div class="bad-side"><h4>Antes</h4><pre>Eres un asistente de compras. Ayuda a los funcionarios.</pre><p class="out"><b>Lo que suele pasar</b>Responde de todo, inventa plazos y no sabe cuándo derivar.</p></div>
+          <div class="good-side"><h4>Después</h4><pre>Eres el «Asistente de procedimientos de compras» del Gobierno Regional. Respondes solo con el manual que aparece abajo, citando el numeral. Si algo no está en el manual, di «No encuentro esa información en el manual» y sugiere escribir a la Unidad de Compras. No inventes montos, plazos ni nombres.</pre><p class="out"><b>Lo que suele pasar</b>Respuestas acotadas, citadas, y un «no sé» honesto cuando corresponde.</p></div>
+        </div>
+      </div></details>
+      <div class="practice"><span class="t">Practica</span><p>Sigue la guía de <a href="agentes.html">Agentes</a> con la plantilla de compras y hazle las tres pruebas.</p></div>
+      <div class="mfoot"><a href="agentes.html#plantillas">Ir a las plantillas →</a><label class="chk js-only"><input type="checkbox" data-mod="i4"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="i5">
+      <h3>Contenido audiovisual (si tu trabajo lo requiere)</h3>
+      <p class="obj">Usar <a class="gt" href="glosario.html#ia-generativa" data-term="IA generativa" data-def="IA que crea contenido nuevo (texto, imágenes, audio o código) a partir de una instrucción.">IA generativa</a> para imagen, video y voz con las reglas de uso institucional.</p>
+      <div class="practice"><span class="t">Practica</span><p>Escribe el guion de una cápsula de 45 segundos de un proyecto ficticio y el prompt para una ilustración de apoyo sin personas.</p></div>
+      <div class="mfoot"><a href="comunicaciones.html">Ir a Comunicaciones →</a><label class="chk js-only"><input type="checkbox" data-mod="i5"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="i6">
+      <h3>Practicar en equipo</h3>
+      <p class="obj">Organizar una sesión de 30 minutos con tu unidad para compartir lo que funciona.</p>
+      <div class="practice"><span class="t">Practica</span><p>Propón a tu equipo el «Duelo de prompts» o la «Biblioteca de prompts de la unidad».</p></div>
+      <div class="mfoot"><a href="grupos.html">Ir a las dinámicas →</a><label class="chk js-only"><input type="checkbox" data-mod="i6"> Lo logré</label></div>
+    </li>
+  </ol>
+</section>
+
+<!-- ===================== AVANZADO ===================== -->
+<section class="route" id="avanzado" data-route="avanzado">
+  <div class="rhead"><h2>Nivel avanzado · Agentes y herramientas</h2><div class="prog js-only" aria-live="polite"><div class="bar"><i></i></div><span>0 de 6</span></div></div>
+  <p class="sub">Para quien quiere ir más allá de Copilot. Al terminar podrás crear Skills, entender conectores y <a class="gt" href="glosario.html#harness" data-term="Harness (arnés)" data-def="Programa que rodea al modelo y lo convierte en agente: le da herramientas, organiza el ciclo de planificar, actuar y revisar, maneja la memoria y pide permiso antes de acciones delicadas. Con el mismo modelo, un mejor harness hace un agente más capaz y seguro.">harness</a>, evaluar herramientas y proponer un agente para tu unidad. Varias de estas herramientas requieren autorización.</p>
+  <ol class="mods">
+    <li class="mod" id="a1">
+      <h3>Skills: el método empaquetado</h3>
+      <p class="obj">Escribir una Skill para una tarea repetida de tu unidad.</p>
+      <div class="practice"><span class="t">Practica</span><p>Descarga la Skill de oficios, ábrela y adáptala a tu unidad. Si no tienes otra herramienta, pega el SKILL.md en las instrucciones de un agente de Copilot.</p></div>
+      <div class="mfoot"><a href="skills.html#crear">Ir a Crear una Skill →</a><label class="chk js-only"><input type="checkbox" data-mod="a1"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="a2">
+      <h3>Conectores MCP</h3>
+      <p class="obj">Entender cómo un agente accede a otros sistemas y qué permisos darle.</p>
+      <div class="practice"><span class="t">Practica</span><p>Elige un sistema que uses (por ejemplo, una planilla compartida) y escribe qué podría leer un agente, qué no debería tocar y quién revisaría sus acciones.</p></div>
+      <div class="mfoot"><a href="plataformas.html#mcp">Ir a Conectores MCP →</a><label class="chk js-only"><input type="checkbox" data-mod="a2"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="a3">
+      <h3>Claude, ChatGPT, Gemini y la aplicación de escritorio</h3>
+      <p class="obj">Conocer cómo se llaman y dónde están las mismas piezas en cada plataforma.</p>
+      <div class="practice"><span class="t">Practica</span><p>Con información pública, prueba la misma Skill en dos plataformas y compara los resultados.</p></div>
+      <div class="mfoot"><a href="plataformas.html">Ir a Claude, ChatGPT y Gemini →</a><label class="chk js-only"><input type="checkbox" data-mod="a3"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="a4">
+      <h3>El harness: cómo evaluar una herramienta</h3>
+      <p class="obj">Preguntar lo correcto antes de adoptar un agente: herramientas, permisos, registros y datos.</p>
+      <div class="prompt"><div class="lbl"><span>Preguntas para evaluar una herramienta de IA</span></div><pre>1. ¿Dónde se procesan los datos y por cuánto tiempo se guardan?
+2. ¿Se usan nuestros datos para entrenar modelos? ¿Se puede desactivar?
+3. ¿Qué herramientas y accesos tiene el agente (archivos, correo, web, sistemas)?
+4. ¿Pide confirmación antes de enviar, modificar o borrar algo?
+5. ¿Queda registro de lo que hizo y quién lo pidió?
+6. ¿Quién administra los permisos y cómo se revocan?</pre></div>
+      <div class="mfoot"><a href="plataformas.html#harness">Ir a Qué es el harness →</a><label class="chk js-only"><input type="checkbox" data-mod="a4"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="a5">
+      <h3>IA local</h3>
+      <p class="obj">Saber cuándo conviene un modelo en el propio computador y qué se necesita.</p>
+      <div class="practice"><span class="t">Practica</span><p>Si tu equipo lo permite y tienes autorización, prueba LM Studio con un modelo pequeño y compara con Copilot usando un documento ficticio del curso.</p></div>
+      <div class="mfoot"><a href="ia-local.html">Ir a IA local →</a><label class="chk js-only"><input type="checkbox" data-mod="a5"> Lo logré</label></div>
+    </li>
+    <li class="mod" id="a6">
+      <h3>Proyecto final: un agente para tu unidad</h3>
+      <p class="obj">Diseñar un agente seguro, con Skill y conectores, y presentarlo a tu jefatura y al área TI.</p>
+      <div class="prompt"><div class="lbl"><span>Prompt para preparar la propuesta</span></div><pre>Ayúdame a escribir una propuesta de una página para un agente de IA en [unidad]. Hazme preguntas, de a una, y después redacta: problema que resuelve, quiénes lo usarían, qué haría paso a paso, qué Skill y qué conectores necesitaría (solo lectura cuando sea posible), qué datos usaría según el semáforo, en qué punto revisa una persona, riesgos (incluida la inyección de instrucciones) y cómo mediríamos si funciona.</pre></div>
+      <div class="mfoot"><a href="tips.html#avanzados">Profundiza: seguridad de agentes →</a><label class="chk js-only"><input type="checkbox" data-mod="a6"> Lo logré</label></div>
+    </li>
+  </ol>
+</section>
+<p class="updated">Las respuestas de los ejemplos de antes y después son ilustrativas. Tu avance se guarda solo en este navegador. Revisado el 16 de noviembre de 2026.</p>
+</main>
+<!--@footer--><div class="wrap"><div class="divider" aria-hidden="true"></div></div><footer class="site-foot"><div class="wrap"><p class="m0">Capacitación en IA · Gobierno Regional de O'Higgins · Noviembre de 2026<br>Relatores: Patricio Mateluna y Cristian Pavez</p><ul><li><a href="material.html">Documentos del curso</a></li><li><a href="Presentacion_Relator.html">Presentación de la jornada (para computador)</a></li></ul></div></footer><a class="totop" href="#top" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a><!--/@footer-->
+<script src="assets/site.js" defer></script>
+</body>
+</html>

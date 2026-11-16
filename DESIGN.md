@@ -32,3 +32,4 @@ El modo sigue la preferencia del sistema, y el botón sol/luna del encabezado la
 - Las definiciones del glosario se despliegan al tocar un término (en el celular, como panel inferior), con «Ver en el glosario».
 - La búsqueda compara desde el inicio de cada palabra, acepta plurales simples y muestra primero las coincidencias en el título.
 - El cero tachado de Atkinson Hyperlegible se mantiene a propósito: distingue el 0 de la O.
+- Niveles: la portada ofrece «Inicia tu curso» (básico, intermedio, avanzado). El nivel se guarda como `nivel` en el navegador y se aplica en `html[data-nivel]`. Las secciones con `data-min` se ocultan a niveles menores (con «Mostrar todo»), y las páginas con `data-nivel-pagina` muestran un aviso si están por sobre el nivel elegido. Sin JavaScript se ve todo.

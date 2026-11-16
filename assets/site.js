@@ -128,7 +128,7 @@
     if (!target) {
       keys.forEach(k => { if (params.get(k) !== null) state[k] = params.get(k); });
       if (input && params.get('q')) input.value = params.get('q');
-      if (f.dataset.default && !params.toString()) { const [k, v] = f.dataset.default.split('='); if (state[k] === undefined) state[k] = v; }
+      if (f.dataset.default && !params.toString() && !['intermedio', 'avanzado'].includes(root.getAttribute('data-nivel'))) { const [k, v] = f.dataset.default.split('='); if (state[k] === undefined) state[k] = v; }
     }
 
     const qs = (withQ) => {
@@ -215,6 +215,73 @@
     if (target) reveal();
     addEventListener('hashchange', reveal);
   });
+
+
+  // ---------- Curso por niveles ----------
+  const LV = { basico: 'Básico', intermedio: 'Intermedio', avanzado: 'Avanzado' };
+  const RANK = { basico: 1, intermedio: 2, avanzado: 3 };
+  const urlLv = new URLSearchParams(location.search).get('nivel');
+  if (LV[urlLv] && document.querySelector('[data-route]')) store.set('nivel', urlLv);
+  const level = () => root.getAttribute('data-nivel');
+  const setLevel = v => { root.setAttribute('data-nivel', v); store.set('nivel', v); };
+  let prog = {}; try { prog = JSON.parse(store.get('progreso') || '{}') || {}; } catch (_) { prog = {}; }
+  const saveProg = () => store.set('progreso', JSON.stringify(prog));
+  const routeDone = r => $$(`[data-route="${r}"] [data-mod]`).filter(c => prog[c.dataset.mod]).length;
+
+  // Página del curso: mostrar la ruta elegida y el avance
+  const routes = $$('[data-route]');
+  if (routes.length) {
+    const show = (v, scroll) => {
+      if (!LV[v]) return;
+      setLevel(v);
+      routes.forEach(r => r.classList.toggle('show', r.dataset.route === v));
+      $$('.seg [data-lvl]').forEach(a => a.setAttribute('aria-pressed', String(a.dataset.lvl === v)));
+      try { history.replaceState(null, '', '?nivel=' + v + location.hash); } catch (_) {}
+      if (scroll) document.getElementById(v).scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
+    };
+    $$('.seg [data-lvl]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); show(a.dataset.lvl, false); say('Nivel ' + LV[a.dataset.lvl]); }));
+    const paint = () => routes.forEach(r => {
+      const boxes = $$('[data-mod]', r); const d = routeDone(r.dataset.route);
+      const pr = r.querySelector('.prog'); if (pr) { pr.querySelector('i').style.width = (100 * d / boxes.length) + '%'; pr.querySelector('span').textContent = `${d} de ${boxes.length}`; }
+      boxes.forEach(c => { c.checked = !!prog[c.dataset.mod]; c.closest('.mod').classList.toggle('done', c.checked); });
+    });
+    $$('[data-mod]').forEach(c => c.addEventListener('change', () => {
+      prog[c.dataset.mod] = c.checked; saveProg(); paint();
+      const r = c.closest('[data-route]'); const n = $$('[data-mod]', r).length;
+      say(c.checked ? `Módulo completado. ${routeDone(r.dataset.route)} de ${n}.` : 'Módulo marcado como pendiente');
+    }));
+    paint();
+    if (level()) show(level(), location.hash === '#ruta');
+  }
+
+  // Portada: retomar el curso
+  const resume = document.querySelector('[data-resume]');
+  if (resume && LV[level()]) {
+    const total = 6, d = Object.keys(prog).filter(k => prog[k] && k[0] === level()[0]).length;
+    resume.innerHTML = `<span>Tu nivel: <b>${LV[level()]}</b> · ${d} de ${total} módulos</span><a class="btn" href="curso.html?nivel=${level()}#ruta">Continuar mi curso</a>`;
+    resume.classList.remove('hide');
+    $$('.lvl').forEach(a => a.setAttribute('aria-current', String(a.dataset.lvl === level())));
+  }
+
+  // Otras páginas: adaptar al nivel elegido
+  const main = document.querySelector('main');
+  if (main && LV[level()] && !routes.length && !resume) {
+    const hidden = $$('[data-min]', main).filter(el => RANK[el.dataset.min] > RANK[level()]);
+    const pageLv = main.dataset.nivelPagina;
+    const above = pageLv && RANK[pageLv] > RANK[level()];
+    if (hidden.length || above) {
+      const note = document.createElement('div'); note.className = 'lvlnote'; note.setAttribute('role', 'note');
+      const msg = above
+        ? `Esta página es de nivel <b>${LV[pageLv]}</b> y tu curso es <b>${LV[level()]}</b>: puedes leerla igual o volver a tu ruta.`
+        : `Estás en el nivel <b>${LV[level()]}</b>: ocultamos ${hidden.length === 1 ? 'una sección' : hidden.length + ' secciones'} de nivel más alto.`;
+      note.innerHTML = `<span>${msg}</span>` + (hidden.length ? '<button type="button" data-all>Mostrar todo</button>' : '') + `<a href="curso.html?nivel=${level()}#ruta">Ir a mi ruta</a><a href="curso.html#elegir">Cambiar nivel</a>`;
+      const head = main.querySelector('.page-head');
+      (head || main.firstElementChild).after(note);
+      const all = note.querySelector('[data-all]');
+      if (all) all.addEventListener('click', () => { root.setAttribute('data-vertodo', ''); all.remove(); note.querySelector('span').textContent = 'Mostrando todo el contenido de esta página.'; });
+      $$('.toc-nav a', main).forEach(a => { const t = document.querySelector(a.getAttribute('href')); if (t && hidden.includes(t)) a.addEventListener('click', () => root.setAttribute('data-vertodo', '')); });
+    }
+  }
 
   // ---------- Definición de términos del glosario ----------
   let pop = null, popFrom = null;
