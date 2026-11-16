@@ -34,6 +34,8 @@ ICON_MENU = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 ICON_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
 ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>'
 ICON_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>'
+ICON_SUN = '<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>'
+ICON_MOON = '<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/></svg>'
 ICON_LINK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>'
 
 
@@ -66,7 +68,8 @@ def header(page):
             '<header class="site-head"><div class="wrap">'
             f'<a class="brand" href="index.html">{MARK}<span><b>IA en el GORE</b><small>Gobierno Regional de O\'Higgins</small></span></a>'
             + nav_desktop(cur) +
-            f'<details class="menu"><summary>{ICON_MENU}Secciones</summary><div class="panel">{nav_mobile(cur)}</div></details>'
+            f'<button type="button" class="theme js-only" aria-label="Cambiar a modo oscuro">{ICON_SUN}{ICON_MOON}</button>'
+            f'<details class="menu"><summary>{ICON_MENU}<span class="ml">Secciones</span></summary><div class="panel">{nav_mobile(cur)}</div></details>'
             '</div></header>')
 
 
@@ -88,7 +91,7 @@ EMPTY_ART = '<div class="divider sm" aria-hidden="true"></div>'
 
 def areas():
     d = json.loads((ROOT / 'data/prompts.json').read_text(encoding='utf-8'))
-    A, P = d['areas'], d['prompts']
+    A, P = d['areas'], d['prompts'] + comms_prompts()
     opts = ''.join(f'<option value="{k}">{E(v)}</option>' for k, v in A.items())
     jumps = ''.join(f'<li><a href="#{k}">{E(v)}</a></li>' for k, v in A.items())
     out = [
@@ -100,6 +103,7 @@ def areas():
         '<button type="button" class="linkbtn share hide">Copiar enlace de esta división</button>',
         '<button type="button" class="linkbtn reset hide">Quitar filtros</button></div>',
         '</div>',
+        '<div class="fstick js-only" aria-hidden="true"><span><b data-fs-div></b> · <span data-fs-n></span></span><button type="button" class="linkbtn" data-fs-change>Cambiar</button></div>',
         f'<nav class="jumps nojs-only" aria-label="Ir a una división"><ul>{jumps}</ul></nav>',
         '<p class="sub mt">Cambia lo que está <mark>[destacado]</mark> por tus datos. Si el prompt dice «adjunto», sube el archivo al chat; si tiene datos personales, anonimízalo antes o no lo subas.</p>',
         '<div id="list">'
@@ -111,16 +115,15 @@ def areas():
         out.append(f'<section data-group id="{k}"><div class="ghead"><h2>{E(v)}</h2>')
         if k in extra:
             out.append(f'<a class="more-link" href="{extra[k][0]}">{E(extra[k][1])} →</a>')
-        out.append('</div><div class="grid g2">')
+        out.append('</div><div class="grid g2 pcs">')
         for i, p in enumerate(items, 1):
             cid = f'{k}-{i}'
             rev = (f'<p class="check">{ICON_CHECK}<span><b>Revisa:</b> {E(p["revisa"])}</span></p>' if p.get('revisa') else '')
             link = (f'<a class="more-link" href="{p["enlace"][0]}">{E(p["enlace"][1])} →</a>' if p.get('enlace') else '')
             out.append(f'<article class="card pc" id="{cid}" data-item data-area="{k}"><div class="head"><h3>{E(p["titulo"])}</h3></div>'
                        f'<p class="sit">{E(p["situacion"])}</p>'
-                       f'<details><summary>Ver prompt</summary><div class="prompt"><pre id="p-{cid}">{mark_brackets(p["prompt"])}</pre></div>'
-                       f'<a class="plink" href="#{cid}">{ICON_LINK}Enlace a este prompt</a></details>'
-                       f'{rev}{link}</article>')
+                       f'<details><summary><span class="o">Ver prompt</span><span class="c">Ocultar prompt</span></summary><div class="prompt"><pre id="p-{cid}">{mark_brackets(p["prompt"])}</pre></div></details>'
+                       f'{rev}<div class="foot"><a class="plink" href="#{cid}" data-share="{cid}">{ICON_LINK}Enlace a este prompt</a>{link}</div></article>')
         out.append('</div></section>')
     out.append('</div>')
     out.append('<div class="empty hide" id="empty" role="status">' + EMPTY_ART +
@@ -130,6 +133,21 @@ def areas():
                '<button type="button" class="btn ghost" data-reset>Ver todos los prompts</button></div></div>')
     out.append(f'<p class="updated">Revisado el {REVISADO}.</p>')
     return '\n'.join(out), len(P)
+
+
+def comms_prompts():
+    # Los prompts de la página de Comunicaciones también se buscan desde Por área.
+    s = (ROOT / 'comunicaciones.html').read_text(encoding='utf-8')
+    out = []
+    for m in re.finditer(r'<div class="prompt"><div class="lbl"><span>(.*?)</span></div><pre>(.*?)</pre></div>', s, re.S):
+        sec = re.findall(r'<section id="([^"]+)">\s*<h2>(.*?)</h2>', s[:m.start()])
+        sid, sname = sec[-1] if sec else ('', 'Comunicaciones')
+        label = html.unescape(re.sub('<[^>]+>', '', m.group(1)))
+        text = html.unescape(re.sub('<[^>]+>', '', m.group(2)))
+        out.append({'area': 'com', 'titulo': label, 'situacion': f'{html.unescape(sname)}: prompt de la página de Comunicaciones.',
+                    'prompt': text, 'revisa': 'Que no aparezcan personas reales y que la herramienta permita uso institucional.',
+                    'enlace': [f'comunicaciones.html#{sid}', 'Ver en contexto en Comunicaciones']})
+    return out
 
 
 def slug(t):
@@ -148,7 +166,7 @@ def glosario():
             letters.append((L, []))
         letters[-1][1].append(g)
     nb = sum(1 for g in G if g['nivel'] == 'b')
-    out = ['<div class="filters" data-target="#gl-list" data-empty="#gl-empty" data-noun="conceptos">',
+    out = ['<div class="filters" data-target="#gl-list" data-empty="#gl-empty" data-noun="conceptos" data-default="nivel=b">',
            '<div class="frow js-only"><label class="sr" for="gq">Buscar en el glosario</label><input id="gq" class="search" type="search" placeholder="Busca un concepto: token, RAG, agente…" autocomplete="off">',
            '<div class="chips" role="group" aria-label="Nivel">',
            '<button type="button" class="chip" data-f="nivel:">Todos</button>',
@@ -161,13 +179,26 @@ def glosario():
         out.append(f'<section class="letter" data-group id="letra-{L}"><h2>{L}</h2><div class="glg">')
         for g in items:
             tag = '<div class="tags"><span class="tag adv">Avanzado</span></div>' if g['nivel'] == 'a' else ''
-            out.append(f'<article class="gi" id="{slug(g["termino"])}" data-item data-nivel="{g["nivel"]}">{tag}<h3>{E(g["termino"])}</h3><p>{E(g["definicion"])}</p></article>')
+            out.append(f'<article class="gi" id="{slug(g["termino"])}" data-item data-nivel="{g["nivel"]}">{tag}<h3>{E(g["termino"])}</h3><p>{crosslink(g["definicion"], slug(g["termino"]))}</p></article>')
         out.append('</div></section>')
     out.append('</div><div class="empty hide" id="gl-empty" role="status">' + EMPTY_ART +
                '<p>No encontramos <b data-q>ese concepto</b> en el glosario.</p>'
                '<p>Prueba con otra palabra o pregúntale a Copilot: «Explícame qué es [concepto] en palabras simples, con un ejemplo de un gobierno regional».</p>'
                '<div class="eact"><button type="button" class="btn ghost" data-reset>Ver todo el glosario</button></div></div>')
-    return '\n'.join(out), len(G), {slug(g['termino']): g['definicion'] for g in G}
+    return '\n'.join(out), len(G), {slug(g['termino']): (g['termino'], g['definicion']) for g in G}
+
+
+def crosslink(text, own):
+    # Enlaza hasta dos términos del glosario dentro de una definición (sin enlazarse a sí misma).
+    t, n = E(text), 0
+    for rx, anchor, _ in TERMS + GLOS_EXTRA:
+        if anchor == own or n >= 2:
+            continue
+        m = re.search(rx, t, flags=0 if anchor in ('rag', 'mcp', 'llm') else re.I)
+        if m and '<a' not in t[max(0, m.start() - 60):m.start()]:
+            t = t[:m.start()] + f'<a href="#{anchor}">{m.group(0)}</a>' + t[m.end():]
+            n += 1
+    return t
 
 
 def material():
@@ -204,6 +235,16 @@ TERMS = [  # (expresión, ancla del glosario, páginas donde no se enlaza)
     (r'\bmodelos? de razonamiento\b', 'modelo-de-razonamiento', ()),
     (r'\btexto a voz\b', 'texto-a-voz', ()),
     (r'\bmultimodal\b', 'multimodal', ()),
+    (r'\bsemáforo de datos\b', 'semaforo-de-datos', ()),
+]
+GLOS_EXTRA = [
+    (r'\bLLM\b', 'llm', ()),
+    (r'\bembeddings?\b', 'embedding', ()),
+    (r'\bredes neuronales\b', 'red-neuronal', ()),
+    (r'\bparámetros\b', 'parametros', ()),
+    (r'\bajuste fino\b', 'ajuste-fino', ()),
+    (r'\bpersona en el circuito\b', 'persona-en-el-circuito', ()),
+    (r'\bsemáforo de datos\b', 'semaforo-de-datos', ()),
 ]
 SKIP_TAGS = {'b', 'strong', 'a', 'h1', 'h2', 'h3', 'pre', 'code', 'button', 'summary', 'script', 'style', 'nav', 'label', 'option', 'select', 'q', 'mark', 'svg', 'textarea'}
 VOID = {'br', 'img', 'input', 'meta', 'link', 'hr', 'source', 'wbr', 'path', 'circle', 'rect'}
@@ -238,9 +279,8 @@ class Linker(HTMLParser):
             if not m:
                 continue
             self.done.add(anchor)
-            tip = E(self.defs[anchor])
             data = data[:m.start()] + f'\0{anchor}\1{m.group(0)}\2' + data[m.end():]
-        data = re.sub('\0(.*?)\1(.*?)\2', lambda mm: f'<a class="gt" href="glosario.html#{mm.group(1)}" title="{E(self.defs[mm.group(1)])}">{mm.group(2)}</a>', data)
+        data = re.sub('\0(.*?)\1(.*?)\2', lambda mm: f'<a class="gt" href="glosario.html#{mm.group(1)}" data-term="{E(self.defs[mm.group(1)][0])}" data-def="{E(self.defs[mm.group(1)][1])}">{mm.group(2)}</a>', data)
         self.out.append(data)
 
     def handle_entityref(self, name): self.out.append(f'&{name};')
@@ -251,7 +291,7 @@ class Linker(HTMLParser):
 def autolink(s, page, defs):
     for _, a, _ in TERMS:
         assert a in defs, f'término sin entrada en el glosario: {a}'
-    s = re.sub(r'<a class="gt" href="[^"]*" title="[^"]*">(.*?)</a>', r'\1', s)  # idempotente
+    s = re.sub(r'<a class="gt" href="[^"]*"(?: (?:title|data-term|data-def)="[^"]*")+>(.*?)</a>', r'\1', s)  # idempotente
     i = s.index('<main'); j = s.index('</main>')
     p = Linker(page, defs); p.feed(s[i:j]); p.close()
     return s[:i] + ''.join(p.out) + s[j:]

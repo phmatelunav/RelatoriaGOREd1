@@ -400,6 +400,11 @@
   "nivel": "a"
  },
  {
+  "termino": "Semáforo de datos",
+  "definicion": "Regla de la capacitación para decidir qué información ingresar a una herramienta de IA: rojo no se ingresa (RUT, salud, datos de menores, claves, información reservada), amarillo se anonimiza antes y verde se puede usar. Ante la duda, se consulta.",
+  "nivel": "b"
+ },
+ {
   "termino": "Servidor MCP",
   "definicion": "Programa que expone una herramienta o fuente de datos usando el protocolo MCP, para que cualquier asistente compatible pueda usarla.",
   "nivel": "a"

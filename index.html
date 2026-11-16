@@ -2,7 +2,7 @@
 <html lang="es" id="top">
 <head>
 <meta charset="utf-8">
-<script>document.documentElement.className+=' js'</script>
+<script>document.documentElement.className+=' js';try{var t=localStorage.getItem('tema');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IA en el GORE O'Higgins</title>
 <meta name="description" content="Ejemplos prácticos, prompts por división, guías de agentes y Skills, IA para comunicaciones y glosario para funcionarios del Gobierno Regional de O'Higgins.">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><ul><li><a href="areas.html">Por área</a></li><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li><li><a href="glosario.html">Glosario</a></li><li><details class="more"><summary>Más<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="drop"><li><a href="tips.html">Tips</a></li><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material del curso</a></li></ul></details></li></ul></nav><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Secciones</summary><div class="panel"><nav class="mnav" aria-label="Secciones del sitio"><div class="mgrp"><span class="mlbl">General</span><ul><li><a href="index.html" aria-current="page">Inicio</a></li></ul></div><div class="mgrp"><span class="mlbl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="mgrp"><span class="mlbl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="mgrp"><span class="mlbl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="mgrp"><span class="mlbl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
+<!--@header--><a class="skip" href="#contenido">Saltar al contenido</a><header class="site-head"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M4 23c4-5 7-7 10-4 3-6 7-9 10-6 2-2 4-2 6 0" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round"/><path d="M6 28h22" stroke="var(--accent-ink)" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="9" r="2.5" fill="var(--accent-ink)"/></svg><span><b>IA en el GORE</b><small>Gobierno Regional de O'Higgins</small></span></a><nav class="nav" aria-label="Secciones"><ul><li><a href="areas.html">Por área</a></li><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li><li><a href="glosario.html">Glosario</a></li><li><details class="more"><summary>Más<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="drop"><li><a href="tips.html">Tips</a></li><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material del curso</a></li></ul></details></li></ul></nav><button type="button" class="theme js-only" aria-label="Cambiar a modo oscuro"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/></svg></button><details class="menu"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="ml">Secciones</span></summary><div class="panel"><nav class="mnav" aria-label="Secciones del sitio"><div class="mgrp"><span class="mlbl">General</span><ul><li><a href="index.html" aria-current="page">Inicio</a></li></ul></div><div class="mgrp"><span class="mlbl">Usar</span><ul><li><a href="areas.html">Por área</a></li><li><a href="tips.html">Tips</a></li></ul></div><div class="mgrp"><span class="mlbl">Crear</span><ul><li><a href="agentes.html">Agentes</a></li><li><a href="skills.html">Skills</a></li><li><a href="comunicaciones.html">Comunicaciones</a></li></ul></div><div class="mgrp"><span class="mlbl">Practicar</span><ul><li><a href="grupos.html">En grupo</a></li><li><a href="material.html">Material</a></li></ul></div><div class="mgrp"><span class="mlbl">Consultar</span><ul><li><a href="glosario.html">Glosario</a></li></ul></div></nav></div></details></div></header><!--/@header-->
 <main id="contenido" class="wrap">
 
 <section class="hero">
@@ -29,7 +29,7 @@
 <div class="tasks">
   <a class="task" href="areas.html">
     <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.5 18.5 2 2"/></svg>
-    <div><h3>Encontrar un prompt para mi división</h3><p><!--@nprompts-->38<!--/@nprompts--> ejemplos listos para copiar, de Comunicaciones a Control, con lo que hay que revisar en cada uno.</p></div>
+    <div><h3>Encontrar un prompt para mi división</h3><p><!--@nprompts-->49<!--/@nprompts--> ejemplos listos para copiar, de Comunicaciones a Control, con lo que hay que revisar en cada uno.</p></div>
     <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
   <a class="task" href="agentes.html">
@@ -50,9 +50,8 @@
 </div>
 <ul class="also" aria-label="Más secciones">
   <li><a href="tips.html">Tips avanzados</a></li>
-  <li><a href="skills.html">Qué son las Skills</a></li>
   <li><a href="grupos.html">Dinámicas en equipo</a></li>
-  <li><a href="glosario.html">Glosario de <!--@nglos-->96<!--/@nglos--> conceptos</a></li>
+  <li><a href="glosario.html">Glosario de <!--@nglos-->97<!--/@nglos--> conceptos</a></li>
   <li><a href="material.html">Documentos del curso</a></li>
 </ul>
 
@@ -60,7 +59,7 @@
   <div class="sem" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></div>
   <div>
     <h2>Antes de pegar cualquier cosa</h2>
-    <p>Usa siempre tu cuenta institucional y aplica el semáforo de datos de la jornada: <b>rojo</b> no se ingresa (RUT, salud, datos de menores, claves, información reservada), <b>amarillo</b> se <a class="gt" href="glosario.html#anonimizacion" title="Eliminar o transformar los datos que permiten identificar a una persona. Quitar nombre y RUT no siempre basta.">anonimiza</a> antes y <b>verde</b> se puede usar. Y revisa todo resultado antes de firmarlo: la responsabilidad sigue siendo tuya.</p>
+    <p>Usa siempre tu cuenta institucional y aplica el <a class="gt" href="glosario.html#semaforo-de-datos" data-term="Semáforo de datos" data-def="Regla de la capacitación para decidir qué información ingresar a una herramienta de IA: rojo no se ingresa (RUT, salud, datos de menores, claves, información reservada), amarillo se anonimiza antes y verde se puede usar. Ante la duda, se consulta.">semáforo de datos</a> de la jornada: <b>rojo</b> no se ingresa (RUT, salud, datos de menores, claves, información reservada), <b>amarillo</b> se <a class="gt" href="glosario.html#anonimizacion" data-term="Anonimización" data-def="Eliminar o transformar los datos que permiten identificar a una persona. Quitar nombre y RUT no siempre basta.">anonimiza</a> antes y <b>verde</b> se puede usar. Y revisa todo resultado antes de firmarlo: la responsabilidad sigue siendo tuya.</p>
   </div>
 </div>
 
@@ -78,7 +77,7 @@
 <h2>Tus próximas tres semanas</h2>
 <p class="sub">Lo aprendido se pierde si no se usa. Una propuesta simple:</p>
 <ol class="next">
-  <li><b>Guarda tres prompts</b><span>Elige tres tareas que repites y deja sus <a class="gt" href="glosario.html#prompt" title="Instrucción que le damos a la IA: la tarea, el contexto, los documentos y el formato esperado.">prompts</a> en un documento. <a href="areas.html">Empieza por tu división</a>.</span></li>
+  <li><b>Guarda tres prompts</b><span>Elige tres tareas que repites y deja sus <a class="gt" href="glosario.html#prompt" data-term="Prompt" data-def="Instrucción que le damos a la IA: la tarea, el contexto, los documentos y el formato esperado.">prompts</a> en un documento. <a href="areas.html">Empieza por tu división</a>.</span></li>
   <li><b>Crea tu primer agente</b><span>Para la consulta que más te hacen. <a href="agentes.html#plantillas">Usa una plantilla</a>.</span></li>
   <li><b>Comparte con tu equipo</b><span>Propón 30 minutos para mostrar lo que funcionó. <a href="grupos.html#club">La idea del club de IA</a>.</span></li>
 </ol>

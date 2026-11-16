@@ -6,6 +6,8 @@ Mundo visual cálido e institucional, inspirado en el paisaje de O'Higgins: pape
 Lectura (guías, glosario) con componentes de operación (filtrar y copiar prompts).
 
 ## Color (tokens en `:root`, con modo oscuro)
+El modo sigue la preferencia del sistema, y el botón sol/luna del encabezado la reemplaza (se guarda en el navegador como `tema`). Los tokens oscuros están en `:root[data-theme="dark"]` y en `prefers-color-scheme: dark` cuando no se eligió claro.
+
 - `--bg` papel cálido `#f6f1e8`, `--paper` superficies `#fffdf8`, `--ink` `#221c17`, `--muted` `#5d544b`.
 - `--accent` greda `#9c3f1f`: acciones, enlaces, foco, selección.
 - `--vine` verde viña `#2f5b45`: lo institucional, confirmaciones y recuadros de ayuda.
@@ -26,3 +28,7 @@ Lectura (guías, glosario) con componentes de operación (filtrar y copiar promp
 - Menú de escritorio: cinco secciones principales y «Más» (Tips, En grupo, Material). En el celular, menú «Secciones» agrupado en Usar, Crear, Practicar y Consultar.
 - La primera mención de los términos clave en cada página se enlaza al glosario automáticamente (`tools/build.py`, lista `TERMS`), con subrayado punteado.
 - Los controles que necesitan JavaScript llevan `js-only`; sin JavaScript se muestran enlaces equivalentes (`nojs-only`).
+- Al copiar un prompt aparece, junto al botón, «Copiado · Abrir Copilot Chat»; el prompt no se abre solo.
+- Las definiciones del glosario se despliegan al tocar un término (en el celular, como panel inferior), con «Ver en el glosario».
+- La búsqueda compara desde el inicio de cada palabra, acepta plurales simples y muestra primero las coincidencias en el título.
+- El cero tachado de Atkinson Hyperlegible se mantiene a propósito: distingue el 0 de la O.
